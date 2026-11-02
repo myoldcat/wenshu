@@ -1,0 +1,72 @@
+/* URL-only demonstration: stationary, plain surfaces and two workspaces. */
+html[data-theme="demo"] {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --ink: #263445;
+  --muted: #677383;
+  --green: #365d83;
+  --line: #dde2e8;
+  --selection: #e9eff6;
+  --edge-frame-fill: #ffffff;
+  --edge-light-color: #dde2e8;
+  --serif: "Noto Sans SC Variable", "Microsoft YaHei", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+html[data-theme="demo"] *,
+html[data-theme="demo"] *::before,
+html[data-theme="demo"] *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html[data-theme="demo"] .workspace-shell {
+  --workspace-inset: 0px;
+  --workspace-gap: 0px;
+  --article-card-edge: var(--line);
+  --article-card-hover-edge: #a8b7c8;
+  --article-card-selected-edge: #6f8faa;
+  --article-card-paint: #ffffff;
+  --article-card-hover-paint: #f6f8fb;
+  --article-card-shadow: none;
+  --article-card-hover-shadow: none;
+  background: var(--bg);
+}
+
+html[data-theme="demo"] .workspace-shell .app-sidebar {
+  background: #edf0f4;
+  border-color: var(--line);
+  padding-top: 29px;
+}
+
+html[data-theme="demo"] :is(.app-main, .library-main, .writing-root) { background: var(--bg); }
+html[data-theme="demo"] :is(.category-tree, .reader-panel, .dialog, .writing-dialog, .workspace-popover, .settings-detail, .sidebar-more-menu) {
+  background: var(--surface);
+  border-color: var(--line);
+}
+html[data-theme="demo"] :is(.context-rail, .category-tree) { border-left: 1px solid var(--line); }
+html[data-theme="demo"] :is(.document-card, .writing-project-card, .writing-option, .search-field, .btn, .icon-btn, .nav-item, .filter-trigger, .writing-workflow-band) { background-image: none !important; }
+html[data-theme="demo"] .workspace-shell .nav-item { color: var(--muted); }
+html[data-theme="demo"] .workspace-shell .nav-item:is(.active, .status-active) { color: var(--green); background: #dee7f0; border-color: transparent; }
+html[data-theme="demo"] .btn.primary { color: #fff; background: var(--green); border-color: var(--green); }
+html[data-theme="demo"] .workspace-shell :is(.document-card.is-selected, .writing-option.selected) { background: var(--selection); border-color: #6f8faa; }
+html[data-theme="demo"] .workspace-shell :is(.document-card, .writing-project-card, .btn, .icon-btn, .nav-item),
+html[data-theme="demo"] .doc-dot-nav-dot { transform: none !important; }
+html[data-theme="demo"] :is(.document-card, .writing-project-card) img { transform: none !important; }
+html[data-theme="demo"] :focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+
+/* Remove light sweeps and optical rims, including their stationary frames. */
+html[data-theme="demo"] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.btn, .nav-item, .theme-option, .icon-btn, .filter-trigger)::before,
+html[data-theme="demo"] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.btn, .nav-item, .theme-option, .icon-btn, .filter-trigger)::after,
+html[data-theme="demo"] .workspace-shell::before,
+html[data-theme="demo"] .workspace-shell::after { content: none !important; }
+html[data-theme="demo"] :is(.ambient-background, .doc-dot-viewport-glow, .writing-project-progress-light, .writing-progress-comet) { display: none !important; }
+html[data-theme="demo"] .workspace-shell :is(.library-main, .writing-projects) { --gallery-header-progress: 0 !important; }
+html[data-theme="demo"] :is(.library-heading, .writing-page-heading) { --gallery-heading-progress: 0 !important; }

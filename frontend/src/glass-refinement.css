@@ -1,0 +1,216 @@
+/* Glass belongs to controls and their edges; the backdrop is a soft color field. */
+html[data-theme="glass"] {
+  --bg: #f3faff;
+  --surface: #fcfeff;
+  --line: #9bbfd448;
+  --selection: #e1f3ff;
+  --glass-light-x: var(--glass-flow-x, 58%);
+  --glass-light-y: var(--glass-flow-y, 22%);
+  --glass-edge-x: var(--glass-edge-shift-x, 1px);
+  --glass-edge-y: var(--glass-edge-shift-y, 1px);
+  --glass-shine-x: var(--shine-x, 38%);
+  background: #eef9fe;
+}
+
+html[data-theme="glass"] .workspace-shell :is(.btn, .nav-item) {
+  --glass-shine-x: var(--shine-x, 38%);
+}
+
+html[data-theme="glass"] .workspace-shell .app-sidebar {
+  --muted: #4b6680;
+  background:
+    radial-gradient(ellipse at var(--glass-light-x) var(--glass-light-y), #ffffff3d, transparent 48%),
+    linear-gradient(145deg, #d0e5f5d9, #bbd5ecc9 65%, #d6e9f3db);
+  border-color: #fffffff5;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: inset var(--glass-edge-x) var(--glass-edge-y) 1px #fff,
+    inset calc(-1 * var(--glass-edge-x)) calc(-1 * var(--glass-edge-y)) 2px #63a6cc73,
+    inset 0 0 0 2px #ffffff40, 0 0 0 1px #6fa3c22e, 0 8px 20px #3f7eac08;
+}
+html[data-theme="glass"] .workspace-shell .app-sidebar .nav-item:not(.active) { color: #345770; }
+
+html[data-theme="glass"] .workspace-shell .app-main {
+  background:
+    radial-gradient(ellipse at var(--glass-light-x) var(--glass-light-y), #ffffff12, transparent 45%),
+    linear-gradient(150deg, #ffffff05, #f7fdff0a 68%, #ffffff1c);
+  border-color: #fffffff2;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: inset var(--glass-edge-x) var(--glass-edge-y) 1px #fff,
+    inset calc(-1 * var(--glass-edge-x)) calc(-1 * var(--glass-edge-y)) 2px #579bc46b,
+    inset 0 0 0 2px #ffffff35, 0 0 0 1px #79adc938, 0 8px 24px #366e9b08;
+}
+
+html[data-theme="glass"] .workspace-shell .category-tree {
+  background:
+    radial-gradient(ellipse at var(--glass-light-x) 8%, #ffffff26, transparent 48%),
+    linear-gradient(155deg, #faffff2b, #ecf8ff1c);
+  border-left-color: #ffffffed;
+  box-shadow: inset 2px 0 0 #fff9, -1px 0 0 #80abc54f;
+}
+
+html[data-theme="glass"] .workspace-shell .library-main {
+  background-image: linear-gradient(180deg, transparent 120px, #f5faff0f 270px, #f5faff38 420px);
+}
+html[data-theme="glass"] .workspace-shell :is(.document-list, .prompt-layout, .template-layout) {
+  background: #f5faff0d;
+}
+
+html[data-theme="glass"] .workspace-shell :is(.nav-item.active, .status-trigger.status-active) {
+  background:
+    radial-gradient(ellipse at var(--glass-shine-x) -20%, #ffffffd9 0, #ffffff20 30%, transparent 58%),
+    linear-gradient(145deg, #ffffff50, #cdefff38);
+  border-color: #fff;
+  box-shadow: inset 0 1px 0 #fff, inset 0 -1px 1px #83c0e454,
+    0 0 0 1px #93bddc21, 0 4px 11px #468bb413;
+}
+
+html[data-theme="glass"] .workspace-shell .nav-item:not(.active):hover {
+  background: linear-gradient(125deg, #ffffffb0, #f2fbff60);
+  border-color: #ffffffd9;
+}
+
+html[data-theme="glass"] .workspace-shell :is(.search-field, .knowledge-search, .prompt-search, .category-tree-search, .gw-search) {
+  background:
+    radial-gradient(ellipse at var(--glass-light-x) 0, #ffffff52, transparent 52%),
+    linear-gradient(180deg, #ffffff33, #f1fbff29);
+  border-color: #fffffff0;
+  box-shadow: inset 0 1px 0 #fff, inset 0 -1px 1px #8dbfda2b,
+    0 0 0 1px #8cb6cf30, 0 2px 5px #fff5;
+}
+
+html[data-theme="glass"] .workspace-shell :is(.search-field, .knowledge-search, .prompt-search, .category-tree-search, .gw-search):focus-within {
+  border-color: #fff;
+  box-shadow: inset 0 1px 0 #fff, 0 0 0 1px #6fb3da, 0 0 0 4px #88c9f21c;
+}
+
+html[data-theme="glass"] .workspace-shell .btn:not(.primary):not(.quiet) {
+  background:
+    radial-gradient(ellipse at var(--glass-shine-x) -16%, #ffffffd9, transparent 52%),
+    linear-gradient(145deg, #ffffff45, #e4f6ff30);
+  border-color: #fffffff5;
+  box-shadow: inset 0 1px 0 #fff, inset 0 -1px 1px #8ac4e43b,
+    0 0 0 1px #a2c7dd29, 0 3px 8px #4486b00b;
+}
+
+html[data-theme="glass"] .workspace-shell .btn:not(.primary):not(.quiet):hover {
+  background:
+    radial-gradient(ellipse at var(--glass-shine-x) 0, #fff, transparent 55%),
+    linear-gradient(145deg, #ffffff6b, #daf2ff47);
+  box-shadow: inset 0 1px 0 #fff, inset 0 -1px 1px #8ac4e466,
+    0 0 0 1px #a2c7dd38, 0 4px 12px #4486b018;
+}
+
+html[data-theme="glass"] .workspace-shell .btn.primary {
+  background:
+    radial-gradient(ellipse at var(--glass-shine-x) -65%, #ffffffb8, transparent 76%),
+    linear-gradient(160deg, #218cda, #1172be 65%, #0963b0);
+  border-color: #ffffffdf;
+  box-shadow: inset 0 1px 1px #fff9, inset 0 -1px 2px #145b9566,
+    0 0 0 1px #4692c329, 0 5px 13px #2882b824;
+}
+
+/* A narrow moving highlight stays on the control rim, without a milky overlay. */
+html[data-theme="glass"] .workspace-shell :is(.btn:not(.quiet), .nav-item.active) { position: relative; }
+html[data-theme="glass"] .workspace-shell :is(.btn:not(.quiet), .nav-item.active)::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 2px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(ellipse 90px 65px at var(--shine-x, 35%) var(--shine-y, 0%), #fff 12%, #bdeaffb8 39%, #609bc54d 57%, transparent 75%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+html[data-theme="glass"] .workspace-shell .document-row {
+  background:
+    radial-gradient(ellipse at var(--glass-light-x) 0, #ffffff38, transparent 55%),
+    linear-gradient(135deg, #ffffff47, #f8fdff38);
+  border-color: #ffffffde;
+  box-shadow: inset 0 1px 0 #ffffffeb, inset 0 -1px 0 #a2c8dc23,
+    0 2px 8px #4e88ab06;
+}
+
+html[data-theme="glass"] .workspace-shell .document-row.selected {
+  background:
+    radial-gradient(ellipse at var(--glass-light-x) 0, #ffffff47, transparent 52%),
+    linear-gradient(125deg, #f3fcff5c, #d7efff52);
+  border-color: #95cbe9b3;
+  box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #77b8dc73, 0 3px 10px #4788b00b;
+}
+
+html[data-theme="glass"] .workspace-shell .document-row:hover {
+  background: linear-gradient(125deg, #ffffff80, #f1fbff5c);
+  border-color: #fff;
+  box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #98cce43d, 0 5px 14px #4788b013;
+}
+
+html[data-theme="glass"] .workspace-shell .document-row.selected:hover {
+  background: linear-gradient(125deg, #f9feff8c, #d9f1ff73);
+  border-color: #a7d4ef;
+}
+
+html[data-theme="glass"] .workspace-shell :is(.library-tools .tabs, .writing-scope-control, .knowledge-view-switch) {
+  background: #e9f8ff57;
+  border-color: #ffffffdb;
+  box-shadow: inset 0 1px 0 #ffffffb3, inset 0 -1px 0 #99c6de26;
+}
+
+html[data-theme="glass"] .workspace-shell .category-tree-all.is-active {
+  background: linear-gradient(135deg, #ffffffc2, #dcf3ff75);
+  border-color: #fff;
+  box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #98cce43d;
+}
+
+html[data-theme="glass"] .workspace-shell :is(.writing-project-card, .template-preview, .gw-inspector) {
+  background: linear-gradient(145deg, #ffffff4d, #eefaff38);
+  border-color: #ffffffed;
+  box-shadow: inset 1px 1px 0 #ffffffbd, inset 0 -1px 0 #93c5df2b, 0 5px 18px #417da00a;
+}
+
+html[data-theme="glass"] .workspace-shell .gw-inspector {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Reading and editing keep a quiet white veil while the surrounding frame flows. */
+html[data-theme="glass"] .workspace-shell :is(.writing-editor-main, .prompt-detail, .template-paper) {
+  background: #ffffffed;
+  border-color: #d6e7ef;
+}
+
+/* Template outlines continue the surrounding glass surface. */
+html[data-theme="glass"] .workspace-shell .template-library .template-paper {
+  background: transparent;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  html[data-theme="glass"] .workspace-shell :is(.app-main, .app-sidebar, .category-tree, .gw-inspector) {
+    background: #f5fbff;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  html[data-theme="glass"] .workspace-shell :is(.document-row, .writing-project-card, .template-preview, .search-field, .knowledge-search, .prompt-search, .category-tree-search, .gw-search) {
+    background: #fcfeff;
+  }
+  html[data-theme="glass"] .workspace-shell .document-row.selected { background: #e5f4ff; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="glass"] {
+    --glass-light-x: 58%;
+    --glass-light-y: 22%;
+    --glass-shine-x: 38%;
+    --glass-edge-x: 1px;
+    --glass-edge-y: 1px;
+  }
+  html[data-theme="glass"] .workspace-shell :is(.btn, .nav-item) { --glass-shine-x: 38%; }
+  html[data-theme="glass"] .workspace-shell :is(.btn:not(.quiet), .nav-item.active)::after {
+    background: linear-gradient(140deg, #fff, #bdeaff70 50%, transparent);
+  }
+}

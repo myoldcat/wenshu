@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="jade">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>写作准备真实组件与 Hook 隔离验收</title>
+  <style>
+    html,body,#preparation-hook-root{margin:0;height:100%;overflow:hidden}
+    .preparation-hook-shell{height:100%;box-sizing:border-box;--workspace-inset:0px}
+    .preparation-hook-shell>.app-main{height:100%;margin:0!important;min-width:0}
+    #preparation-hook-observed{position:fixed;left:-10000px;width:1px;height:1px;overflow:hidden}
+    .preparation-hook-toast{position:fixed;z-index:9999;bottom:85px;left:50%;transform:translateX(-50%);padding:8px 14px;background:#244838;color:white;border-radius:7px;font:12px/1.6 sans-serif;pointer-events:none}
+  </style>
+</head>
+<body>
+  <div id="preparation-hook-root"></div>
+  <script type="module" src="./writing-preparation-hook.jsx"></script>
+</body>
+</html>

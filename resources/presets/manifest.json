@@ -1,0 +1,39 @@
+{
+  "id": "wenshu-starter-library",
+  "version": "2026.11.02.manuals",
+  "capturedAt": "2026-11-02",
+  "items": [
+    {
+      "id": "wenshu-user-guide",
+      "title": "文枢使用指南",
+      "file": "manual/user-guide.html",
+      "language": "zh",
+      "category": "教育与学习 · 文枢使用",
+      "kind": "manual",
+      "sourceName": "文枢配套文档",
+      "sourceUrl": "",
+      "license": "项目原创 · 随软件分发",
+      "licenseFile": "licenses/wenshu-original.txt",
+      "attribution": "文枢配套使用说明。",
+      "snapshotKind": "original_document",
+      "classificationPaths": [
+        {
+          "level1Id": "education_learning",
+          "level2": "软件使用",
+          "level3": "文枢使用"
+        }
+      ],
+      "sha256": "ed89198c59bc4a10916592c0cd0b2fb31ee254e9b55dbfbb05a87ba913b27e80",
+      "variants": {
+        "server": {
+          "file": "manual/user-guide-server.html",
+          "sha256": "ed89198c59bc4a10916592c0cd0b2fb31ee254e9b55dbfbb05a87ba913b27e80"
+        },
+        "windows": {
+          "file": "manual/user-guide-windows.html",
+          "sha256": "9ff6f6d432544ad0d4f58544e4e79c6bfacc1cfe98a09a424dd6a5fa6e0f3363"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,292 @@
+/* Template details and template navigation scroll independently in the workspace. */
+html[data-theme] .workspace-shell .app-main.view-templates {
+  overflow: hidden;
+}
+
+html[data-theme] .workspace-shell .view-templates > .workspace-view:not([hidden]) {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+html[data-theme] .workspace-shell .template-workspace.template-library {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(300px, 31%, 370px);
+  gap: 28px;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: var(--workspace-content-top, 29px) var(--workspace-content-inline, 34px) 30px;
+  overflow: hidden;
+}
+
+.template-library .template-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+html[data-theme] .workspace-shell .template-library .knowledge-heading {
+  flex: 0 0 auto;
+}
+
+html[data-theme] .workspace-shell .template-library .knowledge-heading p {
+  font-size: 14px;
+}
+
+.template-library .template-detail-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  padding: 0 3px 3px;
+}
+
+.template-library :is(.template-detail-scroll, .template-list):focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: -2px;
+}
+
+.template-library .template-preview {
+  padding: 28px;
+}
+
+.template-library .template-navigation {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0 0 0 16px;
+  border-left: 1px solid var(--line);
+}
+
+.template-library .template-navigation-heading {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 34px;
+  margin-bottom: 16px;
+}
+
+.template-library .template-navigation-heading h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.8;
+  font-weight: 600;
+}
+
+.template-library .template-navigation-heading > span {
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.template-library .template-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  flex: 0 0 auto;
+  gap: 4px 6px;
+  margin: 0 0 14px;
+}
+
+.template-library .template-tabs > button {
+  min-width: 0;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 2px 10px;
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: normal;
+}
+
+.template-library .template-type-hint {
+  flex: 0 0 auto;
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.template-library .template-navigation > .knowledge-search {
+  flex: 0 0 auto;
+  min-height: 44px;
+  margin-bottom: 16px;
+}
+
+.template-library .knowledge-search input {
+  font-size: 15px;
+}
+
+.template-library .template-list {
+  display: block;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  padding: 0 3px 2px;
+}
+
+.template-library .template-item {
+  align-items: flex-start;
+  padding: 18px 10px;
+  gap: 11px;
+}
+
+.template-library .template-item-icon {
+  width: 34px;
+  min-height: 42px;
+  margin-top: 2px;
+}
+
+.template-library .template-item-content {
+  gap: 6px;
+}
+
+.template-library .template-item strong {
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.template-library .template-item-content > span {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.template-library .template-item small,
+.template-library .template-preview-top > span,
+.template-library .template-tags .pill,
+.template-library .template-paper-caption > span,
+.template-library .template-paper li > span,
+.template-library .template-paper-style {
+  font-size: 12px;
+}
+
+.template-library .template-item > svg {
+  margin-top: 6px;
+}
+
+.template-library .template-list-footer {
+  flex: 0 0 auto;
+  margin: 16px 3px 0;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.template-library .template-intro,
+.template-library .template-paper li {
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.template-library .template-paper-caption,
+.template-library .template-tip,
+.template-library .knowledge-empty p {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.template-library .template-actions .btn,
+.template-library .knowledge-empty .btn {
+  font-size: 13px;
+}
+
+@media (max-width: 1180px) {
+  .template-library .template-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  html[data-theme] .workspace-shell .template-workspace.template-library {
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 18px;
+  }
+
+  .template-library .template-preview {
+    padding: 23px;
+  }
+
+  .template-library .template-navigation {
+    padding-left: 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  html[data-theme] .workspace-shell .template-workspace.template-library {
+    grid-template-columns: minmax(0, 1fr) 270px;
+  }
+
+  .template-library .template-item-icon {
+    display: none;
+  }
+
+  .template-library .template-actions {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 700px) {
+  html[data-theme] .workspace-shell .template-workspace.template-library {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) minmax(220px, 36%);
+    padding: 22px 20px 16px;
+  }
+
+  .template-library .template-navigation {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto auto minmax(0, 1fr);
+    gap: 8px 14px;
+    padding: 14px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .template-library .template-navigation-heading {
+    min-height: 0;
+    margin: 0;
+  }
+
+  .template-library .template-tabs {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: start;
+  }
+
+  .template-library .template-tabs > button {
+    padding-top: 8px;
+    font-size: 13px;
+  }
+
+  .template-library .template-navigation > .knowledge-search {
+    grid-row: 2;
+    min-height: 38px;
+    margin: 0;
+  }
+
+  .template-library .template-list {
+    display: flex;
+    gap: 8px;
+    grid-column: 1 / -1;
+    grid-row: 3;
+    overflow: auto;
+  }
+
+  .template-library .template-item {
+    flex: 0 0 220px;
+    padding: 10px;
+  }
+
+  .template-library .template-type-hint,
+  .template-library .template-list-footer {
+    display: none;
+  }
+}
+.template-paper-background { margin: 0 0 14px; color: var(--muted); font-size: 13px; line-height: 1.8; }

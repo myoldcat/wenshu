@@ -1,0 +1,57 @@
+{
+  "package": "Fandol",
+  "version": "0.3",
+  "source": "https://mirrors.ctan.org/fonts/fandol.zip",
+  "sourcePage": "https://ctan.org/tex-archive/fonts/fandol",
+  "retrieved": "2026-10-25",
+  "archiveBytes": 26688406,
+  "archiveSha256": "9278f01b417ded5766d98c3937192a1a6a2c73a5e94a3493fdfc932b2a55005a",
+  "license": "GPL-3.0 with font embedding exception; full upstream license in COPYING",
+  "authors": [
+    "Clerk Ma",
+    "Jie Su"
+  ],
+  "families": [
+    "FandolFang",
+    "FandolKai",
+    "FandolHei",
+    "FandolSong"
+  ],
+  "files": [
+    {
+      "file": "COPYING",
+      "bytes": 35737,
+      "sha256": "853b586f0d520493390e571431afaf36a5fbb27dcfd239338a7ee9b0505cb004"
+    },
+    {
+      "file": "FandolFang-Regular.otf",
+      "bytes": 6961384,
+      "sha256": "d838ad32ce2244d8144f408c37fe71065aba6fbbc80759a4d2aa2033948d5bc9"
+    },
+    {
+      "file": "FandolHei-Regular.otf",
+      "bytes": 5808908,
+      "sha256": "4afa97aa8751e0118617df88272b58d43691b5cffb7ea024c4580496e9f34d28"
+    },
+    {
+      "file": "FandolKai-Regular.otf",
+      "bytes": 7790552,
+      "sha256": "ea7e7fb4f9b3ac694a68d43946e04d21deed6e8c29a7c2d3081e1a4138f2f827"
+    },
+    {
+      "file": "FandolSong-Bold.otf",
+      "bytes": 5777588,
+      "sha256": "ffa76a70e128947a4dd22151d5ee829b23e24ce3cb6fe8ad49891cd1c2d9e9b9"
+    },
+    {
+      "file": "FandolSong-Regular.otf",
+      "bytes": 4947904,
+      "sha256": "a3820003227d4abe31fe28b493200d94a849ccfd078b50a019264f70353020b0"
+    },
+    {
+      "file": "README",
+      "bytes": 645,
+      "sha256": "32537e063f4c7d4aebf016d5c8279cbce13f34fc8970f24b2578a3c04d0f8ca6"
+    }
+  ]
+}

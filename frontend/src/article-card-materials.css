@@ -1,0 +1,61 @@
+/* Article surfaces get their depth from broad color and light, with quiet edges. */
+html[data-theme="jade"] .workspace-shell {
+  --article-card-edge: #71966c29;
+  --article-card-hover-edge: #71966c3d;
+  --article-card-selected-edge: #4d806a52;
+  --article-card-paint: radial-gradient(ellipse at 12% 0%, #ffffffd9, #ffffff00 62%), linear-gradient(150deg, #fdfef7 0%, #f3f7e9 52%, #e5eedb 100%);
+  --article-card-hover-paint: radial-gradient(ellipse at 12% 0%, #fffffff0, #ffffff00 65%), linear-gradient(150deg, #fefff9 0%, #f5f9ed 52%, #e5efdb 100%);
+  --article-card-shadow: inset 0 1px 3px #ffffffa8, inset 0 -12px 22px -18px #70986a33, 0 10px 22px -13px #315e3552, 0 2px 6px #31513b0a;
+  --article-card-hover-shadow: inset 0 1px 4px #ffffffc7, inset 0 -12px 22px -18px #70986a38, 0 14px 28px -14px #315e3561, 0 3px 8px #31513b0d;
+}
+
+html[data-theme="glass"] .workspace-shell {
+  --article-card-edge: #6d9ab526;
+  --article-card-hover-edge: #6d9ab538;
+  --article-card-selected-edge: #3e8fc14d;
+  --article-card-paint: radial-gradient(ellipse at 12% 0%, #ffffffe0, #ffffff00 60%), linear-gradient(150deg, #f8fcff 0%, #e6f3fd 52%, #cce3f5 100%);
+  --article-card-hover-paint: radial-gradient(ellipse at 12% 0%, #fffffff5, #ffffff00 65%), linear-gradient(150deg, #fcfeff 0%, #eaf6ff 52%, #d2e9fa 100%);
+  --article-card-shadow: inset 0 1px 3px #ffffffb8, inset 0 -12px 22px -18px #4d8caf38, 0 11px 24px -13px #2d60814d, 0 2px 7px #284e6f0a;
+  --article-card-hover-shadow: inset 0 1px 4px #ffffffd1, inset 0 -12px 22px -18px #4d8caf40, 0 15px 30px -14px #2d60815c, 0 3px 9px #284e6f0d;
+}
+
+html[data-theme="civic"] .workspace-shell {
+  --article-card-edge: #a8874c29;
+  --article-card-hover-edge: #a8874c3d;
+  --article-card-selected-edge: #cbb38252;
+  --article-card-paint: radial-gradient(ellipse at 12% 0%, #fffefbd9, #ffffff00 62%), linear-gradient(150deg, #fffdf7 0%, #fbf5e8 52%, #f1e5ce 100%);
+  --article-card-hover-paint: radial-gradient(ellipse at 12% 0%, #fffefbf0, #ffffff00 65%), linear-gradient(150deg, #fffefa 0%, #fcf7ed 52%, #f3e7d1 100%);
+  --article-card-shadow: inset 0 1px 3px #fffdf4b8, inset 0 -12px 22px -18px #ae8b4b33, 0 10px 22px -13px #80623845, 0 2px 6px #73513b09;
+  --article-card-hover-shadow: inset 0 1px 4px #fffdf4d1, inset 0 -12px 22px -18px #ae8b4b38, 0 14px 28px -14px #80623854, 0 3px 8px #73513b0c;
+}
+
+html[data-theme] .workspace-shell :is(.document-card:not(.is-selected), .writing-project-card) {
+  border-color: var(--article-card-edge);
+  background: var(--article-card-paint);
+  box-shadow: var(--article-card-shadow);
+}
+
+html[data-theme] .workspace-shell :is(.document-card:not(.is-selected), .writing-project-card):is(:hover, :focus-visible, :has(:focus-visible), .is-highlighted) {
+  border-color: var(--article-card-hover-edge);
+  background: var(--article-card-hover-paint);
+  box-shadow: var(--article-card-hover-shadow);
+}
+
+/* Saved selection keeps its original color and inset marker, with softer rims. */
+html[data-theme] .workspace-shell .document-card.is-selected {
+  border-color: var(--article-card-selected-edge);
+  box-shadow: inset 3px 0 0 var(--green), var(--article-card-shadow);
+}
+
+html[data-theme] .workspace-shell .document-card.is-selected:is(:hover, :focus-visible, :has(:focus-visible), .is-highlighted) {
+  border-color: var(--article-card-selected-edge);
+  box-shadow: inset 3px 0 0 var(--green), var(--article-card-hover-shadow);
+}
+
+html[data-theme="civic"] .workspace-shell .document-card.is-selected {
+  box-shadow: var(--civic-card-selected-shadow), var(--article-card-shadow);
+}
+
+html[data-theme="civic"] .workspace-shell .document-card.is-selected:is(:hover, :focus-visible, :has(:focus-visible), .is-highlighted) {
+  box-shadow: var(--civic-card-selected-shadow), var(--article-card-hover-shadow);
+}

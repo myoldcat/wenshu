@@ -1,0 +1,445 @@
+/* Shared geometry is independent of material. Theme files only paint this grid. */
+html[data-theme] {
+  --serif: "Noto Serif SC Variable", "Songti SC", SimSun, serif;
+}
+html[data-theme] .workspace-shell {
+  --workspace-inset: 14px;
+  --workspace-gap: 12px;
+  position: relative;
+  isolation: isolate;
+  padding: var(--workspace-inset);
+  gap: var(--workspace-gap);
+}
+/* The content grid stays fixed; only glass presents it as floating panels.
+   Other materials paint to the viewport edge, outside the reserved grid. */
+html:is([data-theme="jade"], [data-theme="civic"]) .workspace-shell::before,
+html:is([data-theme="jade"], [data-theme="civic"]) .workspace-shell:has(.view-library)::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  z-index: -1;
+  pointer-events: none;
+}
+html:is([data-theme="jade"], [data-theme="civic"]) .workspace-shell::before {
+  left: 0;
+  width: calc(var(--sidebar-width) + var(--workspace-inset) + var(--workspace-gap));
+  background: var(--workspace-sidebar-fill);
+  border-right: 1px solid var(--workspace-sidebar-edge);
+  box-shadow: var(--workspace-sidebar-shadow);
+}
+html:is([data-theme="jade"], [data-theme="civic"]) .workspace-shell:has(.view-library)::after {
+  right: 0;
+  width: calc(var(--category-rail-width) + var(--workspace-inset));
+  background: var(--workspace-index-fill);
+  border-left: 1px solid var(--line);
+}
+html:is([data-theme="jade"], [data-theme="civic"]) .workspace-shell .app-sidebar,
+html:is([data-theme="jade"], [data-theme="civic"]) .workspace-shell .category-tree {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+/* Extend the reading wash too, so no inset strip shows below the cards. */
+html:is([data-theme="jade"], [data-theme="civic"]) .workspace-shell:has(.view-library) {
+  background-image: linear-gradient(180deg,
+    transparent calc(var(--workspace-inset) + 90px),
+    color-mix(in srgb, var(--bg) 20%, transparent) calc(var(--workspace-inset) + 270px),
+    color-mix(in srgb, var(--bg) 42%, transparent) calc(var(--workspace-inset) + 420px));
+  background-position: calc(var(--sidebar-width) + var(--workspace-inset) + var(--workspace-gap)) 0;
+  background-size: calc(100% - var(--sidebar-width) - 2 * var(--workspace-inset) - var(--workspace-gap) - var(--category-rail-width)) 100%;
+  background-repeat: no-repeat;
+}
+html:is([data-theme="jade"], [data-theme="civic"]) .workspace-shell .library-main {
+  background-image: none;
+}
+html[data-theme] .workspace-shell .app-sidebar {
+  border-width: 0 1px 0 0;
+  border-style: solid;
+}
+html[data-theme] .workspace-shell .app-main {
+  border-width: 0;
+}
+html[data-theme] .workspace-shell .app-sidebar nav > .nav-item {
+  border: 1px solid transparent;
+  padding: 11px 13px;
+  font-weight: 400;
+}
+html[data-theme] .workspace-shell .app-sidebar nav > .nav-item.active { font-weight: 600; }
+/* Inset shadows retain glass edges without consuming a different content box. */
+html[data-theme="glass"] .workspace-shell .app-sidebar nav > .nav-item.active { border-color: #fffffff5; }
+html[data-theme] .workspace-shell.sidebar-collapsed .app-sidebar nav > .nav-item { padding: 11px 8px; }
+html[data-theme] .workspace-shell .library-heading { margin-bottom: 28px; }
+html[data-theme] .workspace-shell .library-heading h1 { line-height: 1.45; font-weight: 700; }
+html[data-theme] .workspace-shell .library-heading p { letter-spacing: normal; }
+html[data-theme] .workspace-shell .library-tools { padding-bottom: 0; }
+html[data-theme] .workspace-shell .library-tools .tabs {
+  gap: 5px;
+  padding: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+}
+html[data-theme="glass"] .workspace-shell .library-tools .tabs { border-color: #fff9; }
+html[data-theme] .workspace-shell .library-tools .tabs > button {
+  padding: 9px 16px;
+  border: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+html[data-theme="jade"] .workspace-shell .library-tools .tabs > button.active,
+html[data-theme="civic"] .workspace-shell .library-tools .tabs > button.active { box-shadow: inset 0 -2px 0 var(--green); }
+html[data-theme] .workspace-shell .list-caption { padding: 18px 0 15px; }
+html[data-theme] .workspace-shell .document-row {
+  border-width: 1px;
+  border-style: solid;
+  margin: 0 -12px 10px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+html[data-theme="jade"] .workspace-shell .document-row,
+html[data-theme="civic"] .workspace-shell .document-row { border-color: var(--line); }
+html[data-theme] .workspace-shell .document-row + .document-row.selected { margin-top: 0; }
+html[data-theme] .workspace-shell .document-title { font-weight: 600; }
+html[data-theme] .workspace-shell .document-copy > p { line-height: 1.75; }
+html[data-theme] .workspace-shell .document-tags button {
+  border-width: 1px;
+  border-style: solid;
+  padding: 1px 8px;
+}
+html[data-theme="jade"] .workspace-shell .document-tags button,
+html[data-theme="civic"] .workspace-shell .document-tags button { border-color: transparent; }
+html[data-theme] .workspace-shell :is(.source-icon, .project-icon, .template-item-icon, .writing-paper-icon) {
+  border-width: 1px;
+  border-style: solid;
+}
+html[data-theme="jade"] .workspace-shell :is(.source-icon, .project-icon, .writing-paper-icon),
+html[data-theme="civic"] .workspace-shell :is(.source-icon, .project-icon, .writing-paper-icon) { border-color: transparent; }
+html[data-theme] .workspace-shell :is(.knowledge-heading h1, .knowledge-detail h2, .template-preview h2) { font-weight: 600; }
+html[data-theme] .workspace-shell :is(.writing-page-heading h1, .writing-form-heading h1, .writing-outline-heading h1) { font-weight: 500; }
+html[data-theme] .workspace-shell :is(.writing-scope-control, .knowledge-view-switch) {
+  border-width: 1px;
+  border-style: solid;
+  padding: 3px;
+}
+html[data-theme="jade"] .workspace-shell :is(.writing-scope-control, .knowledge-view-switch),
+html[data-theme="civic"] .workspace-shell :is(.writing-scope-control, .knowledge-view-switch) { border-color: transparent; }
+html[data-theme] .workspace-shell .writing-editor-toolbar > select { padding: 6px; }
+html[data-theme] .workspace-shell .writing-chapter-title-input { font-weight: 400 !important; }
+html[data-theme] .workspace-shell .writing-body-editor {
+  font-family: var(--serif) !important;
+  font-size: 17px !important;
+  line-height: 2.1 !important;
+}
+html[data-theme] .reader-panel { border-left: 1px solid var(--line); }
+html[data-theme] .workspace-popover {
+  left: calc(var(--sidebar-width, 216px) + var(--workspace-inset, 14px) + var(--workspace-gap, 12px) + 14px);
+}
+/* Equal scrollbar space prevents content widths changing when overflow appears. */
+html[data-theme] :is(.app-sidebar, .library-main, .reader-scroll, .writing-editor-main, .workspace-popover) {
+  scrollbar-gutter: stable;
+}
+/* Navigation never scrolls; short sidebars group every status action together. */
+html[data-theme] .workspace-shell .app-sidebar {
+  --sidebar-status-row-height: 40px;
+  --sidebar-status-row-gap: 4px;
+  min-height: 0;
+  overflow: hidden;
+  scrollbar-gutter: auto;
+}
+html[data-theme] .workspace-shell .sidebar-brand-row,
+html[data-theme] .workspace-shell .app-sidebar > nav { flex-shrink: 0; }
+html[data-theme] .workspace-shell.sidebar-collapsed .sidebar-brand-row { gap: 0; }
+html[data-theme] .workspace-shell .sidebar-bottom {
+  flex: 1;
+  min-height: 0;
+  margin-top: 16px;
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 0;
+}
+.workspace-shell .sidebar-status-space {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+.workspace-shell .sidebar-status-space.is-compact {
+  min-height: var(--sidebar-status-row-height);
+}
+.workspace-shell .sidebar-status-actions {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: var(--sidebar-status-row-gap);
+}
+.workspace-shell .sidebar-status-actions > [hidden] { display: none !important; }
+html[data-theme] .workspace-shell .sidebar-bottom .status-trigger {
+  flex-shrink: 0;
+  height: var(--sidebar-status-row-height);
+  min-height: var(--sidebar-status-row-height);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+html[data-theme] .workspace-shell .sidebar-bottom .sidebar-badge {
+  flex-shrink: 0;
+  min-width: 26px;
+  height: 24px;
+  padding: 0 5px;
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--green) 19%, transparent);
+  font-size: 15px;
+  font-weight: 750;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+html[data-theme="civic"] .workspace-shell .sidebar-bottom .sidebar-badge {
+  color: #ffe4a5;
+  background: #ffffff2b;
+}
+html[data-theme] .workspace-shell.sidebar-collapsed .sidebar-bottom .sidebar-badge {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 3px;
+  font-size: 11px;
+  border-radius: 5px;
+}
+html[data-theme] .workspace-shell .sidebar-bottom .sidebar-collapse {
+  width: 100%;
+  opacity: .7;
+  border-radius: 9px;
+}
+html[data-theme] .workspace-shell .sidebar-bottom .sidebar-collapse:hover { opacity: 1; }
+html[data-theme] .workspace-shell .sidebar-bottom .sidebar-more-trigger {
+  justify-content: center;
+}
+html[data-theme] .workspace-shell .sidebar-bottom .sidebar-more-trigger > svg {
+  transition: transform 180ms ease;
+}
+html[data-theme] .workspace-shell .sidebar-bottom .sidebar-more-trigger[aria-expanded="true"] > svg {
+  transform: rotate(180deg);
+}
+/* Footer controls have no idle outlines, inset rims or travelling edge light. */
+html[data-theme] .workspace-shell .sidebar-bottom .status-trigger:not(:hover, :focus-visible, .status-active) {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+html[data-theme] .workspace-shell .sidebar-bottom .status-trigger:not(:hover, :focus-visible, .status-active)::before,
+html[data-theme] .workspace-shell .sidebar-bottom .status-trigger:not(:hover, :focus-visible, .status-active)::after {
+  content: none;
+  opacity: 0;
+  animation: none;
+}
+/* A body portal keeps all five actions outside the sidebar's clipping box. */
+html[data-theme] .sidebar-more-menu {
+  position: fixed;
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 188px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--edge-frame-fill, var(--surface));
+  box-shadow: 0 10px 32px color-mix(in srgb, var(--ink) 12%, transparent), inset 0 1px 0 #ffffffb0;
+  color: var(--ink);
+}
+html[data-theme] .sidebar-more-item {
+  width: 100%;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: left;
+}
+html[data-theme] .sidebar-more-item > svg { flex-shrink: 0; color: var(--green); }
+html[data-theme] .sidebar-more-item > span { flex: 1; }
+html[data-theme] .sidebar-more-item > b {
+  display: grid;
+  place-items: center;
+  min-width: 26px;
+  height: 24px;
+  padding: 0 5px;
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--green) 19%, transparent);
+  color: var(--green);
+  font-size: 15px;
+  font-weight: 750;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+html[data-theme] .sidebar-more-item:is(:hover, :focus-visible, .is-active) {
+  background: color-mix(in srgb, var(--green) 9%, transparent);
+  color: var(--green);
+}
+html[data-theme] .sidebar-more-item:focus-visible {
+  outline: 1px solid color-mix(in srgb, var(--green) 45%, transparent);
+  outline-offset: -1px;
+}
+@media (max-height: 690px) {
+  html[data-theme] .workspace-shell .app-sidebar { --sidebar-status-row-height: 36px; }
+  html[data-theme] .workspace-shell .app-sidebar nav > .nav-item { padding-top: 8px; padding-bottom: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme] .workspace-shell .sidebar-bottom .sidebar-more-trigger > svg { transition: none; }
+}
+
+/* One heading system for every primary destination, independent of material.
+   Bodies keep their own useful grids; page titles share the same outer anchor. */
+html[data-theme="jade"] .workspace-shell {
+  --workspace-page-title-color: #234d3b;
+  --workspace-page-title-shadow: 0 1px 1px #fff;
+}
+html[data-theme="glass"] .workspace-shell {
+  --workspace-page-title-color: #244363;
+  --workspace-page-title-shadow: 0 1px 0 #ffffff80;
+}
+html[data-theme="civic"] .workspace-shell {
+  --workspace-page-title-color: #54252d;
+  --workspace-page-title-shadow: 0 1px 0 #fff;
+}
+html[data-theme] .workspace-shell {
+  --workspace-content-inline: 34px;
+  --workspace-content-top: 29px;
+  --workspace-page-title-size: 38px;
+  --workspace-page-heading-gap: 28px;
+}
+html[data-theme] .workspace-shell .library-main {
+  padding: var(--workspace-content-top) var(--workspace-content-inline) 0;
+}
+html[data-theme] .workspace-shell :is(.writing-projects, .knowledge-workspace, .template-workspace, .prompt-workspace) {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: var(--workspace-content-top) var(--workspace-content-inline) 45px;
+}
+/* Hidden template panes used to restart a 5px slide on entry, shifting even
+   their shared heading anchor. Keep navigation changes stationary. */
+html[data-theme] .workspace-shell :is(.knowledge-workspace, .template-workspace) {
+  animation: none;
+  transform: none;
+}
+html[data-theme] .workspace-shell :is(.library-heading, .writing-page-heading, .knowledge-heading, .prompt-heading, .home-hero) {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 0 0 var(--workspace-page-heading-gap);
+}
+html[data-theme] .workspace-shell .gw-page-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 0;
+  padding: var(--workspace-content-top) var(--workspace-content-inline) var(--workspace-page-heading-gap);
+}
+html[data-theme] .workspace-shell :is(.library-heading, .gw-page-heading, .writing-page-heading, .knowledge-heading, .prompt-heading, .writing-form-heading, .writing-outline-heading, .home-hero) h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: var(--workspace-page-title-size);
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -1.2px;
+  color: var(--workspace-page-title-color);
+  text-shadow: var(--workspace-page-title-shadow);
+}
+html[data-theme] .workspace-shell :is(.library-heading, .gw-page-heading, .writing-page-heading, .knowledge-heading, .prompt-heading, .writing-form-heading, .writing-outline-heading, .home-hero) > p,
+html[data-theme] .workspace-shell :is(.library-heading, .gw-page-heading, .writing-page-heading, .knowledge-heading, .prompt-heading, .writing-form-heading, .writing-outline-heading, .home-hero) > div > p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: normal;
+}
+html[data-theme] .workspace-shell :is(.library-heading, .writing-page-heading, .knowledge-heading, .prompt-heading, .writing-outline-heading) > .btn,
+html[data-theme] .workspace-shell .home-hero-actions > .btn,
+html[data-theme] .workspace-shell .gw-build-trigger {
+  align-self: flex-start;
+  flex-shrink: 0;
+  height: 42px;
+  min-height: 42px;
+  margin: 4px 0 0;
+  padding: 9px 14px;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+}
+html[data-theme] .workspace-shell .gw-page-heading > .gw-build-wrap {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+html[data-theme] .workspace-shell .gw-build-trigger { margin: 0; }
+html[data-theme] .workspace-shell .gw-build-panel { top: calc(100% + 8px); }
+html[data-theme] .workspace-shell :is(.knowledge-sample, .gw-demo-badge) {
+  align-self: flex-start;
+  margin-top: 4px;
+  font-size: 11px;
+  line-height: 20px;
+}
+/* Workflow steps retain their functional row above these otherwise shared
+   heading metrics. Editing canvas and evidence columns are deliberately local. */
+html[data-theme] .workspace-shell :is(.writing-brief-layout, .writing-outline-wrap) {
+  max-width: none;
+  margin: 0;
+  padding-top: var(--workspace-content-top);
+  padding-left: var(--workspace-content-inline);
+  padding-right: var(--workspace-content-inline);
+}
+html[data-theme] .workspace-shell .writing-steps {
+  margin-bottom: var(--workspace-page-heading-gap);
+}
+html[data-theme] .workspace-shell .writing-form-heading {
+  margin-bottom: var(--workspace-page-heading-gap);
+}
+html[data-theme] .workspace-shell .writing-outline-heading {
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 20px;
+}
+@media (min-width: 1600px) {
+  html[data-theme] .workspace-shell {
+    --workspace-content-inline: 48px;
+    --workspace-content-top: 35px;
+    --workspace-page-title-size: 43px;
+  }
+}
+
+/* Color-only fallback; native transitions also blend gradients and brand PNGs. */
+html[data-theme] :is(.app-main, .app-sidebar, .category-tree, .workspace-popover, .dialog, .writing-dialog, .reader-panel) {
+  transition: background-color 280ms ease, color 280ms ease, border-color 280ms ease, box-shadow 280ms ease;
+}
+html[data-theme-transition="crossfade"] *,
+html[data-theme-transition="crossfade"] *::before,
+html[data-theme-transition="crossfade"] *::after { transition: none !important; }
+::view-transition,
+::view-transition-group(root),
+::view-transition-image-pair(root),
+::view-transition-old(root),
+::view-transition-new(root) { pointer-events: none; }
+::view-transition-group(root) { animation: none; }
+::view-transition-old(root) { animation: none; opacity: 1; }
+::view-transition-new(root) { animation: theme-reveal 280ms ease both; mix-blend-mode: normal; }
+@keyframes theme-reveal { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(root), ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}

@@ -1,0 +1,151 @@
+/* Light travels over controls and along frames; reading surfaces stay still. */
+@property --edge-light-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 28deg;
+}
+
+html[data-theme] {
+  --edge-light-color: #a6d8bb;
+  --edge-light-soft: #dcebdc;
+  --edge-light-white: #fffff5;
+  --edge-frame-fill: linear-gradient(145deg, #fffff9, #f5f7ec);
+}
+html[data-theme="glass"] {
+  --edge-light-color: #8accea;
+  --edge-light-soft: #daecf8;
+  --edge-light-white: #ffffff;
+  --edge-frame-fill: linear-gradient(145deg, #fcfeff, #f1f8fd);
+}
+html[data-theme="civic"] {
+  --edge-light-color: #d6b680;
+  --edge-light-soft: #e9dcc2;
+  --edge-light-white: #fff9e7;
+  --edge-frame-fill: linear-gradient(145deg, #fffdf8, #fcf7ef);
+}
+
+/* The negative stacking level places the glaze above the button's own
+   background but below its text and icons. No wrapper or clipping is needed. */
+html[data-theme] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.btn, .nav-item, .theme-option, .icon-btn, .filter-trigger) {
+  isolation: isolate;
+}
+html[data-theme] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.btn, .nav-item, .theme-option, .icon-btn, .filter-trigger):not(.row-favorite, .remove-picked, .mobile-menu) {
+  position: relative;
+}
+html[data-theme] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.btn, .nav-item, .theme-option, .icon-btn, .filter-trigger)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(112deg, transparent 25%, #ffffff05 36%, #ffffff6b 46%, #ffffff14 55%, transparent 68%);
+  background-size: 280% 100%;
+  background-position: 110% 0;
+  opacity: .26;
+  animation: control-light-pass 9s ease-in-out infinite;
+  transition: opacity 240ms ease;
+}
+html[data-theme] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.nav-item, .theme-option)::before {
+  opacity: .13;
+  animation-duration: 11s;
+  animation-delay: -3s;
+}
+html[data-theme] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.btn.primary, .nav-item.active, .status-active, .theme-option.active)::before {
+  opacity: .38;
+}
+html[data-theme] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.btn.quiet, .icon-btn, .filter-trigger)::before {
+  opacity: 0;
+  animation-play-state: paused;
+}
+html[data-theme] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.btn, .nav-item, .theme-option, .icon-btn, .filter-trigger):is(:hover, :focus-visible)::before {
+  opacity: .55;
+  animation-play-state: running;
+}
+
+/* This deliberately shares the existing glass rim's specificity. The mouse
+   highlight uses each control's local coordinates, never page coordinates. */
+html[data-theme] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.btn:not(.quiet), .nav-item.active, .btn, .nav-item, .theme-option, .icon-btn, .filter-trigger)::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 1.5px;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 74px 48px at var(--shine-x, 38%) var(--shine-y, 0%), var(--edge-light-white), transparent 76%),
+    conic-gradient(from var(--edge-light-angle), transparent 0deg 24deg, var(--edge-light-color) 54deg, var(--edge-light-white) 77deg, transparent 115deg 210deg, var(--edge-light-color) 250deg, transparent 292deg 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: .28;
+  animation: edge-light-orbit 12s linear infinite paused;
+  transition: opacity 240ms ease;
+}
+html[data-theme] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.btn.primary, .nav-item.active, .status-active, .theme-option.active)::after {
+  opacity: .52;
+  animation-play-state: running;
+}
+html[data-theme] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.btn.quiet, .icon-btn, .filter-trigger)::after { opacity: 0; }
+html[data-theme] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.btn, .nav-item, .theme-option, .icon-btn, .filter-trigger):is(:hover, :focus-visible)::after {
+  opacity: .95;
+  animation-play-state: running;
+}
+html[data-theme] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.btn, .nav-item, .theme-option, .icon-btn, .filter-trigger):disabled::before,
+html[data-theme] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.btn, .nav-item, .theme-option, .icon-btn, .filter-trigger):disabled::after {
+  opacity: 0;
+  animation: none;
+}
+
+/* A background clipped to the existing 1px border remains attached to the
+   visible frame even when a dialog's content scrolls. The opaque inner layer
+   also prevents the moving border color leaking into the reading area. */
+html[data-theme] :is(.dialog, .writing-dialog, .workspace-popover) {
+  border-color: transparent;
+  background:
+    var(--edge-frame-fill) padding-box,
+    conic-gradient(from var(--edge-light-angle), var(--edge-light-soft) 0deg 22deg, var(--edge-light-color) 55deg, var(--edge-light-white) 78deg, var(--edge-light-soft) 117deg 195deg, var(--edge-light-color) 235deg, var(--edge-light-white) 255deg, var(--edge-light-soft) 302deg 360deg) border-box;
+  background-attachment: scroll;
+}
+html[data-theme] .dialog {
+  animation: dialog-in 200ms ease, edge-light-orbit 14s linear infinite;
+}
+html[data-theme] .writing-dialog {
+  animation: edge-light-orbit 14s linear infinite;
+}
+html[data-theme] .workspace-popover {
+  animation: workspace-popover-in 170ms ease, edge-light-orbit 16s linear infinite;
+}
+html[data-theme] .workspace-popover[hidden] { animation: none; }
+
+@keyframes edge-light-orbit {
+  from { --edge-light-angle: 28deg; }
+  to { --edge-light-angle: 388deg; }
+}
+@keyframes control-light-pass {
+  0%, 12% { background-position: 110% 0; }
+  76%, 100% { background-position: -10% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.btn, .nav-item, .theme-option, .icon-btn, .filter-trigger)::before { display: none; }
+  html[data-theme] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.btn:not(.quiet), .nav-item.active, .btn, .nav-item, .theme-option, .icon-btn, .filter-trigger)::after {
+    background: linear-gradient(140deg, var(--edge-light-white), var(--edge-light-color) 65%, transparent);
+    animation: none;
+    transition: none;
+  }
+  html[data-theme] :is(.dialog, .writing-dialog, .workspace-popover) { animation: none; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  html[data-theme] :is(.dialog, .writing-dialog, .workspace-popover) {
+    background: var(--surface);
+    border-color: var(--edge-light-color);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    animation: none;
+  }
+  html[data-theme] :is(.workspace-shell, .dialog, .writing-dialog, .workspace-popover) :is(.btn, .nav-item, .theme-option, .icon-btn, .filter-trigger)::before { display: none; }
+}
+

@@ -1,0 +1,10 @@
+**
+!server/
+!server/requirements.lock
+!deploy/
+!deploy/server/
+!deploy/server/fonts/
+!deploy/server/fonts/*.otf
+!deploy/server/fonts/README
+!deploy/server/fonts/COPYING
+!deploy/server/fonts/PROVENANCE.json

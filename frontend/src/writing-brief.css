@@ -1,0 +1,304 @@
+/* Compact preparation form; shared writing surfaces and other stages stay local. */
+html[data-theme] .workspace-shell .writing-stage-brief .writing-brief-only{display:block;max-width:900px;margin:0 auto;padding:16px 28px 28px;width:100%;box-sizing:border-box}.writing-brief-only .writing-brief{max-width:780px;margin:0 auto}.writing-title-assist{display:flex;align-items:center;gap:10px}.writing-title-assist>input{flex:1;min-width:0;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:7px;padding:11px 12px;font:inherit}.writing-title-assist>.btn{flex-shrink:0}.writing-brief-source-note{font-size:12px;color:var(--muted);line-height:1.8;margin:16px 0}.writing-length-grid{margin:20px 0}.writing-length-grid input{padding:10px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);font:inherit}.writing-step-footer{display:flex;justify-content:flex-end;align-items:center;gap:20px;flex-shrink:0;padding:10px 22px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}.writing-review-actions{display:flex;gap:8px;flex-wrap:wrap}.writing-paragraph-checks{border-top:1px solid var(--line);padding-top:18px;margin-top:28px;font-size:12px}.writing-paragraph-checks>header{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.writing-paragraph-checks>header h3{font-size:14px;margin:0}.writing-paragraph-checks>header span{color:var(--muted)}.writing-paragraph-checks>article{border:1px solid var(--line);border-radius:7px;padding:12px;margin-top:12px}.writing-paragraph-checks h4{font-size:12px;margin:0 0 7px;color:var(--green)}.writing-paragraph-checks blockquote{margin:0 0 10px;padding:0 0 0 10px;border-left:2px solid var(--line);line-height:1.8;color:var(--muted);white-space:pre-wrap}.writing-paragraph-issue{display:flex;align-items:center;gap:12px;border-top:1px solid var(--line);padding:8px 0}.writing-paragraph-issue>p{flex:1;line-height:1.8}.writing-paragraph-issue>span{display:flex;align-items:center;gap:4px;color:var(--green);flex-shrink:0}.writing-paragraph-clear{color:var(--muted);font-size:12px}.writing-review-results .is-confirmed{color:var(--muted)}.writing-review-results .is-confirmed>svg{color:var(--green)}.writing-editor-main.is-reading .writing-paper-overline{color:var(--muted)}
+html[data-theme] .workspace-shell .writing-stage-brief .writing-brief-layout {
+  grid-template-columns: minmax(0, 1fr) 270px;
+  gap: 26px;
+  padding: 14px 28px 24px;
+  align-items: start;
+}
+.writing-stage-brief .writing-brief { min-width: 0; }
+.writing-stage-brief .writing-label {
+  flex-wrap: wrap;
+  gap: 3px 12px;
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 12px 0 6px;
+}
+.writing-stage-brief .writing-brief > .writing-label:first-child { margin-top: 0; }
+.writing-stage-brief .writing-label span { font-size: 13px; line-height: 1.5; }
+.writing-stage-brief .writing-topic,
+.writing-stage-brief .writing-purpose {
+  min-height: 0;
+  padding: 8px 12px;
+  font-size: 15px !important;
+  line-height: 1.6;
+}
+.writing-stage-brief .writing-topic { font-size: 17px !important; }
+.writing-stage-brief .writing-form-grid { gap: 14px 16px; margin-top: 12px; }
+.writing-stage-brief .writing-form-grid > label { min-width: 0; font-size: 15px; line-height: 1.5; }
+.writing-stage-brief .writing-form-grid select {
+  height: 38px;
+  min-width: 0;
+  margin-top: 6px;
+  padding: 6px 11px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.writing-stage-brief .writing-workflow-control { gap: 12px; margin: 0; }
+.writing-stage-brief :is(.writing-workflow-control, .writing-mode-cards) > button { min-width: 0; padding: 11px 12px; }
+.writing-stage-brief .writing-workflow-control > button { gap: 5px; }
+.writing-stage-brief .writing-workflow-control > button > strong,
+.writing-stage-brief .writing-length-custom > button > strong { position: relative; padding-left: 18px; }
+.writing-stage-brief .writing-workflow-control > button > strong > svg,
+.writing-stage-brief .writing-length-custom > button > strong > svg { position: absolute; left: 0; top: 50%; transform: translateY(-50%); }
+.writing-stage-brief .writing-workflow-control strong,
+.writing-stage-brief .writing-mode-cards > button > div { font-size: 15px; line-height: 1.5; }
+.writing-stage-brief .writing-workflow-control span,
+.writing-stage-brief .writing-mode-cards p { font-size: 14px; line-height: 1.6; }
+.writing-stage-brief .writing-mode-cards { gap: 12px; }
+.writing-stage-brief .writing-mode-cards p { margin-top: 5px; }
+.writing-stage-brief .writing-preparation-footer .btn { font-size: 15px; min-height: 42px; }
+html[data-theme] .workspace-shell .writing-stage-brief .writing-brief-aside {
+  position: sticky;
+  top: 14px;
+  margin-top: 0;
+  border-top: 0;
+  border-left: 1px solid var(--line);
+  padding: 0 0 0 22px;
+  min-width: 0;
+}
+.writing-stage-brief .writing-brief-material-heading { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
+.writing-stage-brief .writing-brief-material-heading > svg { flex-shrink: 0; }
+.writing-stage-brief .writing-brief-material-heading h3 { font-size: 18px; line-height: 1.5; margin: 0; }
+.writing-stage-brief .writing-brief-aside > p { font-size: 14px; line-height: 1.7; margin-bottom: 14px; }
+.writing-stage-brief .materials-aside-action { gap: 8px; margin: 14px 0; }
+.writing-stage-brief .materials-aside-action .btn { font-size: 14px; min-height: 40px; white-space: normal; }
+html[data-theme] .workspace-shell .writing-stage-brief .writing-aside-sources { display: block; max-height: min(40vh, 320px); }
+.writing-stage-brief .writing-aside-sources strong { font-size: 14px; line-height: 1.7; }
+.writing-stage-brief .writing-aside-sources :is(small, button > span) { font-size: 13px; }
+.writing-stage-brief .writing-gentle-note { padding: 12px; margin-top: 16px; }
+.writing-stage-brief .writing-gentle-note p { font-size: 14px; line-height: 1.7; }
+.writing-stage-brief :is(.writing-inline-link, .writing-demo-note, .writing-empty-small) { font-size: 13px !important; line-height: 1.7; }
+@media(max-width:1180px) {
+  html[data-theme] .workspace-shell .writing-stage-brief .writing-brief-layout { grid-template-columns: minmax(0, 1fr) 236px; gap: 20px; padding: 14px 22px 22px; }
+  html[data-theme] .workspace-shell .writing-stage-brief .writing-brief-aside { padding-left: 16px; }
+  .writing-stage-brief .writing-form-grid { gap: 12px; }
+}
+@media(max-width:900px) {
+  html[data-theme] .workspace-shell .writing-stage-brief .writing-brief-layout { grid-template-columns: minmax(0, 1fr); }
+  html[data-theme] .workspace-shell .writing-stage-brief .writing-brief-aside { position: static; border-left: 0; border-top: 1px solid var(--line); padding: 18px 0 0; }
+}
+
+/* A compact step heading leaves room for the complete preparation form. */
+html[data-theme] .workspace-shell .writing-stage-brief .writing-brief-only {
+  padding-top: 12px;
+  padding-inline: var(--workspace-content-inline, 34px);
+  padding-bottom: 16px;
+}
+html[data-theme] .workspace-shell .writing-stage-brief .writing-brief-only .writing-form-heading {
+  margin: 0 0 16px;
+}
+html[data-theme] .workspace-shell .writing-stage-brief .writing-brief-only .writing-form-heading h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.6px;
+  color: var(--workspace-page-title-color, var(--ink));
+  text-shadow: var(--workspace-page-title-shadow, none);
+}
+
+/* Direct length choices, with an exact number only for the custom option. */
+.writing-stage-brief .writing-length-grid {
+  display: block;
+  margin: 12px 0;
+}
+.writing-stage-brief .writing-length-label { margin: 0 0 6px; }
+.writing-stage-brief .writing-length-options {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+.writing-stage-brief .writing-length-options > button,
+.writing-stage-brief .writing-length-custom {
+  box-sizing: border-box;
+  min-width: 0;
+  height: 56px;
+  min-height: 56px;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--ink);
+  text-align: left;
+}
+.writing-stage-brief .writing-length-options > button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  cursor: pointer;
+}
+.writing-stage-brief .writing-length-options strong { display: flex; align-items: center; font-size: 14px; font-weight: 500; line-height: 1.5; }
+.writing-stage-brief .writing-length-options > button > span,
+.writing-stage-brief .writing-length-custom > button > span { display: block; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.writing-stage-brief .writing-length-options > button[aria-pressed="true"],
+.writing-stage-brief .writing-length-custom.is-selected { border-color: var(--green); background: var(--selection); }
+.writing-stage-brief .writing-length-options > button[aria-pressed="true"] strong,
+.writing-stage-brief .writing-length-custom.is-selected strong { color: var(--green); }
+.writing-stage-brief .writing-length-options > button:not(:disabled):hover,
+.writing-stage-brief .writing-length-custom:has(> button:not(:disabled):hover) { border-color: var(--green); }
+.writing-stage-brief .writing-length-options > button:focus-visible,
+.writing-stage-brief .writing-length-custom > button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+.writing-stage-brief .writing-length-options > button:disabled,
+.writing-stage-brief .writing-length-custom > button:disabled { opacity: 1; cursor: default; }
+.writing-stage-brief .writing-length-custom { position: relative; padding: 0; }
+.writing-stage-brief .writing-length-custom > button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 5px 8px;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.writing-stage-brief .writing-length-custom.is-selected > button > span { visibility: hidden; }
+.writing-stage-brief .writing-length-value {
+  position: absolute;
+  inset: auto 8px 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  height: 24px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.writing-stage-brief .writing-length-value > input {
+  display: block;
+  box-sizing: border-box;
+  flex: 1;
+  width: 0;
+  min-width: 0;
+  height: 24px;
+  min-height: 24px;
+  margin: 0;
+  padding: 1px 4px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+  appearance: textfield;
+}
+.writing-stage-brief .writing-length-value > input::-webkit-inner-spin-button,
+.writing-stage-brief .writing-length-value > input::-webkit-outer-spin-button { margin: 0; -webkit-appearance: none; }
+.writing-stage-brief .writing-length-value > input:focus-visible { outline: 2px solid var(--green); outline-offset: 1px; }
+.writing-stage-brief .writing-length-value > span { flex-shrink: 0; }
+@media(max-width:1180px) {
+  .writing-stage-brief .writing-length-options { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media(max-width:420px) { .writing-stage-brief .writing-length-options { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.writing-stage-brief .writing-automatic-options {
+  margin-top: 14px;
+}
+.writing-stage-brief .writing-automatic-options .writing-workflow-control {
+  gap: 10px;
+}
+.writing-stage-brief .writing-automatic-options .writing-workflow-control > button {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 10px;
+  min-height: 44px;
+  padding: 8px 10px;
+}
+.writing-stage-brief .writing-automatic-options .writing-workflow-control strong {
+  flex-shrink: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.writing-stage-brief .writing-automatic-options .writing-workflow-control span {
+  font-size: 13px;
+  line-height: 1.5;
+}
+.writing-stage-brief .writing-automatic-source-settings > .writing-label {
+  margin-top: 0;
+}
+.writing-stage-brief .writing-automatic-options > .writing-label:not(:first-child) {
+  margin-top: 12px;
+}
+.writing-stage-brief .writing-automatic-source-settings { min-width: 0; }
+.writing-stage-brief .writing-automatic-mode-section {
+  min-width: 0;
+  margin: 12px 0 0;
+  padding: 0;
+}
+.writing-stage-brief .writing-automatic-mode-slot { min-height: 132px; display: flow-root; }
+.writing-stage-brief .writing-automatic-subheading {
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.writing-stage-brief .writing-automatic-no-sources {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+@media(max-width:420px) {
+  .writing-stage-brief .writing-automatic-mode-control { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Completed steps remain readable until explicitly modified. */
+.writing-root[data-writing-step-readonly="true"] :is(.writing-readonly-fields, .writing-outline-fields) :is(input, textarea, select):disabled {
+  opacity: 1;
+  color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
+  cursor: default;
+}
+.writing-root[data-writing-step-readonly="true"] .writing-readonly-fields :disabled { cursor: default; }
+
+/* One form owns both columns, so the right-side settings share submit/lock guards. */
+html[data-theme] .workspace-shell .writing-stage-brief .writing-brief-only { max-width: 1260px; }
+html[data-theme] .workspace-shell .writing-stage-brief .writing-brief-only > .writing-brief { width: 100%; max-width: none; }
+.writing-stage-brief .writing-flow-content { scrollbar-gutter: stable; }
+.writing-stage-brief .writing-preparation-grid { display: grid; grid-template-columns: minmax(0, 1fr) 348px; align-items: stretch; gap: 0 34px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.writing-stage-brief .writing-preparation-grid > .writing-form-heading { grid-column: 1 / -1; }
+.writing-stage-brief .writing-preparation-main { min-width: 0; }
+.writing-stage-brief .writing-preparation-main > .writing-label:first-child { margin-top: 0; }
+.writing-stage-brief .writing-preparation-main > .writing-brief-source-note { min-height: 1.8em; margin: 8px 0 0; }
+.writing-stage-brief .writing-preparation-grid > .writing-preparation-footer { grid-column: 1 / -1; display: flex; justify-content: flex-end; align-items: center; margin-top: 14px; }
+.writing-stage-brief .writing-preparation-options { min-width: 0; margin: 0; padding: 0 0 0 24px; border-left: 1px solid var(--line); }
+.writing-stage-brief .writing-preparation-options > header { margin: 0 0 16px; }
+.writing-stage-brief .writing-preparation-options > header > h2 { margin: 0; color: var(--ink); font-size: 18px; font-weight: 600; line-height: 1.5; }
+.writing-stage-brief .writing-preparation-options > header > p { margin: 5px 0 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.writing-stage-brief .writing-preparation-options .writing-workflow-control { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.writing-stage-brief .writing-preparation-options .writing-workflow-control > button { display: flex; flex-direction: column; flex-wrap: nowrap; align-items: flex-start; gap: 4px; min-height: 72px; padding: 9px 10px; }
+.writing-stage-brief .writing-preparation-options .writing-workflow-control > button > span { font-size: 12px; line-height: 1.5; }
+.writing-stage-brief .writing-interactive-generation { margin-top: 0; }
+.writing-stage-brief .writing-interactive-generation > .writing-label { margin: 0 0 8px; }
+.writing-stage-brief .writing-interactive-generation-note { min-height: 3.2em; margin: 12px 0 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.writing-stage-brief .writing-title-candidates[hidden] { display: none; }
+.writing-stage-brief .writing-title-candidates { display: grid; grid-template-rows: 20px 120px 20px; gap: 6px; box-sizing: border-box; height: 196px; margin-top: 10px; padding: 12px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface); min-width: 0; }
+.writing-stage-brief .writing-title-candidate-status { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 12px; line-height: 20px; color: var(--muted); }
+.writing-stage-brief .writing-title-candidate-status[role="alert"] { color: var(--danger, #9d3840); }
+.writing-stage-brief .writing-title-candidate-options { display: grid; grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 6px; min-width: 0; }
+.writing-stage-brief .writing-title-candidate { display: flex; align-items: center; gap: 8px; min-width: 0; padding: 5px 9px; border: 1px solid var(--line); border-radius: 5px; color: var(--ink); background: var(--surface); text-align: left; cursor: pointer; font: inherit; font-size: 13px; line-height: 22px; }
+.writing-stage-brief .writing-title-candidate.is-selected { background: var(--selection); border-color: var(--green); color: var(--green); }
+.writing-stage-brief .writing-title-candidate:disabled { cursor: default; color: var(--muted); }
+.writing-stage-brief .writing-title-candidate-number { flex: 0 0 18px; color: var(--muted); font-size: 12px; text-align: center; }
+.writing-stage-brief .writing-title-candidate-text { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.writing-stage-brief .writing-title-candidate > svg { flex-shrink: 0; }
+.writing-stage-brief .writing-title-candidate:focus-visible { outline: 2px solid var(--green); outline-offset: 1px; }
+.writing-stage-brief .writing-title-keep { justify-self: end; min-height: 20px; height: 20px; padding: 0 4px; font-size: 12px; line-height: 20px; }
+@media(min-width:1181px) {
+  .writing-stage-brief .writing-title-candidates { grid-template-rows: 20px 32px 20px; height: 100px; padding: 6px; }
+  .writing-stage-brief .writing-title-candidate-options { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: minmax(0, 1fr); }
+  .writing-stage-brief .writing-title-candidate { padding: 4px 7px; line-height: 20px; }
+}
+.writing-stage-brief .writing-preset-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 0; }
+@media(max-width:1180px) { .writing-stage-brief .writing-preparation-grid { grid-template-columns: minmax(0, 1fr) 310px; column-gap: 24px; } .writing-stage-brief .writing-preparation-options { padding-left: 18px; } }
+@media(max-width:1000px) { .writing-stage-brief .writing-preparation-grid { grid-template-columns: minmax(0, 1fr); } .writing-stage-brief .writing-preparation-options { margin-top: 26px; padding: 20px 0 0; border-left: 0; border-top: 1px solid var(--line); } }

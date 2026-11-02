@@ -1,0 +1,31 @@
+.document-delete-backdrop { z-index: 115; }
+.document-delete-dialog { width: min(620px, 100%); }
+.document-delete-dialog .document-delete-name { overflow-wrap: anywhere; }
+.document-delete-dialog .dialog-head { padding-bottom: 0; }
+.document-delete-body { font-size: 13px; line-height: 1.8; color: var(--ink); }
+.document-delete-body > p + p { margin-top: 12px; }
+.document-delete-counts { color: var(--muted); }
+.document-delete-warning { margin: 16px 0; padding: 13px 15px; border: 1px solid color-mix(in srgb, #b65b35 30%, var(--line)); border-radius: 8px; background: color-mix(in srgb, #d99b48 9%, var(--bg)); }
+.document-delete-warning strong { display: flex; align-items: center; gap: 7px; }
+.document-delete-warning strong > svg { flex-shrink: 0; }
+.document-delete-warning p { margin: 8px 0; }
+.document-delete-warning ul { max-height: 180px; overflow: auto; margin: 10px 0 0; padding-left: 19px; }
+.document-delete-warning li { margin-top: 8px; overflow-wrap: anywhere; }
+.document-delete-warning li span, .document-delete-warning li small { display: block; }
+.document-delete-warning li small { color: var(--muted); }
+.document-delete-consent { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
+.document-delete-consent input { flex-shrink: 0; width: 17px; height: 17px; margin-top: 4px; accent-color: #ad463b; }
+.document-delete-error { color: #ad463b; margin-top: 14px; }
+.document-delete-dialog .dialog-footer > div { display: flex; gap: 8px; }
+html[data-theme] .document-delete-dialog .dialog-footer .document-delete-confirm { color: #fff; border-color: #a63f35; background: #a63f35; }
+html[data-theme] .document-delete-dialog .dialog-footer .document-delete-confirm:hover:not(:disabled) { background: #90372e; }
+.document-delete-dialog button:disabled { cursor: not-allowed; opacity: .5; }
+.document-card .document-card-delete { width: 26px; height: 28px; padding: 4px; }
+.document-card .document-card-delete:hover, .document-reader-delete:hover { color: #ad463b; background: color-mix(in srgb, #ad463b 8%, transparent); }
+@media (max-width: 600px) {
+  .document-delete-backdrop { padding: 12px; }
+  .document-delete-dialog .dialog-head, .document-delete-dialog .dialog-body { padding-left: 20px; padding-right: 20px; }
+  .document-delete-dialog .dialog-footer { padding-left: 20px; padding-right: 20px; gap: 8px; flex-wrap: wrap; }
+  .document-delete-dialog .dialog-footer > div { margin-left: auto; flex-wrap: wrap; justify-content: flex-end; }
+  .reader-window-actions { flex-wrap: wrap; }
+}

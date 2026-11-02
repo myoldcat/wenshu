@@ -1,0 +1,61 @@
+# Optional model service; prepare its runtime and model outside the repository.
+services:
+  api:
+    environment:
+      WENSHU_RERANK_URL: http://127.0.0.1:${WENSHU_RERANK_PORT:-8788}
+  worker:
+    environment:
+      WENSHU_RERANK_URL: http://127.0.0.1:${WENSHU_RERANK_PORT:-8788}
+  reranker:
+    profiles: [reranker]
+    image: python@sha256:cb33f7f771ecec2ef1225cf39b159591a040391bd73e4c01f00fdfc4c47611d2
+    network_mode: host
+    user: "${WENSHU_UID:-1000}:${WENSHU_GID:-1000}"
+    working_dir: /workspace
+    read_only: true
+    init: true
+    volumes:
+      - ${WENSHU_SOURCE_ROOT:-../..}/server/__init__.py:/workspace/server/__init__.py:ro
+      - ${WENSHU_SOURCE_ROOT:-../..}/server/reranker_runtime.py:/workspace/server/reranker_runtime.py:ro
+      - ${WENSHU_SOURCE_ROOT:-../..}/scripts/serve-qwen3-reranker.py:/workspace/scripts/serve-qwen3-reranker.py:ro
+      - ${WENSHU_RERANK_RUNTIME:?Set an external runtime directory}:/runtime:ro
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    environment:
+      HOME: /tmp
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+      HF_HUB_DISABLE_TELEMETRY: "1"
+    command:
+      - /runtime/venv/bin/python
+      - scripts/serve-qwen3-reranker.py
+      - --model-path
+      - ${WENSHU_RERANK_MODEL_PATH:-/runtime/model}
+      - --host
+      - 127.0.0.1
+      - --port
+      - "${WENSHU_RERANK_PORT:-8788}"
+      - --idle-seconds
+      - "60"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["${WENSHU_RERANK_GPU:-0}"]
+              capabilities: [gpu]
+    healthcheck:
+      test: [CMD, /runtime/venv/bin/python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:${WENSHU_RERANK_PORT:-8788}/ready', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 4
+      start_period: 30s
+    restart: unless-stopped
+    stop_grace_period: 5s
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"

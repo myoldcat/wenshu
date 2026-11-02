@@ -1,0 +1,107 @@
+@import './writing-spectrum.css';
+
+/* Saved manuscripts share the document library's comfortable card spacing. */
+.writing-root.writing-stage-projects{display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.workspace-shell .writing-root.writing-stage-projects .writing-projects{container-type:inline-size;display:flex;flex:1;flex-direction:column;min-height:0;min-width:0;padding-bottom:0}
+.writing-root .writing-projects> :not(.writing-project-gallery){flex-shrink:0}
+.writing-project-gallery{--writing-card-min-width:280px;--writing-card-gap:22px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;flex:1;min-width:0;min-height:0;margin-right:calc(2px - var(--workspace-content-inline,34px));padding-bottom:10px}
+.writing-project-viewport{min-width:0;min-height:0;overflow:auto;overflow-anchor:none;overscroll-behavior:contain;scrollbar-width:none;scroll-padding:16px;padding:12px;margin:-12px -12px 0}
+.writing-project-viewport::-webkit-scrollbar{display:none;width:0;height:0}
+.writing-project-viewport:focus-visible{outline:2px solid color-mix(in srgb,var(--green) 45%,transparent);outline-offset:-2px;border-radius:14px}
+.writing-project-scroll-space{height:var(--gallery-header-scroll-space,0px);flex-shrink:0;pointer-events:none}
+.writing-root .writing-project-grid{display:grid;grid-template-columns:repeat(var(--writing-project-columns,2),minmax(var(--writing-card-min-width),1fr));gap:var(--writing-card-gap,22px);align-items:stretch}
+.workspace-shell .writing-root .writing-projects:has(.writing-project-gallery){padding-top:calc(var(--workspace-content-top) - (var(--workspace-content-top) - 14px) * var(--gallery-header-progress,0))}
+.workspace-shell .writing-root .writing-projects:has(.writing-project-gallery) .writing-page-heading{align-items:flex-start;margin-bottom:calc(var(--workspace-page-heading-gap) - (var(--workspace-page-heading-gap) - 16px) * var(--gallery-heading-progress,0))}
+.workspace-shell .writing-root .writing-projects:has(.writing-project-gallery) .writing-page-heading h1{font-size:calc(var(--workspace-page-title-size) - (var(--workspace-page-title-size) - 26px) * var(--gallery-heading-progress,0))}
+.workspace-shell .writing-root .writing-projects:has(.writing-project-gallery) .writing-page-heading p{height:calc(var(--gallery-header-subtitle-height,23.4px) * (1 - var(--gallery-heading-progress,0)));margin-top:calc(6px * (1 - var(--gallery-heading-progress,0)));opacity:calc(1 - var(--gallery-heading-progress,0));overflow:hidden}
+.workspace-shell .writing-root .writing-projects:has(.writing-project-gallery) .writing-page-heading>.btn{height:calc(42px - 8px * var(--gallery-heading-progress,0));min-height:calc(42px - 8px * var(--gallery-heading-progress,0));margin-top:calc(4px - 2px * var(--gallery-heading-progress,0));padding:calc(11px - 5px * var(--gallery-heading-progress,0)) calc(16px - 4px * var(--gallery-heading-progress,0))}
+.workspace-shell .writing-root .writing-projects:has(.writing-project-gallery) .writing-page-heading>.btn>svg{width:calc(19px - var(--gallery-heading-progress,0) * 1px);height:calc(19px - var(--gallery-heading-progress,0) * 1px)}
+.writing-root .writing-project-card.is-highlighted{border-color:color-mix(in srgb,var(--green) 48%,var(--line));box-shadow:inset 0 1px 0 #ffffffc9,0 10px 22px -9px color-mix(in srgb,var(--green) 23%,transparent),0 3px 8px #20382b08}
+.writing-root .writing-project-grid .writing-project-card{display:flex;flex-direction:column;align-items:stretch;gap:0;min-width:0;margin:0;padding:18px;min-height:280px;box-sizing:border-box}
+.writing-root .writing-project-card[role="button"]{cursor:pointer}
+.writing-root .writing-project-card[aria-disabled="true"]{cursor:default}
+.writing-root .writing-project-card[role="button"]:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.writing-root .writing-project-card-top{display:flex;align-items:center;gap:9px;min-width:0;margin-bottom:10px}
+.writing-root .writing-project-card-top .writing-paper-icon{width:30px;height:30px;flex-shrink:0;border-radius:6px}
+.writing-root .writing-project-card-top .writing-status{font-size:12px;color:var(--green);flex:1;min-width:0;line-height:1.6}
+.writing-root .writing-project-card-top .writing-status i{background:var(--green)}
+.writing-root .writing-project-delete{width:32px;height:32px;flex-shrink:0;color:var(--muted)}
+.writing-root .writing-project-delete:hover{color:var(--ink);background:var(--selection)}
+.writing-root .writing-project-info{display:flex;flex-direction:column;flex:1;min-width:0}
+.writing-root .writing-project-heading{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;min-width:0}
+.writing-root .writing-project-info h2{flex:1;min-width:0;font-size:24px;font-weight:700;color:var(--ink);line-height:1.4;margin:0;min-height:1.4em;overflow-wrap:anywhere;letter-spacing:-.3px}
+.writing-root .writing-project-info h2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.writing-root .writing-project-thumbnail{width:88px;height:70px;flex-shrink:0;border-radius:6px;overflow:hidden;background:color-mix(in srgb,var(--green) 6%,var(--surface))}
+.writing-root .writing-project-thumbnail img{display:block;width:100%;height:100%;object-fit:contain}
+.writing-root .writing-project-info>p{font-size:14px;line-height:1.8;color:var(--muted);margin:0 0 12px;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.writing-root .writing-project-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));font-size:12px;line-height:1.6;gap:8px;color:var(--muted);margin-top:auto}
+.writing-root .writing-project-meta>span{display:flex;align-items:baseline;flex-wrap:wrap;column-gap:4px;min-width:0}
+.writing-root .writing-project-meta strong{font-size:18px;font-weight:600;line-height:1.5;color:var(--ink);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.writing-root .writing-project-meta small{font-size:12px;white-space:nowrap}
+.writing-root .writing-project-meta span+span:before{content:none;padding:0}
+.writing-root .writing-project-tags{display:flex;flex-wrap:wrap;align-items:flex-start;gap:5px 6px;min-width:0;margin-top:8px}
+.writing-root .writing-project-tags>span{font-size:12px;line-height:1.7;margin:0;padding:2px 7px;border-radius:4px;max-width:100%;box-sizing:border-box;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.writing-root .writing-project-tags>.writing-project-mode{color:#2e6b50;background:#e5f0e7}
+.writing-root .writing-project-tags>.writing-project-style{color:#835d25;background:#f6edda}
+.writing-root .writing-project-tags>.writing-project-model{color:#35648b;background:#e7eff8}
+.writing-root .writing-project-body-progress{--writing-progress-active:var(--writing-spectrum-brief-deep);display:flex;align-items:center;gap:10px;min-height:20px;margin-top:12px}
+.writing-project-body-progress[data-phase="materials"]{--writing-progress-active:var(--writing-spectrum-materials-deep)}
+.writing-project-body-progress[data-phase="outline"]{--writing-progress-active:var(--writing-spectrum-outline-deep)}
+.writing-project-body-progress[data-phase="body"]{--writing-progress-active:var(--writing-spectrum-body-deep)}
+.writing-project-body-progress[data-phase="images"]{--writing-progress-active:var(--writing-spectrum-images-deep)}
+.writing-project-body-progress[data-phase="review"],.writing-project-body-progress[data-phase="ready"]{--writing-progress-active:var(--writing-spectrum-review-deep)}
+.writing-project-body-progress[data-phase="ready"]:has([data-stage="review"][data-state="skipped"]){--writing-progress-active:var(--writing-spectrum-skipped-deep)}
+.writing-root .writing-project-progress-status{flex-shrink:0;font-size:12px;line-height:1.6;color:var(--writing-progress-active);white-space:nowrap}
+.writing-root .writing-project-progress-line{--writing-progress-rest:var(--writing-spectrum-rest);position:relative;flex:1;min-width:0;height:4px}
+.writing-root .writing-project-body-progress progress{position:absolute;inset:0;display:block;width:100%;height:4px;margin:0;opacity:0;pointer-events:none}
+.writing-root .writing-project-progress-spectrum{position:absolute;inset:0;display:grid;gap:1px;border-radius:6px;overflow:hidden}
+.writing-root .writing-project-progress-segment{min-width:0;background:var(--writing-progress-rest);border-radius:2px;overflow:hidden}
+.writing-project-progress-segment[data-stage="brief"]{--writing-spectrum:var(--writing-spectrum-brief)}
+.writing-project-progress-segment[data-stage="materials"]{--writing-spectrum:var(--writing-spectrum-materials)}
+.writing-project-progress-segment[data-stage="outline"]{--writing-spectrum:var(--writing-spectrum-outline)}
+.writing-project-progress-segment[data-stage="body"]{--writing-spectrum:var(--writing-spectrum-body)}
+.writing-project-progress-segment[data-stage="images"]{--writing-spectrum:var(--writing-spectrum-images)}
+.writing-project-progress-segment[data-stage="review"]{--writing-spectrum:var(--writing-spectrum-review)}
+.writing-project-progress-segment[data-state="skipped"]{--writing-spectrum:var(--writing-spectrum-skipped)}
+.writing-root .writing-project-progress-segment>i{display:block;height:100%;background:var(--writing-spectrum);border-radius:2px}
+.writing-root .writing-project-progress-light{position:absolute;inset:0 auto 0 0;width:var(--writing-progress-position);overflow:visible;clip-path:inset(-12px 0 -12px 0);pointer-events:none;filter:drop-shadow(0 0 3px #fff)}
+.writing-root .writing-project-progress-light>i{position:absolute;inset:0;display:block;transform:translateX(calc(-100% + 11px));animation:writing-card-meteor 8s linear infinite;animation-delay:var(--writing-motion-delay,0s)}
+.writing-root .writing-project-progress-light>i:before{content:'';position:absolute;right:3px;top:50%;transform:translateY(-50%);height:3px;width:min(96px,75%);border-radius:50%;background:linear-gradient(90deg,transparent,#fff4 30%,#fffd 75%,#fff)}
+.writing-root .writing-project-progress-light>i:after{content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);width:11px;height:8px;border-radius:65% 50% 50% 65%;background:radial-gradient(ellipse at 65% 50%,#fff 25%,#fffdeb 65%,#ffffffb3);box-shadow:0 0 3px 1px #fff,0 0 8px 2px color-mix(in srgb,var(--writing-progress-active) 30%,#fff)}
+.writing-root .writing-project-progress-point{position:absolute;left:var(--writing-progress-position);top:50%;width:8px;height:8px;box-sizing:border-box;border:2px solid var(--writing-progress-active);border-radius:50%;transform:translate(-50%,-50%);background:var(--surface);box-shadow:0 0 0 2px var(--surface),0 0 9px color-mix(in srgb,var(--writing-progress-active) 45%,transparent);pointer-events:none}
+.writing-root .writing-project-progress-line[data-motion="flow"]>.writing-project-progress-point{display:none}
+.writing-root .writing-project-word-count{display:inline-block;transform-origin:center bottom}
+.writing-root .writing-project-chapters-completed{display:inline-block;transform-origin:center bottom}
+.writing-root .writing-project-chapters-completed.is-updated{animation:writing-card-chapter-change .6s ease-out}
+.writing-root .writing-project-card[data-writing-active="true"] .writing-project-word-count{animation:writing-card-word-bounce 9s ease-in-out infinite;animation-delay:var(--writing-motion-delay,0s)}
+.writing-root .writing-project-card:nth-child(3n+2){--writing-motion-delay:1.4s}
+.writing-root .writing-project-card:nth-child(3n){--writing-motion-delay:2.8s}
+@keyframes writing-card-meteor{0%{transform:translateX(calc(-100% + 11px));opacity:0}5%{opacity:1}88%{transform:translateX(0);opacity:1}94%,100%{transform:translateX(0);opacity:0}}
+@keyframes writing-card-chapter-change{0%{transform:translateY(0)}35%{transform:translateY(-3px) scale(1.08)}65%{transform:translateY(1px)}100%{transform:translateY(0)}}
+@keyframes writing-card-word-bounce{0%,79%,90%,100%{transform:translateY(0) scale(1)}83%{transform:translateY(-2px) scale(1.04)}87%{transform:translateY(-.5px) scale(1.01)}}
+@media(prefers-reduced-motion:reduce){.writing-root .writing-project-progress-light{display:none}.writing-root .writing-project-progress-light>i,.writing-root .writing-project-card[data-writing-active="true"] .writing-project-word-count,.writing-root .writing-project-chapters-completed.is-updated{animation:none;transform:none}.writing-root .writing-project-progress-line[data-motion="flow"]>.writing-project-progress-point{display:block}}
+html[data-theme="demo"] .writing-root .writing-project-progress-light{display:none}
+html[data-theme="demo"] .writing-root .writing-project-progress-light>i,html[data-theme="demo"] .writing-root .writing-project-card[data-writing-active="true"] .writing-project-word-count,html[data-theme="demo"] .writing-root .writing-project-chapters-completed.is-updated{animation:none;transform:none}
+html[data-theme="demo"] .writing-root .writing-project-progress-line[data-motion="flow"]>.writing-project-progress-point{display:block}
+.writing-root .writing-project-card-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:0;padding-top:10px;border-top:0}
+.writing-root .writing-project-times{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);width:100%;gap:10px;min-width:0;font-size:12px;line-height:1.6;color:var(--muted);font-variant-numeric:tabular-nums}
+.writing-root .writing-project-times>span{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 4px;min-width:0}
+.writing-root .writing-project-times>span>span{white-space:nowrap}
+.writing-root .writing-project-modified{color:var(--ink)}
+.writing-root .writing-project-created{justify-content:flex-start;text-align:left;color:var(--muted)}
+.writing-root .writing-project-modified{justify-content:flex-end;text-align:right}
+.writing-root .writing-list-top input{font-size:14px;width:190px;color:var(--ink)}
+.writing-root .writing-list-top input:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:3px}
+.writing-root .writing-project-list-controls{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:flex-end}
+.workspace-shell .writing-root .writing-project-list-controls>.writing-project-search.search-field{flex:0 1 230px;box-sizing:border-box;width:230px;min-width:170px;height:40px;margin:0;padding:0 12px;gap:8px}
+.writing-project-search>svg{flex-shrink:0}
+.writing-root .writing-list-top .writing-project-search input{flex:1;width:100%;min-width:0;height:100%;padding:0;border:0;background:transparent;font-size:14px;color:var(--ink)}
+.writing-root .writing-list-top .writing-project-search input:focus-visible{outline:0}
+.writing-root .writing-project-list-controls label{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted)}
+.writing-root .writing-project-list-controls select{min-height:35px;padding:5px 0;font-size:13px;line-height:1.5;background:transparent;border:0;border-radius:0;box-shadow:none;color:var(--ink);cursor:pointer}
+.writing-root .writing-project-list-controls select:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:3px}
+.writing-delete-dialog .writing-delete-warning{display:flex;align-items:flex-start;gap:9px;padding:13px 14px;border:1px solid var(--line);border-radius:6px;background:var(--selection);font-size:14px;line-height:1.85;color:var(--ink)}
+.writing-delete-warning svg{flex-shrink:0;margin-top:4px}
+.writing-delete-dialog .writing-delete-confirm{color:var(--ink);border:1px solid var(--green);background:var(--selection)}
+.writing-delete-dialog .writing-dialog-description{font-size:15px;overflow-wrap:anywhere}
+@media(max-width:800px){.writing-root .writing-project-grid .writing-project-card{padding:20px}.writing-root .writing-project-info{min-width:0}.writing-root .writing-project-card-footer{gap:8px}.writing-root .writing-list-top input{width:155px}}

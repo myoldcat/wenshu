@@ -1,0 +1,16 @@
+/* Theme controls are shared; each material theme owns its own surfaces. */
+.theme-switcher{margin:18px 5px 20px;padding:14px 10px 10px;border:1px solid #c9d6cc;border-radius:18px;background:#ffffff50}
+.theme-caption{font-size:11px;letter-spacing:1px;color:var(--muted);padding:0 5px 9px}
+.theme-options{display:flex;flex-direction:column;gap:5px}
+.theme-option{position:relative;display:flex;align-items:center;gap:10px;min-height:54px;text-align:left;border:1px solid transparent;border-radius:12px;padding:9px 10px;color:var(--muted)}
+.theme-option.active{color:var(--ink);background:#fff9;border-color:#fffd;box-shadow:0 3px 9px #284e3510}
+.theme-option:hover{background:#ffffff60}.theme-option-copy{flex:1;min-width:0}.theme-option strong{display:block;font-size:13px;font-weight:600;white-space:nowrap}.theme-option small{display:block;font-size:10px;line-height:1.4;margin-top:3px;white-space:nowrap;opacity:.75}
+.theme-symbol{width:29px;height:29px;display:grid;place-items:center;flex-shrink:0;border-radius:10px;border:1px solid #ffffffa0;box-shadow:inset 0 1px 2px #fff9,0 3px 6px #294b3920}.theme-symbol.jade{background:linear-gradient(145deg,#c8e3c9,#558a70);color:#174e3c}.theme-symbol.glass{background:linear-gradient(145deg,#f7ffffee,#9ccefa70);color:#1673c4;box-shadow:inset 0 1px 3px #fff,0 3px 7px #257bc42b}.theme-check{flex-shrink:0;color:var(--green)}
+.theme-option small{font-size:11px;opacity:1}
+.theme-symbol.civic{background:radial-gradient(ellipse at 30% 0,#e8937550,transparent 65%),linear-gradient(145deg,#b22d39,#701321);color:#f1d28b;border-color:#d5ae6999;box-shadow:inset 0 1px 2px #f4cfa970,0 3px 7px #74152128}
+html[data-theme] .theme-symbol.civic{color:#f1d28b}
+html[data-theme] .app-shell,html[data-theme] .app-sidebar,html[data-theme] .context-rail{transition:background-color .3s,border-color .3s,box-shadow .3s}
+html[data-theme] .app-sidebar{overflow-y:auto;min-height:0}
+@media(max-width:760px) and (min-width:481px){.theme-switcher{margin:14px 0;padding:8px 4px;border-radius:16px}.theme-caption,.theme-option-copy,.theme-check{display:none}.theme-option{padding:6px;min-height:43px;justify-content:center}.theme-symbol{width:29px;height:29px}.theme-options{gap:6px}}
+@media(max-height:760px) and (min-width:761px){.theme-switcher{margin-top:10px;margin-bottom:10px;padding:8px}.theme-option{min-height:43px;padding:6px 8px}.theme-option small{display:none}.theme-caption{padding-bottom:5px}.prototype-label{padding-bottom:6px}}
+@media(prefers-reduced-motion:reduce){html[data-theme] *,html[data-theme] *::before,html[data-theme] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

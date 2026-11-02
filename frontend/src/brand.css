@@ -1,0 +1,103 @@
+/* Original material artwork, uniformly enlarged in the same fixed sidebar. */
+.brand, .about-brand {
+  --brand-icon-size: 48px;
+  --brand-wordmark-width: 100.8px;
+  --brand-wordmark-height: 48px;
+  --brand-gap: 12px;
+  align-items: center;
+  line-height: 1;
+}
+.wenshu-mark {
+  display: block;
+  position: relative;
+  width: var(--brand-icon-size, 48px);
+  height: var(--brand-icon-size, 48px);
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+.wenshu-mark .brand-symbol {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+}
+/* Calibrate only image framing here; never mask, tint or flatten the materials. */
+.wenshu-mark .brand-symbol-jade { display: block; width: 99.822%; left: 49.443%; top: 50%; }
+html[data-theme="glass"] .wenshu-mark .brand-symbol-jade,
+html[data-theme="civic"] .wenshu-mark .brand-symbol-jade { display: none; }
+html[data-theme="glass"] .wenshu-mark .brand-symbol-glass { display: block; width: 104.592%; left: 49.208%; top: 50.584%; }
+html[data-theme="civic"] .wenshu-mark .brand-symbol-civic { display: block; width: 105.244%; left: 48.909%; top: 50.210%; }
+html[data-theme] .workspace-shell .sidebar-brand-row { min-height: 56px; margin-bottom: 16px; }
+html[data-theme] .workspace-shell .brand {
+  min-height: 56px;
+  padding: 2px 6px;
+  gap: var(--brand-gap);
+  border-radius: 10px;
+  text-shadow: none;
+}
+html[data-theme] .workspace-shell .brand > .wenshu-mark {
+  display: block;
+  width: var(--brand-icon-size);
+  height: var(--brand-icon-size);
+  flex: 0 0 auto;
+}
+.brand:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+html[data-theme] .workspace-shell .brand > .brand-wordmark,
+.about-brand > .brand-wordmark {
+  display: block;
+  position: relative;
+  flex: 0 0 auto;
+  width: var(--brand-wordmark-width);
+  height: var(--brand-wordmark-height);
+  overflow: hidden;
+}
+.brand-wordmark .brand-artwork {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+}
+/* Wider character spacing lives in the artwork, preserving complete strokes.
+   Center the visible alpha bounds, with a 96px ink width in the 100.8px slot. */
+.brand-wordmark .brand-artwork-jade { display: block; width: 102.880%; left: 49.487%; top: 48.862%; }
+html[data-theme="glass"] .brand-wordmark .brand-artwork-jade,
+html[data-theme="civic"] .brand-wordmark .brand-artwork-jade { display: none; }
+html[data-theme="glass"] .brand-wordmark .brand-artwork-glass { display: block; width: 102.251%; left: 50%; top: 49.729%; }
+html[data-theme="civic"] .brand-wordmark .brand-artwork-civic { display: block; width: 100.952%; left: 49.211%; top: 48.286%; }
+html[data-theme] .workspace-shell.sidebar-collapsed .brand {
+  --brand-icon-size: 48px;
+  width: 52px;
+  min-height: 52px;
+  padding: 2px;
+  gap: 0;
+  justify-content: center;
+}
+html[data-theme] .workspace-shell.sidebar-collapsed .sidebar-brand-row { min-height: 52px; gap: 7px; margin-bottom: 12px; }
+html[data-theme] .workspace-shell.sidebar-collapsed .brand > .brand-wordmark { display: none; }
+.about-brand {
+  --brand-icon-size: 57.6px;
+  --brand-wordmark-width: 120.96px;
+  --brand-wordmark-height: 57.6px;
+  --brand-gap: 14.4px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--brand-gap);
+  padding: 14px 20px;
+  border-radius: 14px;
+}
+html[data-theme="civic"] .about-brand {
+  background: linear-gradient(135deg, #542e35, #713b44);
+  box-shadow: inset 0 0 0 1px #edd9ac33;
+}

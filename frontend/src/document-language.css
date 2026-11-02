@@ -1,0 +1,31 @@
+.document-language-badge {
+  display: inline-block;
+  vertical-align: .12em;
+  margin-right: 7px;
+  padding: 1px 5px;
+  border: 1px solid color-mix(in srgb, var(--green) 22%, var(--line));
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--green) 7%, var(--surface));
+  color: var(--green);
+  font-family: var(--sans, inherit);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.65;
+  letter-spacing: 0;
+  white-space: nowrap;
+  text-shadow: none;
+}
+html[data-theme] .reader-expanded .reader-article-heading .document-language-badge {
+  font-size: 11px;
+  padding: 2px 6px;
+  vertical-align: .3em;
+}
+.category-tree-document button .document-language-badge {
+  display: inline-block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+  font-size: 9px;
+  line-height: 1.5;
+  margin-right: 5px;
+  padding: 0 4px;
+}

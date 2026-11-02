@@ -1,0 +1,199 @@
+@import './writing-spectrum.css';
+
+.writing-progress-band{--workflow-accent:var(--green);position:relative;isolation:isolate;z-index:1;flex-shrink:0;min-width:0;margin:0;border:0;border-radius:0;background:transparent;color:var(--ink)}
+.writing-progress-filter{position:absolute;overflow:hidden;pointer-events:none}
+.writing-progress-halo{position:absolute;inset:0;z-index:0;pointer-events:none}
+.writing-progress-halo-viewport{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.writing-progress-halo-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:var(--writing-progress-step-height);align-content:start;width:100%;height:100%;gap:0;pointer-events:none}
+.writing-progress-halo-color{display:block;min-width:0;height:var(--writing-progress-step-height);background:color-mix(in srgb,var(--writing-halo-color) 7%,var(--surface))}
+.writing-progress-halo-color[data-state="complete"]{background:color-mix(in srgb,var(--writing-halo-color) 34%,var(--surface))}
+.writing-progress-halo-color[data-state="running"]{background:var(--writing-halo-deep)}
+.writing-progress-halo-color[data-stage="outline"][data-state="running"]{background:color-mix(in srgb,var(--writing-halo-color) 40%,var(--surface))}
+.writing-progress-halo-color[data-state="skipped"]{background:color-mix(in srgb,var(--writing-spectrum-skipped) 32%,var(--surface))}
+html[data-theme="demo"] .writing-progress-halo{display:none}
+html:has([data-writing-progress]) .toast{bottom:calc(var(--writing-toast-clearance,88px) + 16px)!important}
+/* Keep local action rows clear of the decorative halo without lifting prose. */
+.writing-root:has(> .writing-progress-band) :is(.materials-footer,.writing-outline-bottom,.writing-chapter-bottom,.writing-chapter-pagination,.writing-review-page-actions,.writing-images-footer,.writing-body-flow-actions){position:relative;z-index:2;background:var(--surface)}
+.writing-root:has(> .writing-progress-band) .writing-preparation-footer{position:relative;z-index:2}
+/* Let the outline hint share the page canvas while keeping actions above the halo. */
+.writing-root:has(> .writing-progress-band) .writing-outline-bottom{background:transparent}
+.writing-root:has(> .writing-progress-band) .writing-chapter-bottom{background:inherit}
+/* Pagination stays inside its contained reading scroller, so leave a safe tail. */
+.writing-root:has(> .writing-progress-band) .writing-chapter-pagination{padding-bottom:64px}
+.writing-progress-band.is-automatic{margin-top:auto}
+html[data-theme="jade"] .writing-progress-band{--workflow-accent:#176c4c}
+html[data-theme="glass"] .writing-progress-band{--workflow-accent:#146fc3}
+html[data-theme="civic"] .writing-progress-band{--workflow-accent:#b33447}
+html[data-theme="demo"] .writing-progress-band{--workflow-accent:#1768af}
+html[data-theme]:not([data-theme="glass"]) .workspace-shell:has(.view-writing .writing-progress-band) .app-main.view-writing{margin-right:calc(-1 * var(--workspace-inset));margin-bottom:calc(-1 * var(--workspace-inset));height:calc(100% + var(--workspace-inset));border-bottom-left-radius:0;border-bottom-right-radius:0;overflow:hidden}
+html[data-theme="glass"] .workspace-shell:has(.view-writing .writing-progress-band) .app-main.view-writing{overflow:hidden}
+.writing-progress-track{position:relative;z-index:1;display:flex;align-items:stretch;gap:0;padding:0}
+.writing-progress-track ol{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));align-items:stretch;list-style:none;padding:0;margin:0;flex:1;min-width:0;gap:0}
+.writing-progress-track li{--workflow-stage-color:var(--writing-spectrum-body);--workflow-running-color:var(--writing-spectrum-body-deep);--writing-step-color:var(--workflow-stage-color);--writing-step-deep:var(--workflow-running-color);--writing-step-ink:#2e3643;position:relative;min-width:0}
+.writing-progress-track li[data-stage="brief"]{--workflow-stage-color:var(--writing-spectrum-brief);--workflow-running-color:var(--writing-spectrum-brief-deep)}
+.writing-progress-track li[data-stage="materials"]{--workflow-stage-color:var(--writing-spectrum-materials);--workflow-running-color:var(--writing-spectrum-materials-deep)}
+.writing-progress-track li[data-stage="outline"]{--workflow-stage-color:var(--writing-spectrum-outline);--workflow-running-color:var(--writing-spectrum-outline-deep)}
+.writing-progress-track li[data-stage="body"]{--workflow-stage-color:var(--writing-spectrum-body);--workflow-running-color:var(--writing-spectrum-body-deep)}
+.writing-progress-track li[data-stage="images"]{--workflow-stage-color:var(--writing-spectrum-images);--workflow-running-color:var(--writing-spectrum-images-deep)}
+.writing-progress-track li[data-stage="review"]{--workflow-stage-color:var(--writing-spectrum-review);--workflow-running-color:var(--writing-spectrum-review-deep)}
+.writing-progress-track li>button{box-sizing:border-box;position:relative;display:flex;align-items:flex-start;gap:6px;text-align:left;margin:0;border:0;border-radius:0;box-shadow:none;background:color-mix(in srgb,var(--writing-step-color) 7%,var(--surface));color:var(--writing-step-ink);padding:10px 8px;min-height:88px;height:100%;width:100%;cursor:pointer}
+.writing-progress-track li>button::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:var(--writing-step-color)}
+.writing-progress-track li[data-state="waiting"]>button::before{opacity:.28}
+.writing-progress-track li>button:not(:disabled):hover{background:color-mix(in srgb,var(--writing-step-color) 15%,var(--surface))}
+.writing-progress-track li>button:focus-visible{outline:3px solid var(--workflow-accent);outline-offset:-3px;z-index:1}
+.writing-progress-track li>button:disabled{cursor:default;opacity:1}
+.writing-progress-number{box-sizing:border-box;display:flex;align-items:center;justify-content:center;width:24px;height:24px;flex-shrink:0;margin-top:1px;border-radius:50%;border:0;font-size:12px;font-weight:700;background:color-mix(in srgb,var(--surface) 85%,var(--writing-step-color));color:var(--writing-step-deep)}
+.writing-progress-step-text{display:flex;flex-direction:column;gap:4px;min-width:0;min-height:68px;flex:1}
+.writing-progress-step-heading{display:flex;align-items:center;flex-wrap:wrap;gap:4px}
+.writing-progress-step-text strong{font-size:15px;font-weight:700;line-height:1.35;white-space:nowrap}
+.writing-progress-step-text small{font-size:13px;font-weight:500;line-height:1.35;color:inherit}
+.writing-progress-state-line{display:flex;align-items:baseline;flex-wrap:wrap;gap:3px 5px;min-width:0}
+.writing-progress-duration{white-space:nowrap;font-variant-numeric:tabular-nums}
+.writing-progress-inline-notice{display:block;min-width:0;font-size:12px;font-weight:600;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.writing-progress-track li[data-state="complete"]>button{background:color-mix(in srgb,var(--writing-step-color) 34%,var(--surface))}
+.writing-progress-track li[data-state="complete"]>button:not(:disabled):hover{background:color-mix(in srgb,var(--writing-step-color) 42%,var(--surface))}
+.writing-progress-track li[data-state="complete"] .writing-progress-number{color:#fff;background:var(--writing-step-deep)}
+.writing-progress-track li[data-state="running"]>button,.writing-progress-track li[data-state="running"]>button:not(:disabled):hover{background:var(--writing-step-deep);color:#fff}
+.writing-progress-track li[data-state="running"] .writing-progress-number{color:var(--writing-step-deep);background:#fff}
+.writing-progress-track li[data-stage="outline"][data-state="running"]>button,.writing-progress-track li[data-stage="outline"][data-state="running"]>button:not(:disabled):hover{background:color-mix(in srgb,var(--writing-step-color) 40%,var(--surface));color:color-mix(in srgb,var(--writing-step-deep) 60%,var(--ink))}
+.writing-progress-track li[data-state="skipped"]{--writing-step-color:var(--writing-spectrum-skipped);--writing-step-deep:var(--writing-spectrum-skipped-deep)}
+.writing-progress-track li[data-state="skipped"]>button{background:color-mix(in srgb,var(--writing-step-color) 32%,var(--surface));color:#505b68}
+.writing-progress-track li[data-state="skipped"]>button::before{background:var(--writing-step-color);opacity:.7}
+.writing-progress-track li[data-state="skipped"]>button:not(:disabled):hover{background:color-mix(in srgb,var(--writing-step-color) 40%,var(--surface))}
+.writing-progress-track li[data-state="skipped"] .writing-progress-number{color:var(--writing-step-deep);background:color-mix(in srgb,var(--surface) 85%,var(--writing-step-color))}
+.writing-progress-track .is-viewed>button::after{content:'';position:absolute;left:8px;right:8px;bottom:3px;height:2px;background:var(--writing-step-deep)}
+.writing-progress-track .is-viewed[data-state="running"]>button::after{background:#fff}
+.writing-progress-track .is-viewed strong{font-weight:800}
+.writing-progress-notice-badge{display:inline-flex;align-items:center;gap:3px;max-width:100%;box-sizing:border-box;padding:2px 4px;border:0;border-radius:999px;background:#fff1c8;color:#7b4b13;font-size:12px;font-weight:750;line-height:1.3;white-space:normal;overflow-wrap:anywhere}
+.writing-progress-notice-badge svg{flex-shrink:0}
+.writing-progress-track [data-notice-tone="info"] .writing-progress-notice-badge{background:#edf3ff;color:#315175}
+.writing-flow-header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 24px;min-height:66px;box-sizing:border-box;flex-shrink:0;color:var(--ink)}
+.writing-flow-title{display:flex;align-items:center;gap:12px;min-width:0}
+.writing-flow-title>div{min-width:0}
+.writing-flow-title h2{font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:430px;margin:0 0 5px}
+.writing-flow-title small{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}
+.writing-flow-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.writing-flow-actions .btn{font-size:12px;padding:8px 12px}
+.writing-flow-actions .icon-btn{width:32px;height:32px}
+.writing-flow-content{min-height:0;overflow:auto;flex:1;overscroll-behavior:contain}
+.writing-root:not(.writing-stage-projects){display:flex;flex-direction:column;overflow:hidden}
+.writing-root .writing-brief-layout{gap:34px;grid-template-columns:minmax(0,1fr) 270px}
+html[data-theme] .workspace-shell .writing-flow-content :is(.writing-brief-layout,.writing-outline-wrap){padding-top:10px}
+.writing-root .writing-form-heading h1,.writing-root .writing-outline-heading h1{font-size:28px;margin-top:8px}
+.writing-root .writing-form-heading{margin-bottom:24px}
+.writing-root .writing-brief-aside{margin-top:12px}
+.writing-root .writing-brief-aside .writing-aside-sources{max-height:min(44vh,420px);overflow:auto;overscroll-behavior:contain;padding-right:7px;scrollbar-gutter:stable}
+.writing-root .writing-outline-summary{margin-top:22px}
+.writing-root .writing-start-chapter{transform:none;margin:14px 0}
+.writing-body-editor:placeholder-shown{min-height:180px}
+.writing-root .writing-project-info>p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.writing-root .writing-chapter-bottom>div>span{font-size:11px}
+@media(max-width:1250px){.writing-progress-track li>button{gap:6px;padding:10px 8px}.writing-flow-title h2{max-width:310px}}
+@media(max-width:1100px){.writing-root .writing-brief-layout{grid-template-columns:minmax(0,1fr);gap:20px}.writing-progress-track ol{width:100%}.writing-flow-header{padding-left:17px;padding-right:17px}}
+@media(max-width:900px){.writing-progress-track ol{grid-template-columns:repeat(3,minmax(0,1fr))}.writing-progress-track li>button{min-height:88px}}
+@media(max-width:700px){.writing-flow-title h2{max-width:180px}.writing-flow-actions{gap:4px}.writing-flow-actions .btn{padding:8px}.writing-flow-header{gap:8px}.writing-flow-title{gap:6px}}
+@media(max-width:700px){.writing-is-automatic-readonly .writing-flow-title small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+@media(max-width:600px){.writing-progress-track ol{display:flex;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--workflow-accent) 50%,transparent) transparent;padding:0;box-sizing:border-box}.writing-progress-track li{flex:0 0 166px;scroll-snap-align:center}.writing-progress-track li>button{min-height:88px}}
+
+.writing-chapter-goal{margin:8px 0 22px;padding-bottom:13px;border-bottom:1px solid var(--line);color:var(--muted);font-size:12px;line-height:1.8}.writing-chapter-goal summary{cursor:pointer;color:var(--green)}.writing-chapter-goal .writing-chapter-intention{margin:10px 0 0;padding:0;border:0}.writing-chapter-goal[open] summary{font-weight:500}
+
+.writing-outline-history{margin:18px 0;font-size:12px;line-height:1.8;color:var(--muted)}.writing-outline-history>summary{color:var(--green);cursor:pointer;padding:6px 0}.writing-outline-history>.writing-document-task{border:1px solid var(--line);border-radius:5px;margin-top:12px}.writing-outline-history>.writing-generation-plan{margin-bottom:12px}
+
+/* Keep正文 visible in a standard desktop-height window. */
+.writing-root .writing-paper{padding-top:22px}.writing-root .writing-paper-overline{margin-bottom:12px}.writing-root .writing-chapter-title-input{margin:0 0 8px}.writing-root .writing-chapter-goal{margin-bottom:14px}.writing-root .writing-body-view-tabs{margin:14px 0}.writing-root .writing-body-reading-notice{margin-bottom:14px}
+.writing-editor-main>.writing-document-task.succeeded{display:flex;align-items:center;flex-wrap:wrap;justify-content:space-between;gap:4px 14px;padding:7px 20px}
+.writing-editor-main>.writing-document-task.succeeded>.writing-document-task-heading span{display:none}
+.writing-editor-main>.writing-document-task.succeeded>details{flex:1;min-width:180px}
+.writing-editor-main>.writing-document-task.succeeded>details>summary{justify-content:flex-end;gap:12px;font-size:11px}
+.writing-editor-main>.writing-document-task.succeeded>small{display:none}
+.writing-editor-main>.writing-document-task.succeeded>details[open]{flex-basis:100%;order:1}
+.writing-editor-main>.writing-document-task.succeeded:has(>details[open])>small{display:block;flex-basis:100%;order:2}
+
+/* Independent writing panes keep the chapter body mounted as the workspace widens. */
+.writing-root{--writing-outline-width:210px;--writing-evidence-width:278px}
+.writing-root:not(.writing-is-focused) .writing-editor-grid{grid-template-columns:var(--writing-outline-width) minmax(0,1fr) var(--writing-evidence-width)}
+.writing-root:not(.writing-is-focused) .writing-chapter-nav{display:flex;min-width:0}
+.writing-root:not(.writing-is-focused) .writing-evidence-panel:not([hidden]){display:block;min-width:0}
+.writing-root .writing-evidence-panel[hidden]{display:none}
+.writing-root .writing-panel-title{gap:5px}
+.writing-root .writing-panel-title>span{flex:1;min-width:0}
+.writing-root .writing-panel-title .icon-btn{width:27px;height:27px;flex-shrink:0}
+.writing-root .writing-evidence-tabs{gap:3px;align-items:center}
+.writing-root .writing-evidence-tabs>button:not(.writing-evidence-close){align-self:stretch}
+.writing-root .writing-evidence-tabs>.writing-evidence-close{flex:0 0 27px;width:27px;height:27px;padding:0;margin-left:auto;border:0;display:inline-flex;align-items:center;justify-content:center}
+.writing-evidence-toggle[aria-expanded="false"]{color:var(--muted)}
+@media(min-width:1600px){.writing-root{--writing-outline-width:230px;--writing-evidence-width:310px}}
+@media(max-width:1250px){.writing-root{--writing-outline-width:175px;--writing-evidence-width:240px}}
+@media(max-width:1100px){.writing-root{--writing-outline-width:155px;--writing-evidence-width:225px}.writing-root .writing-flow-title h2{max-width:230px}}
+@media(max-width:800px){.writing-root{--writing-outline-width:135px;--writing-evidence-width:205px}.writing-evidence-toggle{font-size:0!important;gap:0!important}.writing-root .writing-flow-title h2{max-width:170px}}
+@media(max-width:800px){.writing-root:not(.writing-is-focused) .writing-editor-grid{position:relative;grid-template-columns:var(--writing-outline-width) minmax(0,1fr) 0px}.writing-root:not(.writing-is-focused) .writing-evidence-panel:not([hidden]){position:absolute;inset:0 0 0 auto;width:var(--writing-evidence-width);z-index:3;box-shadow:-8px 0 24px #00000012}}
+.writing-root.writing-outline-collapsed{--writing-outline-width:56px}
+.writing-root.writing-evidence-collapsed{--writing-evidence-width:0px}
+.writing-root.writing-outline-collapsed .writing-chapter-nav{padding:12px 6px}
+.writing-outline-collapsed .writing-panel-title{justify-content:center;gap:0;margin-bottom:12px}
+.writing-outline-collapsed .writing-panel-title>span,.writing-outline-collapsed .writing-outline-edit,.writing-outline-collapsed .writing-chapter-list>button>div,.writing-outline-collapsed .writing-chapter-list>button>svg,.writing-outline-collapsed .writing-chapter-bottom{display:none}
+.writing-root.writing-outline-collapsed .writing-chapter-list>button{justify-content:center;gap:0;padding:12px 0;min-height:42px}
+.writing-outline-collapsed .writing-chapter-list>button>span{font-size:12px;line-height:1;font-variant-numeric:tabular-nums}
+.writing-root .writing-outline-toggle:focus-visible,.writing-root .writing-evidence-close:focus-visible,.writing-root .writing-chapter-list>button:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+
+/* Let line length follow the available reading column, including pane changes. */
+.writing-root .writing-editor-scroll{container-type:inline-size}
+.writing-root .writing-paper,.writing-root .writing-chapter-pagination{width:100%;max-width:none;margin-inline:0;box-sizing:border-box;padding-left:clamp(22px,5cqi,72px);padding-right:clamp(22px,5cqi,72px)}
+.writing-root .writing-chapter-title-input{overflow-wrap:anywhere}
+.writing-root.writing-is-focused .writing-editor-toolbar{max-width:none}
+.writing-root .writing-preview-title,.writing-root .writing-preview-chapter{width:100%;max-width:none;box-sizing:border-box}
+
+/* Fixed rows keep long labels, notices and durations from moving the workspace. */
+.writing-progress-band { --writing-progress-step-height: 88px; height: var(--writing-progress-step-height); min-height: var(--writing-progress-step-height); max-height: var(--writing-progress-step-height); }
+.writing-progress-track { height: 100%; min-height: 0; }
+.writing-progress-track ol { height: 100%; grid-auto-rows: var(--writing-progress-step-height); align-content: start; }
+.writing-progress-track li { height: var(--writing-progress-step-height); min-height: var(--writing-progress-step-height); max-height: var(--writing-progress-step-height); }
+.writing-progress-track li > button { height: var(--writing-progress-step-height); min-height: var(--writing-progress-step-height); max-height: var(--writing-progress-step-height); padding: 10px 8px; overflow: hidden; }
+.writing-progress-step-text { display: grid; grid-template-rows: 22px 20px 18px; gap: 4px; height: 68px; min-height: 0; overflow: hidden; align-content: start; }
+.writing-progress-step-text small { line-height: 20px; }
+.writing-progress-inline-notice { line-height: 16px; }
+.writing-progress-step-heading { grid-row: 1; min-width: 0; flex-wrap: nowrap; gap: 6px; overflow: hidden; }
+.writing-progress-step-text strong { flex: 1 1 auto; min-width: min(4em, 100%); overflow: hidden; text-overflow: ellipsis; }
+.writing-progress-state-line { grid-row: 2; flex-wrap: nowrap; overflow: hidden; white-space: nowrap; }
+.writing-progress-state-line > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.writing-progress-state-line > span:first-child { flex: 0 1 auto; }
+.writing-progress-duration { display: inline-flex; align-items: center; gap: 3px; margin-left: auto; flex: 0 1 auto; min-width: 0; max-width: 60%; white-space: nowrap; overflow: hidden; }
+.writing-progress-duration > svg { flex-shrink: 0; width: 13px; height: 13px; }
+.writing-progress-duration > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.writing-progress-metric { font-variant-numeric: tabular-nums; }
+.writing-progress-inline-notice, .writing-progress-notice-badge { grid-row: 3; align-self: center; }
+.writing-progress-notice-badge { justify-self: start; max-width: 100%; min-width: 0; max-height: 18px; padding: 1px 4px; line-height: 16px; flex-wrap: nowrap; white-space: nowrap; overflow: hidden; overflow-wrap: normal; }
+.writing-progress-notice-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.writing-progress-track .is-viewed > button::after { left: 8px; right: auto; bottom: 4px; width: 24px; height: 3px; border-radius: 999px; }
+.writing-progress-track .is-viewed .writing-progress-number { box-shadow: 0 0 0 2px color-mix(in srgb, var(--writing-step-deep) 40%, transparent); }
+.writing-progress-track .is-viewed[data-state="running"] .writing-progress-number { box-shadow: 0 0 0 2px #ffffffa6; }
+.writing-progress-track .is-viewed[data-stage="outline"][data-state="running"] > button::after { background: var(--writing-step-deep); }
+.writing-progress-track .is-viewed[data-stage="outline"][data-state="running"] .writing-progress-number { box-shadow: 0 0 0 2px color-mix(in srgb, var(--writing-step-deep) 40%, transparent); }
+@media(min-width:601px) and (max-width:900px) {
+  .writing-progress-band { height: 176px; min-height: 176px; max-height: 176px; }
+  .writing-progress-halo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media(max-width:600px) {
+  .writing-progress-band { height: 96px; min-height: 96px; max-height: 96px; }
+  .writing-progress-track ol { display: grid; grid-template-columns: repeat(6, 166px); grid-template-rows: var(--writing-progress-step-height); grid-auto-flow: column; height: 96px; overflow-x: scroll; overflow-y: hidden; padding: 0; }
+  .writing-progress-track li { flex: none; }
+  .writing-progress-track ol::-webkit-scrollbar { height: 8px; }
+  .writing-progress-halo-grid { grid-template-columns: repeat(6, 166px); grid-template-rows: var(--writing-progress-step-height); grid-auto-flow: column; width: 996px; height: var(--writing-progress-step-height); }
+}
+
+/* Light follows the real running stage; viewing another stage keeps its own marker. */
+.writing-progress-band .writing-progress-track li[data-state="running"] { overflow: hidden; isolation: isolate; }
+.writing-progress-band .writing-progress-track li[data-state="running"]::before,
+.writing-progress-band .writing-progress-track li[data-state="running"]::after { content: ''; position: absolute; top: 0; bottom: 0; z-index: 1; pointer-events: none; }
+.writing-progress-band .writing-progress-track li[data-state="running"]::before { left: 0; right: 0; background: radial-gradient(ellipse at 20% 0, #ffffff24, transparent 74%); box-shadow: inset 0 0 28px #ffffff20, inset 0 12px 24px #ffffff0d; }
+.writing-progress-band .writing-progress-track li[data-state="running"]::after { left: -60%; width: 60%; background: linear-gradient(100deg, transparent, #ffffff1a 42%, #ffffff33 50%, #ffffff1a 58%, transparent); opacity: 0; animation: writing-running-light 4.8s ease-in-out infinite; }
+.writing-progress-band .writing-progress-track li[data-state="running"] > button > span { position: relative; z-index: 2; }
+.writing-progress-band .writing-progress-track li[data-state="running"] > button:focus-visible { z-index: 3; }
+.writing-progress-band .writing-progress-track .is-viewed[data-state="running"] > button::after { z-index: 2; }
+@keyframes writing-running-light {
+  0%, 18% { transform: translateX(-100%) skewX(-12deg); opacity: 0; }
+  30% { opacity: 1; }
+  66%, 100% { transform: translateX(360%) skewX(-12deg); opacity: 0; }
+}
+html[data-theme="demo"] .writing-progress-band .writing-progress-track li[data-state="running"]::after { animation: none; opacity: 0; }
+@media(prefers-reduced-motion: reduce) { .writing-progress-band .writing-progress-track li[data-state="running"]::after { animation: none; opacity: 0; } }

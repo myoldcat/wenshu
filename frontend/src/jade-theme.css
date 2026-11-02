@@ -1,0 +1,375 @@
+/* 青玉 · A quiet writing room, with polished nephrite controls and porcelain chrome.
+   Surfaces use light, edge thickness and inset shading; the reading plane stays calm. */
+html[data-theme="jade"],
+.app-shell[data-theme="jade"] {
+  --bg: #f7f7ef;
+  --surface: #fffef8;
+  --ink: #263f35;
+  --muted: #728077;
+  --green: #276554;
+  --line: #dce3d9;
+  --selection: #e5eee4;
+  --jade-edge: rgba(255, 255, 246, .88);
+  --jade-inset: inset 0 1px 0 rgba(255, 255, 250, .95), inset 0 -1px 1px rgba(82, 109, 87, .12);
+  --jade-raised: 0 3px 7px rgba(63, 83, 62, .07), 0 1px 2px rgba(63, 83, 62, .07);
+  color: var(--ink);
+  background: var(--bg);
+}
+
+html[data-theme="jade"] ::selection { background: #c4ddcb; color: #214f3e; }
+html[data-theme="jade"] ::-webkit-scrollbar-thumb { background: #c6d2c5; }
+html[data-theme="jade"] .app-shell {
+  background: radial-gradient(ellipse at 97% 0%, #edf3e7 0%, transparent 42%), #f8f8f0;
+}
+html[data-theme="jade"] .app-sidebar {
+  background:
+    linear-gradient(126deg, transparent 24%, rgba(255,255,255,.45) 24.5%, transparent 25.5%),
+    radial-gradient(ellipse at 4% 5%, rgba(255,255,248,.95), transparent 70%),
+    radial-gradient(ellipse at 120% 67%, rgba(164,193,165,.19), transparent 65%),
+    linear-gradient(120deg, #e8eee1, #f2f3e9 47%, #e7ede0);
+  border-right-color: #cdd9cb;
+  box-shadow: inset -1px 0 0 #ffffffb3, 4px 0 20px #3a583407;
+}
+html[data-theme="jade"] .brand { color: #264b3c; text-shadow: 0 1px 0 #fffefa; }
+html[data-theme="jade"] .brand svg {
+  color: #36765c;
+  filter: drop-shadow(0 1px 0 #ffffff) drop-shadow(0 2px 2px #3c644a2b);
+}
+html[data-theme="jade"] .nav-item { color: #586c5a; border-radius: 11px; }
+html[data-theme="jade"] .nav-item:hover {
+  background: linear-gradient(145deg, #f9faf1c9, #e6eddfb3);
+  box-shadow: inset 0 1px 0 #ffffffb3, 0 2px 5px #36503008;
+}
+html[data-theme="jade"] .nav-item.active {
+  color: #1f5542;
+  background:
+    radial-gradient(ellipse at 18% -25%, #ffffee 0%, #f2f9e845 48%, transparent 73%),
+    linear-gradient(112deg, #d3e4cd, #e9f0df 46%, #ccddc5);
+  box-shadow: inset 0 1px 0 #fffff7, inset 0 -1px 2px #8faa8859, inset 1px 0 1px #ffffffa6,
+    0 4px 7px #3c5c3510, 0 1px 2px #3b5b3421;
+  text-shadow: 0 1px 0 #ffffffa6;
+}
+html[data-theme="jade"] .nav-item.active svg { filter: drop-shadow(0 1px 0 #ffffffbf); }
+html[data-theme="jade"] .prototype-label { color: #768770; }
+html[data-theme="jade"] .library-main {
+  background: radial-gradient(ellipse at 90% -20%, #eaf0e436, transparent 70%), #fbfaf4;
+}
+html[data-theme="jade"] .library-heading h1,
+html[data-theme="jade"] .knowledge-heading h1,
+html[data-theme="jade"] .writing-page-heading h1,
+html[data-theme="jade"] .writing-form-heading h1,
+html[data-theme="jade"] .writing-outline-heading h1 {
+  color: #234d3b;
+  text-shadow: 0 1px 1px #ffffff;
+}
+html[data-theme="jade"] .library-heading p { color: #74806e; }
+html[data-theme="jade"] .context-rail {
+  background:
+    linear-gradient(145deg, transparent 16%, #ffffff75 16.3%, transparent 16.8%),
+    radial-gradient(ellipse at 100% 100%, #d7e5cf63, transparent 70%),
+    linear-gradient(116deg, #f5f6ebf5, #fdfcf5f0 52%, #eef1e4ed);
+  border-left-color: #d7dfcf;
+  box-shadow: inset 1px 0 0 #ffffff, -6px 0 24px #38542c04;
+}
+html[data-theme="jade"] .rail-heading h2,
+html[data-theme="jade"] .ongoing-project h3,
+html[data-theme="jade"] .selection-heading h3 { color: #304a38; }
+html[data-theme="jade"] .rail-divider {
+  background: #d9e1d2;
+  box-shadow: 0 1px 0 #ffffffc4;
+}
+html[data-theme="jade"] .picked-item { border-bottom-color: #dce4d6; }
+html[data-theme="jade"] .project-icon,
+html[data-theme="jade"] .source-icon,
+html[data-theme="jade"] .knowledge-relation-icon,
+html[data-theme="jade"] .template-item-icon,
+html[data-theme="jade"] .writing-paper-icon {
+  color: #567753;
+  background: radial-gradient(ellipse at 22% 0%, #fffff4, transparent 67%), linear-gradient(135deg, #e9f0de, #dbe8d2);
+  border-radius: 8px;
+  box-shadow: inset 0 1px 0 #ffffff, inset 0 -1px 1px #9ab48c66, 0 2px 4px #4e673b12;
+}
+html[data-theme="jade"] .source-icon.kind-观点 {
+  color: #996953;
+  background: radial-gradient(ellipse at 25% 0%, #fff9e9, transparent 65%), linear-gradient(140deg, #eee0c9, #e7d5bd);
+  box-shadow: inset 0 1px 0 #fffefa, inset 0 -1px 1px #bea58280, 0 2px 4px #765d3b12;
+}
+html[data-theme="jade"] .source-icon.kind-素材 {
+  color: #78764f;
+  background: radial-gradient(ellipse at 25% 0%, #fffef0, transparent 65%), linear-gradient(140deg, #ecebd9, #e2e0c7);
+}
+
+/* The high-polish edge is reserved for controls. */
+html[data-theme="jade"] .btn {
+  border-color: #cbd8c7;
+  border-radius: 9px;
+  color: #47623e;
+  background: linear-gradient(175deg, #fffef6, #f1f4e7 68%, #edf1e2);
+  box-shadow: var(--jade-inset), var(--jade-raised);
+  text-shadow: 0 1px 0 #ffffffad;
+}
+html[data-theme="jade"] .btn:hover {
+  border-color: #a7bda0;
+  background: linear-gradient(175deg, #fffff8, #eaf1df);
+  box-shadow: var(--jade-inset), 0 5px 10px #50683d12, 0 1px 2px #50683d14;
+}
+html[data-theme="jade"] .btn.primary {
+  color: #fbfff8;
+  border-color: #356c51;
+  background:
+    radial-gradient(ellipse at 25% -55%, #d8f3c782, transparent 76%),
+    linear-gradient(174deg, #679479 0%, #3c785c 16%, #2d624a 62%, #2a5c43 100%);
+  box-shadow: inset 0 1px 0 #c2e3b99c, inset 0 -1px 1px #103824b3, inset 1px 0 0 #96c6975c,
+    0 4px 9px #28533326, 0 1px 2px #17392133;
+  text-shadow: 0 1px 1px #20452dd9;
+}
+html[data-theme="jade"] .btn.primary:hover {
+  border-color: #35684e;
+  background:
+    radial-gradient(ellipse at 25% -55%, #e4fbd294, transparent 76%),
+    linear-gradient(174deg, #79a188 0%, #478268 18%, #346e53 65%, #2c6148);
+  box-shadow: inset 0 1px 0 #c4e8bb, inset 0 -1px 1px #153d28a3, 0 5px 13px #28533333;
+}
+html[data-theme="jade"] .btn:active:not(:disabled) {
+  box-shadow: inset 0 1px 3px #19382024, inset 0 -1px 0 #ffffff9c;
+}
+html[data-theme="jade"] .btn.quiet {
+  color: #75856e; background: transparent; border-color: transparent; box-shadow: none; text-shadow: none;
+}
+html[data-theme="jade"] .btn.quiet:hover,
+html[data-theme="jade"] .icon-btn:hover,
+html[data-theme="jade"] .writing-toolbar-actions button:hover {
+  background: #e3eddca3;
+  color: #356443;
+  box-shadow: inset 0 1px 1px #8caa7d21, 0 1px 0 #ffffffb3;
+}
+html[data-theme="jade"] .search-field,
+html[data-theme="jade"] .knowledge-search {
+  border-color: #cfdac9;
+  background: linear-gradient(180deg, #eaf0e4a3, #fffef6c9 60%);
+  box-shadow: inset 0 2px 4px #5e785319, inset 0 -1px 0 #ffffff, 0 1px 0 #ffffffd9;
+  border-radius: 11px;
+}
+html[data-theme="jade"] .search-field:focus-within,
+html[data-theme="jade"] .knowledge-search:focus-within {
+  border-color: #86a77d;
+  box-shadow: inset 0 2px 3px #5e785312, 0 0 0 3px #84a57017, 0 1px 0 #ffffff;
+}
+html[data-theme="jade"] kbd {
+  background: linear-gradient(#fffff6, #edf1e4);
+  color: #829477;
+  border-color: #d2ddc9;
+  box-shadow: 0 1px 1px #43603312, inset 0 1px 0 white;
+}
+html[data-theme="jade"] .tabs>button.active,
+html[data-theme="jade"] .knowledge-type-tabs>button.active {
+  color: #355d3d; border-bottom-color: #4a7850;
+}
+html[data-theme="jade"] .filter-panel,
+html[data-theme="jade"] .writing-outline-summary {
+  border-color: #d5e0cb;
+  background: linear-gradient(120deg, #eff3e7, #e8f0df);
+  box-shadow: inset 0 1px 0 #ffffff, inset 0 -1px 1px #afc3a32e;
+}
+html[data-theme="jade"] .document-row { border-bottom-color: #e1e5da; }
+html[data-theme="jade"] .document-row:hover { background: #edf2e6a6; }
+html[data-theme="jade"] .document-row.selected {
+  background:
+    radial-gradient(ellipse at 10% 0%, #ffffee78, transparent 78%),
+    linear-gradient(115deg, #e5eddb, #edf3e4 63%, #e2edda);
+  border-radius: 10px;
+  box-shadow: inset 0 1px 0 #ffffffd9, inset 0 -1px 0 #c9d9bc6b, inset 1px 0 0 #fafff1b3,
+    0 3px 8px #637c4807;
+}
+html[data-theme="jade"] .document-title { color: #304834; }
+html[data-theme="jade"] .document-title:hover { color: #25704c; }
+html[data-theme="jade"] .document-copy>p { color: #6d7c66; }
+html[data-theme="jade"] .document-tags button,
+html[data-theme="jade"] .pill,
+html[data-theme="jade"] .template-tags .pill {
+  color: #627b53;
+  background: linear-gradient(180deg, #eef4e5bd, #dde9d1ad);
+  box-shadow: inset 0 1px 0 #fffff57a, inset 0 -1px 0 #a9c19726;
+}
+html[data-theme="jade"] .document-tags button:hover { background: #d7e7c9; color: #3b6435; }
+html[data-theme="jade"] .selection-checkbox {
+  border-color: #aabd9e;
+  background-color: #fbfff3;
+  box-shadow: inset 0 1px 2px #6a865124, 0 1px 0 #ffffff;
+}
+html[data-theme="jade"] .selection-checkbox:checked { background: #3f7450; accent-color: #3f7450; }
+html[data-theme="jade"] .document-image {
+  box-shadow: 0 2px 7px #34432626, 0 0 0 1px #ffffffc9;
+  border-radius: 8px;
+}
+
+/* Form fields are cut into the surface; paper and text never carry shine. */
+html[data-theme="jade"] .field input,
+html[data-theme="jade"] .field textarea,
+html[data-theme="jade"] .field select,
+html[data-theme="jade"] .filter-panel select,
+html[data-theme="jade"] .writing-topic,
+html[data-theme="jade"] .writing-purpose,
+html[data-theme="jade"] .writing-sample-text,
+html[data-theme="jade"] .writing-form-grid select,
+html[data-theme="jade"] .writing-full-select,
+html[data-theme="jade"] .writing-export-style select,
+html[data-theme="jade"] .knowledge-editor textarea {
+  background: #fffef7;
+  border-color: #cdd9c6;
+  box-shadow: inset 0 2px 4px #526d3d0c, 0 1px 0 #ffffff;
+  border-radius: 8px;
+}
+html[data-theme="jade"] .dialog-backdrop,
+html[data-theme="jade"] .reader-backdrop,
+html[data-theme="jade"] .writing-overlay { background: #1b3d2b36; backdrop-filter: blur(6px); }
+html[data-theme="jade"] .dialog,
+html[data-theme="jade"] .writing-dialog {
+  background: radial-gradient(ellipse at 10% 0%, #fffff9, transparent 75%), #f5f7ec;
+  border: 1px solid #ffffffc9;
+  border-radius: 17px;
+  box-shadow: inset 0 1px 0 white, inset 0 -2px 2px #b6c7a86b, 0 24px 70px #264c2d30, 0 3px 10px #243e2221;
+}
+html[data-theme="jade"] .reader-panel { background: #fffdf6; box-shadow: -14px 0 65px #183c2524; }
+html[data-theme="jade"] .reader-panel>header,
+html[data-theme="jade"] .reader-panel>footer {
+  background: linear-gradient(155deg, #f9fbf1, #eaf0e0);
+  box-shadow: inset 0 1px 0 #ffffff, 0 1px 0 #e2e7da;
+}
+html[data-theme="jade"] .reader-scroll h1 { color: #2c5039; }
+html[data-theme="jade"] .reader-body p { color: #52644b; }
+html[data-theme="jade"] .import-tabs,
+html[data-theme="jade"] .knowledge-view-switch,
+html[data-theme="jade"] .writing-scope-control {
+  background: #e3ebda;
+  box-shadow: inset 0 1px 3px #64834b21, 0 1px 0 #fffffff2;
+  border-radius: 8px;
+}
+html[data-theme="jade"] .import-tabs button.active,
+html[data-theme="jade"] .knowledge-view-switch button.active,
+html[data-theme="jade"] .writing-scope-control button.active {
+  color: #3d643c;
+  background: linear-gradient(#fffef7, #eef4e3);
+  box-shadow: inset 0 1px 0 white, inset 0 -1px 1px #bdcfaa52, 0 2px 4px #5069381c;
+  border-radius: 6px;
+}
+html[data-theme="jade"] .switch { background: #d1dec7; box-shadow: inset 0 2px 3px #42653024; }
+html[data-theme="jade"] .switch.on { background: linear-gradient(#4a7950, #698b55); }
+html[data-theme="jade"] .switch span { background: linear-gradient(#fffffb, #edf2df); box-shadow: 0 2px 3px #29441f40, inset 0 1px 0 white; }
+html[data-theme="jade"] .upload-zone { background: #edf3e3; border-color: #b7c9a5; }
+html[data-theme="jade"] .upload-zone:hover { background: #e5efd8; }
+html[data-theme="jade"] .reading-callout,
+html[data-theme="jade"] .knowledge-insight,
+html[data-theme="jade"] .writing-gentle-note {
+  background: linear-gradient(120deg, #eef3e5, #e7efdd);
+  border-left-color: #91ad79;
+  box-shadow: inset 0 1px 0 #ffffffbf, inset 0 -1px 0 #bbcfa82e;
+}
+html[data-theme="jade"] .category-choices button.chosen {
+  color: #416b34; border-color: #acc79a; background: #e1edd4;
+  box-shadow: inset 0 1px 0 #ffffffb3;
+}
+html[data-theme="jade"] .toast {
+  background: linear-gradient(#4c7758, #31583c);
+  border: 1px solid #8cae7c;
+  box-shadow: inset 0 1px 0 #b4d49a8c, 0 8px 30px #244b2940;
+}
+
+/* Writing is a warm sheet seated between softly translucent jade panels. */
+html[data-theme="jade"] .writing-root { background: #fbfaf4; }
+html[data-theme="jade"] .writing-project-card,
+html[data-theme="jade"] .template-preview {
+  background: radial-gradient(ellipse at 5% 0%, #fffff9, transparent 65%), #f9faf0;
+  border-color: #d5dfcb;
+  border-radius: 12px;
+  box-shadow: inset 0 1px 0 #ffffff, inset 0 -1px 0 #c8d6bb66, 0 8px 22px #47652f07;
+}
+html[data-theme="jade"] .writing-mode-cards>button,
+html[data-theme="jade"] .writing-export-formats button {
+  border-color: #d3dfc9;
+  background: #fffef7;
+  box-shadow: inset 0 1px 0 white, 0 2px 4px #536c3c07;
+  border-radius: 8px;
+}
+html[data-theme="jade"] .writing-mode-cards>button.selected,
+html[data-theme="jade"] .writing-export-formats button.selected,
+html[data-theme="jade"] .knowledge-entry.selected,
+html[data-theme="jade"] .template-item.selected,
+html[data-theme="jade"] .writing-chapter-list>button.active {
+  color: #3c6335;
+  border-color: #adc49b;
+  background: radial-gradient(ellipse at 10% 0%, #faffedb3, transparent 80%), linear-gradient(130deg, #e2ecd4, #dbe9ce);
+  box-shadow: inset 0 1px 0 #ffffffd9, inset 0 -1px 1px #a8bd9357, 0 2px 4px #536c3c09;
+}
+html[data-theme="jade"] .writing-editor-header,
+html[data-theme="jade"] .writing-chapter-nav,
+html[data-theme="jade"] .writing-evidence-panel {
+  background: radial-gradient(ellipse at 0% 0%, #fffff5e6, transparent 65%), linear-gradient(115deg, #edf2e3, #f6f8ed);
+  border-color: #d5dfcb;
+  box-shadow: inset 0 1px 0 #ffffffbf;
+}
+html[data-theme="jade"] .writing-editor-main { background: #fffef8; }
+html[data-theme="jade"] .writing-editor-toolbar,
+html[data-theme="jade"] .writing-editor-status {
+  background: linear-gradient(180deg, #fffff8, #f4f6ea);
+  border-color: #e0e7d6;
+  box-shadow: inset 0 1px 0 #ffffff;
+}
+html[data-theme="jade"] .writing-paper { background: #fffef8; }
+html[data-theme="jade"] .writing-chapter-title-input { color: #315435!important; }
+html[data-theme="jade"] .writing-body-editor { color: #4c5e47!important; }
+html[data-theme="jade"] .writing-chapter-list>button { border-radius: 7px; }
+html[data-theme="jade"] .writing-chapter-list>button:hover { background: #e8efdd; }
+html[data-theme="jade"] .writing-chapter-list>button.active:hover { background: #dfeccf; }
+html[data-theme="jade"] .writing-editor-toolbar>select,
+html[data-theme="jade"] .writing-outline-fields select,
+html[data-theme="jade"] .writing-outline-fields .writing-word-input,
+html[data-theme="jade"] .writing-review select {
+  border-color: #d0ddc4; background: #f8fbf0;
+  box-shadow: inset 0 1px 3px #617a4610, 0 1px 0 white;
+}
+html[data-theme="jade"] .writing-evidence-tabs { border-bottom-color: #dce5d0; }
+html[data-theme="jade"] .writing-evidence-tabs>button.active { border-bottom-color: #507847; color: #3c683c; }
+html[data-theme="jade"] .writing-citation-warning { background: #f3efdc; box-shadow: inset 0 1px 0 #ffffffc9; color: #7e784f; }
+html[data-theme="jade"] .writing-generation-banner { background: #e7f0db; border-bottom-color: #d2e0c2; }
+html[data-theme="jade"] .writing-proposal-columns>div,
+html[data-theme="jade"] .writing-media-list>button { background: #fafcf1; border-color: #d9e4cc; }
+html[data-theme="jade"] .writing-proposal-columns>div:last-child { background: #eef5e3; }
+html[data-theme="jade"] .writing-export-preview { background: #fffef9; border-color: #e1e7d8; box-shadow: 0 4px 14px #465c3412; }
+html[data-theme="jade"] .writing-inserted-table th,
+html[data-theme="jade"] .material-table th { background: #e9f0dc; }
+html[data-theme="jade"] .writing-inserted-table th,
+html[data-theme="jade"] .writing-inserted-table td,
+html[data-theme="jade"] .material-table th,
+html[data-theme="jade"] .material-table td { border-color: #d9e3cb; }
+html[data-theme="jade"] .knowledge-entry:hover,
+html[data-theme="jade"] .template-item:hover { background: #edf3e3; }
+html[data-theme="jade"] .knowledge-related-inline button {
+  background: linear-gradient(#fffef6, #edf3e3);
+  box-shadow: inset 0 1px 0 white, 0 1px 2px #47613609;
+  border-color: #d5e0c9;
+}
+html[data-theme="jade"] .knowledge-related-inline button:hover { background: #e6efd9; border-color: #b6cba4; }
+html[data-theme="jade"] .template-item.selected .template-item-icon { background: linear-gradient(#e7f1d8, #cfdfbe); border-color: #bcd0a9; }
+
+/* Theme choice is a small polished stone, not another primary action. */
+html[data-theme="jade"] .theme-switcher {
+  background: #e2e9da;
+  border-color: #d0dcc5;
+  box-shadow: inset 0 1px 3px #6b855121, 0 1px 0 #ffffffe6;
+}
+html[data-theme="jade"] .theme-option { color: #6b805c; }
+html[data-theme="jade"] .theme-option:hover { background: #f4f8ec80; }
+html[data-theme="jade"] .theme-option.active {
+  color: #355c38;
+  background: radial-gradient(ellipse at 20% 0%, #fffff9, transparent 75%), linear-gradient(#f4fae9, #d8e6c8);
+  box-shadow: inset 0 1px 0 white, inset 0 -1px 1px #a6be8f6b, 0 2px 4px #516d3821;
+}
+html[data-theme="jade"] .theme-caption { color: #7a8d6a; }
+html[data-theme="jade"] .theme-symbol { color: #679058; }
+
+@media (prefers-reduced-transparency: reduce) {
+  html[data-theme="jade"] .dialog-backdrop,
+  html[data-theme="jade"] .reader-backdrop,
+  html[data-theme="jade"] .writing-overlay { backdrop-filter: none; background: #31452d91; }
+}

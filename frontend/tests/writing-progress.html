@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="jade">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>写作进度带隔离样本</title>
+    <style>
+      html,body{margin:0;height:100%;overflow:hidden}
+      #writing-progress-test-result{height:32px;overflow:auto;margin:0;padding:5px 12px;box-sizing:border-box;font:11px/1.5 monospace;background:#eef5f0;color:#294235}
+      #writing-progress-test-root{height:calc(100vh - 32px)}
+      .progress-fixture-shell{height:100%;display:flex;flex-direction:column;min-height:0}
+      .progress-fixture-controls{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;padding:8px 14px;flex-shrink:0;border-bottom:1px solid #cbd7ce;background:#f8faf8;color:#294235;font:12px/1.4 sans-serif}
+      .progress-fixture-controls strong{font-size:13px}.progress-fixture-controls label{display:flex;align-items:center;gap:5px}
+      .progress-fixture-controls select,.progress-fixture-controls button{font:inherit;padding:4px 7px;border:1px solid #bdcbbc;border-radius:5px;background:white;color:#294235}
+      .progress-fixture-controls small{margin-left:auto}.progress-fixture-workspace{flex:1;min-height:0;position:relative;overflow:hidden}
+      .progress-fixture-toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:9999;background:#254839;color:white;padding:10px 16px;border-radius:10px;max-width:min(90vw,600px);font-size:13px}
+    </style>
+  </head>
+  <body>
+    <pre id="writing-progress-test-result" data-status="running">RUNNING · 隔离样本，保存、校验与导出均在内存中模拟</pre>
+    <div id="writing-progress-test-root"></div>
+    <script type="module" src="./writing-progress-harness.jsx"></script>
+  </body>
+</html>

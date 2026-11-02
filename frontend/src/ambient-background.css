@@ -1,0 +1,83 @@
+/* Full-viewport abstract light lives behind stationary, readable work surfaces. */
+body { isolation: isolate; }
+.ambient-background {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+}
+html[data-theme] .workspace-shell { background: transparent; }
+html[data-theme="glass"] .workspace-shell::before,
+html[data-theme="glass"] .workspace-shell::after { content: none; animation: none; }
+html[data-theme] .workspace-shell .library-main { background: transparent; }
+html[data-theme="jade"] .workspace-shell .app-main,
+html[data-theme="civic"] .workspace-shell .app-main { background: transparent; }
+html[data-theme="jade"] .workspace-shell {
+  --workspace-sidebar-fill: linear-gradient(120deg, #d8e4d1e8, #c4d8c4e0);
+  --workspace-index-fill: linear-gradient(150deg, #f7f8efb8, #f5f7edba);
+  --workspace-sidebar-edge: #b3c9b3;
+  --workspace-sidebar-shadow: inset -1px 0 0 #ffffffb3, 4px 0 20px #3a583407;
+}
+html[data-theme="jade"] .workspace-shell .app-sidebar {
+  --muted: #4f6652;
+  background: var(--workspace-sidebar-fill);
+}
+html[data-theme="jade"] .workspace-shell .app-sidebar .nav-item:not(.active) { color: #3b5846; }
+html[data-theme="jade"] .workspace-shell .category-tree {
+  background: var(--workspace-index-fill);
+}
+html[data-theme="glass"] .workspace-shell .app-sidebar {
+  background: linear-gradient(145deg, #f8fcff99, #e6eff579);
+  backdrop-filter: blur(8px) saturate(110%);
+  -webkit-backdrop-filter: blur(8px) saturate(110%);
+}
+html[data-theme="glass"] .workspace-shell .app-main {
+  background: linear-gradient(145deg, #ffffff26, #f4f9ff55);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+html[data-theme="glass"] .workspace-shell .category-tree {
+  background: linear-gradient(145deg, #f7fbffad, #f3f8faba);
+}
+html[data-theme="civic"] .workspace-shell {
+  --workspace-sidebar-fill: linear-gradient(125deg, #632b34f5, #70353ee8 50%, #572730f5);
+  --workspace-index-fill: linear-gradient(150deg, #faf7f1b8, #f8f4ecba);
+  --workspace-sidebar-edge: #ad8f6b;
+  --workspace-sidebar-shadow: inset -1px 0 0 #e5c68e40, 4px 0 20px #38101912;
+}
+html[data-theme="civic"] .workspace-shell .app-sidebar {
+  background: var(--workspace-sidebar-fill);
+  border-right-color: var(--workspace-sidebar-edge);
+}
+html[data-theme="civic"] .workspace-shell .category-tree {
+  background: var(--workspace-index-fill);
+}
+/* Broad light can pass through the workspace without competing with text. */
+html[data-theme] .workspace-shell .library-main {
+  background-image: linear-gradient(180deg, transparent 90px, color-mix(in srgb, var(--bg) 20%, transparent) 270px, color-mix(in srgb, var(--bg) 42%, transparent) 420px);
+}
+html[data-theme] .workspace-shell .writing-root { background: transparent; }
+html[data-theme] .workspace-shell .graph-workspace { background: transparent; }
+html[data-theme] .workspace-shell .document-list,
+html[data-theme] .workspace-shell .prompt-layout,
+html[data-theme] .workspace-shell .template-layout {
+  background: color-mix(in srgb, var(--bg) 18%, transparent);
+}
+.ambient-caption {
+  margin: 13px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+  text-align: center;
+}
+@media (prefers-reduced-transparency: reduce) {
+  html[data-theme] .workspace-shell .app-main { background: var(--bg); }
+  html[data-theme="glass"] .workspace-shell .app-sidebar { background: #eaf1f6; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-caption { font-size: 0; }
+  .ambient-caption::after { content: "已跟随系统偏好，显示静态背景"; font-size: 11px; }
+}

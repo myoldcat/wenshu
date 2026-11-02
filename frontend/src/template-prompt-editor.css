@@ -1,0 +1,29 @@
+.template-prompt-editor{margin:24px 0;padding-top:20px;border-top:1px solid var(--line);color:var(--ink);min-width:0}
+.template-prompt-heading{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.template-prompt-heading h3{margin:0;font-size:16px;font-weight:600;line-height:1.8}
+.template-prompt-heading>span{font-size:12px;color:var(--muted)}
+.template-prompt-heading>.btn{margin-left:auto;font-size:13px}
+.template-prompt-editor .template-prompt-content{box-sizing:border-box;width:100%;margin:15px 0 10px;font-family:inherit;font-size:15px;line-height:2;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;color:#516247}
+.template-prompt-form textarea.template-prompt-content{display:block;min-height:260px;resize:vertical;border-left:0;border-right:0;background:transparent}
+.template-prompt-form textarea:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.template-prompt-meta{display:flex;justify-content:space-between;gap:8px 15px;flex-wrap:wrap;font-size:12px;line-height:1.8;color:var(--muted)}
+.template-prompt-actions,.template-prompt-discard>div{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:15px}
+.template-prompt-actions .btn,.template-prompt-discard .btn,.template-prompt-conflict .btn{font-size:13px}
+.template-prompt-note,.template-prompt-feedback{font-size:12px;line-height:1.8;color:var(--muted);margin:13px 0 0}
+.template-prompt-feedback:empty{display:none}
+.template-prompt-message{display:flex;align-items:center;gap:10px;font-size:14px;line-height:1.9;color:var(--muted);margin:15px 0}
+.template-prompt-message>p{margin:0;flex:1}.template-prompt-message>svg{flex-shrink:0}
+.template-prompt-error,.template-prompt-message.is-error{color:#b64736;font-size:14px;line-height:1.9}
+.template-prompt-conflict,.template-prompt-discard{padding:15px;border:1px solid var(--line);border-radius:8px;margin-top:15px;background:var(--surface)}
+.template-prompt-conflict h4{display:flex;align-items:center;gap:7px;margin:0;font-size:15px;font-weight:600;line-height:1.9}
+.template-prompt-conflict p,.template-prompt-discard p{font-size:14px;line-height:1.9;color:var(--muted);margin:8px 0}
+.template-prompt-conflict pre.template-prompt-content{max-height:260px;overflow-y:auto;padding:12px}
+.template-prompt-conflict .btn{white-space:normal;text-align:left;line-height:1.7;margin-top:7px}
+.template-prompt-editor button:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.template-prompt-editor button:disabled{opacity:.45;cursor:not-allowed}
+.template-prompt-draft-notice{font-size:13px;line-height:1.8;color:var(--muted);margin:0 0 14px}
+.template-item-content .template-prompt-draft-badge{font-style:normal;color:var(--green);margin-left:8px}
+html[data-theme="glass"] .template-prompt-editor .template-prompt-content{color:#425c73}
+html[data-theme="glass"] .template-prompt-form textarea.template-prompt-content{background:#ffffffa8;border:1px solid #d2e1ec;border-radius:13px;padding:16px}
+html[data-theme="civic"] .template-prompt-editor .template-prompt-content{color:#775a45}
+@media(max-width:780px){.template-prompt-heading>.btn{margin-left:0}.template-prompt-form textarea.template-prompt-content{min-height:220px}}

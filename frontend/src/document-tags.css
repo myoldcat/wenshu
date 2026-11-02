@@ -1,0 +1,100 @@
+/* Classification depth follows the stored path, independently of tree folding. */
+:root,
+html[data-theme="jade"] {
+  --tag-l1-bg: #dce9df; --tag-l1-ink: #294f3f; --tag-l1-border: #bfd2c1;
+  --tag-l2-bg: #e9f0e8; --tag-l2-ink: #3c5c4c; --tag-l2-border: #cedbcb;
+  --tag-l3-bg: #f3f6ef; --tag-l3-ink: #506956; --tag-l3-border: #dce5d7;
+  --tag-custom-bg: #efebf6; --tag-custom-ink: #655176; --tag-custom-border: #d5cbe3;
+}
+html[data-theme="glass"] {
+  --tag-l1-bg: #d7e9f6; --tag-l1-ink: #285978; --tag-l1-border: #aecce2;
+  --tag-l2-bg: #e5eff8; --tag-l2-ink: #3d627f; --tag-l2-border: #c2d7e8;
+  --tag-l3-bg: #f0f6fb; --tag-l3-ink: #516c83; --tag-l3-border: #d3e0ec;
+  --tag-custom-bg: #f6ecd9; --tag-custom-ink: #876339; --tag-custom-border: #e2d0af;
+}
+html[data-theme="civic"] {
+  --tag-l1-bg: #eed5d5; --tag-l1-ink: #7b3d45; --tag-l1-border: #d5abb0;
+  --tag-l2-bg: #f4e3e0; --tag-l2-ink: #8c5358; --tag-l2-border: #e0c0bf;
+  --tag-l3-bg: #f9efeb; --tag-l3-ink: #916064; --tag-l3-border: #ead4cf;
+  --tag-custom-bg: #f2e6c8; --tag-custom-ink: #7d602c; --tag-custom-border: #dac590;
+}
+:is(.document-tag, .category-tag-chip) {
+  --tag-bg: color-mix(in srgb, var(--muted) 8%, var(--bg));
+  --tag-ink: var(--muted);
+  --tag-border: var(--line);
+}
+:is(.document-tag, .category-tag-chip)[data-tag-kind="classification"][data-tag-level="1"] {
+  --tag-bg: var(--tag-l1-bg); --tag-ink: var(--tag-l1-ink); --tag-border: var(--tag-l1-border);
+}
+:is(.document-tag, .category-tag-chip)[data-tag-kind="classification"][data-tag-level="2"] {
+  --tag-bg: var(--tag-l2-bg); --tag-ink: var(--tag-l2-ink); --tag-border: var(--tag-l2-border);
+}
+:is(.document-tag, .category-tag-chip)[data-tag-kind="classification"][data-tag-level="3"] {
+  --tag-bg: var(--tag-l3-bg); --tag-ink: var(--tag-l3-ink); --tag-border: var(--tag-l3-border);
+}
+:is(.document-tag, .category-tag-chip)[data-tag-kind="custom"] {
+  --tag-bg: var(--tag-custom-bg); --tag-ink: var(--tag-custom-ink); --tag-border: var(--tag-custom-border);
+}
+:is(.document-tag, .category-tag-chip)[data-tag-kind="language"] {
+  --tag-bg: color-mix(in srgb, var(--green) 6%, var(--surface));
+  --tag-ink: var(--green);
+  --tag-border: color-mix(in srgb, var(--green) 24%, var(--line));
+}
+:is(.document-tag, .category-tag-chip)[data-tag-kind="articleType"] {
+  --tag-bg: color-mix(in srgb, var(--green) 12%, var(--surface));
+  --tag-ink: var(--green);
+  --tag-border: color-mix(in srgb, var(--green) 40%, var(--line));
+}
+.ai-article-type-description { font-size: 12px; line-height: 1.8; margin: 10px 0 0; }
+.ai-article-type-editor select { min-width: 0; padding: 9px 10px; font-size: 12px; background: var(--surface); color: var(--ink); border-color: var(--line); }
+html[data-theme] .workspace-shell .document-tag,
+html[data-theme] .reader-expanded .reader-sidebar .document-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 100%;
+  min-width: 0;
+  border: 1px solid var(--tag-border);
+  border-radius: 5px;
+  background: var(--tag-bg);
+  color: var(--tag-ink);
+  font-weight: 400;
+  line-height: 1.6;
+  box-shadow: none;
+}
+.document-tag-label { min-width: 0; }
+.document-tag > svg { flex-shrink: 0; }
+html[data-theme] .workspace-shell .document-card-tags {
+  flex-wrap: wrap;
+  align-content: flex-start;
+  height: 50px;
+}
+html[data-theme] .workspace-shell .document-card-tags .document-tag {
+  flex: 0 1 auto;
+  padding: 3px 6px;
+  font-size: 9px;
+}
+html[data-theme] .workspace-shell button.document-tag:hover:not(:disabled),
+html[data-theme] .reader-expanded .reader-sidebar button.document-tag:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--tag-bg) 90%, var(--tag-ink));
+  border-color: color-mix(in srgb, var(--tag-border) 70%, var(--tag-ink));
+  color: var(--tag-ink);
+}
+.document-card-tags .document-tag-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+html[data-theme] .reader-expanded .reader-sidebar .ai-path-breadcrumb .document-tag {
+  justify-self: start;
+}
+html[data-theme] .reader-expanded .reader-sidebar .category-choices .document-tag {
+  padding: 3px 7px;
+  font-size: 10px;
+}
+.document-tag-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 7px 0 10px;
+}
+html[data-theme] .reader-expanded .reader-sidebar .document-tag-legend .document-tag {
+  font-size: 9px;
+  padding: 1px 5px;
+}

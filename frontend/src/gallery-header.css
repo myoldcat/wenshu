@@ -1,0 +1,7 @@
+/* Frame progress must not invalidate the full article list on every frame.
+   The heading owns a separate variable inherited only by its small subtree. */
+@property --gallery-header-progress {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}

@@ -1,0 +1,70 @@
+.gw-material-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  margin: 10px 0 18px;
+}
+
+.gw-presentation-controls .gw-material-options > button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 79px;
+  padding: 9px 3px;
+  border: 0;
+  border-radius: 15px;
+  background: transparent;
+  color: var(--muted);
+  font: 12px/1.3 var(--sans);
+  transition: color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.gw-presentation-controls .gw-material-options > button:hover {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--green) 4%, transparent);
+}
+
+.gw-presentation-controls .gw-material-options > button[aria-pressed="true"] {
+  color: var(--green);
+  background: color-mix(in srgb, var(--green) 7%, transparent);
+}
+
+.gw-presentation-controls .gw-material-options > button:focus-visible {
+  outline: none;
+  color: var(--green);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--green) 24%, transparent);
+}
+
+.gw-material-swatch {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  color: #465248;
+  transition: filter 180ms ease;
+}
+
+.gw-material-swatch > img {
+  position: absolute;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+.gw-material-swatch > svg {
+  position: relative;
+  z-index: 1;
+}
+
+.gw-material-options > button[aria-pressed="true"] .gw-material-swatch {
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--green) 35%, transparent));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gw-presentation-controls .gw-material-options > button,
+  .gw-material-swatch { transition: none; }
+}

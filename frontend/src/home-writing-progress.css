@@ -1,0 +1,151 @@
+@import './writing-spectrum.css';
+
+/* Preserve the homepage's existing progress slot and margins. */
+.home-workspace .home-manuscript-progress.home-writing-progress {
+  position: relative;
+  overflow: visible;
+  border-radius: 0;
+  background: none;
+}
+.home-writing-progress {
+  --home-writing-progress-rest: var(--writing-spectrum-rest);
+  --home-writing-progress-active: var(--writing-spectrum-brief-deep);
+}
+.home-writing-progress[data-phase='materials'] { --home-writing-progress-active: var(--writing-spectrum-materials-deep); }
+.home-writing-progress[data-phase='outline'] { --home-writing-progress-active: var(--writing-spectrum-outline-deep); }
+.home-writing-progress[data-phase='body'] { --home-writing-progress-active: var(--writing-spectrum-body-deep); }
+.home-writing-progress[data-phase='images'] { --home-writing-progress-active: var(--writing-spectrum-images-deep); }
+.home-writing-progress[data-phase='review'], .home-writing-progress[data-phase='ready'] { --home-writing-progress-active: var(--writing-spectrum-review-deep); }
+.home-writing-progress[data-phase='ready']:has([data-stage='review'][data-state='skipped']) { --home-writing-progress-active: var(--writing-spectrum-skipped-deep); }
+.home-writing-progress > progress {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 4px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.home-writing-progress .home-writing-progress-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 4px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.home-writing-progress .home-writing-progress-spectrum {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  gap: 1px;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.home-writing-progress .home-writing-progress-segment {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--home-writing-progress-rest);
+}
+.home-writing-progress .home-writing-progress-segment[data-stage='brief'] { --home-writing-spectrum: var(--writing-spectrum-brief); }
+.home-writing-progress .home-writing-progress-segment[data-stage='materials'] { --home-writing-spectrum: var(--writing-spectrum-materials); }
+.home-writing-progress .home-writing-progress-segment[data-stage='outline'] { --home-writing-spectrum: var(--writing-spectrum-outline); }
+.home-writing-progress .home-writing-progress-segment[data-stage='body'] { --home-writing-spectrum: var(--writing-spectrum-body); }
+.home-writing-progress .home-writing-progress-segment[data-stage='images'] { --home-writing-spectrum: var(--writing-spectrum-images); }
+.home-writing-progress .home-writing-progress-segment[data-stage='review'] { --home-writing-spectrum: var(--writing-spectrum-review); }
+.home-writing-progress .home-writing-progress-segment[data-state='skipped'] { --home-writing-spectrum: var(--writing-spectrum-skipped); }
+.home-writing-progress .home-writing-progress-segment > i {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--home-writing-spectrum);
+}
+.home-writing-progress .home-writing-progress-light {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--home-writing-progress-position);
+  overflow: visible;
+  clip-path: inset(-12px 0 -12px 0);
+  filter: drop-shadow(0 0 3px #fff);
+}
+.home-writing-progress .home-writing-progress-light > i {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform: translateX(calc(-100% + 11px));
+  animation: home-writing-progress-comet 8s linear infinite;
+}
+.home-writing-progress .home-writing-progress-light > i::before {
+  content: '';
+  position: absolute;
+  right: 3px;
+  top: 50%;
+  width: min(96px, 75%);
+  height: 3px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: linear-gradient(90deg, transparent, #fff4 30%, #fffd 75%, #fff);
+}
+.home-writing-progress .home-writing-progress-light > i::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 11px;
+  height: 8px;
+  transform: translateY(-50%);
+  border-radius: 65% 50% 50% 65%;
+  background: radial-gradient(ellipse at 65% 50%, #fff 25%, #fffdeb 65%, #ffffffb3);
+  box-shadow: 0 0 3px 1px #fff, 0 0 8px 2px color-mix(in srgb, var(--home-writing-progress-active) 30%, #fff);
+}
+.home-writing-progress .home-writing-progress-point {
+  position: absolute;
+  left: var(--home-writing-progress-position);
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  box-sizing: border-box;
+  border: 2px solid var(--home-writing-progress-active);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--surface);
+  box-shadow: 0 0 0 2px var(--surface), 0 0 9px color-mix(in srgb, var(--home-writing-progress-active) 45%, transparent);
+}
+.home-writing-progress[data-motion='flow'] .home-writing-progress-point { display: none; }
+.home-writing-progress .home-writing-progress-notice {
+  position: absolute;
+  left: var(--home-writing-progress-position);
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--home-writing-progress-active);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+}
+.home-writing-progress .home-writing-progress-notice > svg {
+  display: block;
+  width: 13px;
+  height: 13px;
+}
+@keyframes home-writing-progress-comet {
+  0% { transform: translateX(calc(-100% + 11px)); opacity: 0; }
+  5% { opacity: 1; }
+  88% { transform: translateX(0); opacity: 1; }
+  94%, 100% { transform: translateX(0); opacity: 0; }
+}
+.home-workspace[data-motion='off'] .home-writing-progress .home-writing-progress-light { display: none; }
+.home-workspace[data-motion='off'] .home-writing-progress .home-writing-progress-point { display: block; }
+html[data-theme='demo'] .home-writing-progress .home-writing-progress-light { display: none; }
+html[data-theme='demo'] .home-writing-progress .home-writing-progress-light > i { animation: none; }
+html[data-theme='demo'] .home-writing-progress[data-motion='flow'] .home-writing-progress-point { display: block; }
+@media (prefers-reduced-motion: reduce) {
+  .home-writing-progress .home-writing-progress-light { display: none; }
+  .home-writing-progress .home-writing-progress-light > i { animation: none; }
+  .home-writing-progress[data-motion='flow'] .home-writing-progress-point { display: block; }
+}

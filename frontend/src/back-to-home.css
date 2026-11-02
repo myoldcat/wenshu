@@ -1,0 +1,33 @@
+html[data-theme] .workspace-shell > .app-main { position: relative; }
+html[data-theme] .workspace-shell .workspace-home-return {
+  position: absolute;
+  z-index: 12;
+  top: 43px;
+  left: 5px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  box-shadow: none;
+  color: var(--muted);
+  opacity: .62;
+  cursor: pointer;
+  transition: color 160ms, opacity 160ms, background-color 160ms;
+}
+html[data-theme] .workspace-shell .workspace-home-return:hover,
+html[data-theme] .workspace-shell .workspace-home-return:focus-visible {
+  color: var(--green);
+  opacity: 1;
+  background: color-mix(in srgb, var(--green) 8%, transparent);
+}
+.workspace-home-return:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+html[data-theme] .workspace-shell .workspace-home-return.is-editor { top: 18px; left: 0; width: 20px; }
+@media (min-width: 1600px) {
+  html[data-theme] .workspace-shell .workspace-home-return { top: 51px; left: 14px; }
+  html[data-theme] .workspace-shell .workspace-home-return.is-editor { top: 18px; left: 0; width: 20px; }
+}
+@media (prefers-reduced-motion: reduce) { .workspace-home-return { transition: none !important; } }

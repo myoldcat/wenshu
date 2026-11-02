@@ -1,0 +1,10 @@
+.writing-review-page{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;padding:20px 28px 28px;scrollbar-gutter:stable}
+.writing-review-page>.writing-review,.writing-review-page>.writing-review-page-actions{max-width:1100px;margin-left:auto;margin-right:auto}
+.writing-review-page .writing-review{padding:0;border:0;background:transparent}
+.writing-review-page .writing-review>h3{margin:0 0 16px;font-size:24px}
+.writing-review-page-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:24px;padding-top:16px;border-top:1px solid var(--line)}
+.writing-root:has(> .writing-progress-band) .writing-review-page>.writing-review-page-actions{background:transparent}
+.writing-review-page .writing-review-actions{margin-bottom:16px}
+.writing-body-flow-actions{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-left:auto}
+.writing-body-flow-actions .btn{min-height:30px;padding:5px 8px;font-size:11px}
+@media(max-width:700px){.writing-review-page{padding:16px 14px}.writing-review-page-actions{flex-wrap:wrap}.writing-body-flow-actions{width:100%;justify-content:flex-end}}

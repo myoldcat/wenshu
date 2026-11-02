@@ -1,0 +1,82 @@
+/* The existing spark keeps its grid cell and large-number visibility rules. */
+.home-workspace .home-stats .home-stat[data-stat] .home-stat-spark:has(> .home-metric-emblem[data-kind]) {
+  opacity: .86;
+}
+.home-workspace .home-stats .home-stat[data-stat] .home-stat-spark > .home-metric-emblem[data-kind] {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--stat-icon, var(--green));
+  pointer-events: none;
+  --metric-emblem-size: 40px;
+}
+.home-workspace .home-stats .home-stat[data-stat] .home-metric-emblem .home-metric-emblem-art {
+  position: absolute;
+  left: calc(50% - 8px);
+  top: 50%;
+  width: var(--metric-emblem-size);
+  height: var(--metric-emblem-size);
+  transform: translate(-50%, -50%);
+}
+.home-workspace .home-stats .home-stat[data-stat] .home-metric-emblem svg.home-metric-symbol {
+  position: absolute;
+  display: block;
+  overflow: visible;
+  color: inherit;
+}
+.home-workspace .home-stats .home-stat[data-stat] .home-metric-emblem svg.home-metric-symbol.is-main {
+  left: 10%;
+  top: 10%;
+  width: 67.5%;
+  height: 67.5%;
+}
+.home-workspace .home-stats .home-stat[data-stat] .home-metric-emblem svg.home-metric-symbol.is-detail {
+  right: 3%;
+  bottom: 3%;
+  width: 42.5%;
+  height: 42.5%;
+  filter: drop-shadow(0 1px 0 color-mix(in srgb, var(--stat-glint, var(--surface)) 65%, transparent));
+}
+.home-workspace .home-stats .home-stat[data-stat] .home-metric-emblem[data-kind='writing'] svg.is-detail {
+  transform: rotate(-14deg);
+}
+.home-workspace .home-stats .home-stat[data-stat] .home-metric-emblem[data-kind='library'] svg.is-main {
+  left: 7%;
+  top: 3%;
+  width: 60%;
+  height: 60%;
+}
+.home-workspace .home-stats .home-stat[data-stat] .home-metric-emblem[data-kind='library'] svg.is-detail {
+  right: 3%;
+  top: 15%;
+  bottom: auto;
+  width: 35%;
+  height: 35%;
+}
+.home-workspace .home-stats .home-stat[data-stat] .home-metric-emblem .home-metric-trend {
+  position: absolute;
+  left: 15%;
+  bottom: 8%;
+  display: block;
+  width: 70%;
+  height: 22.5%;
+  opacity: .9;
+}
+.home-workspace .home-stats .home-stat[data-stat] .home-metric-trend > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.home-workspace .home-stats .home-stat[data-stat='processing'][data-active='true'] .home-metric-emblem svg.is-main {
+  animation: home-stat-task-breathe 4s ease-in-out infinite;
+}
+@media (max-height: 900px) {
+  .home-workspace .home-stats .home-stat[data-stat] .home-stat-spark > .home-metric-emblem[data-kind] {
+    --metric-emblem-size: 34px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-workspace .home-stats .home-stat[data-stat] .home-metric-emblem svg.is-main { animation: none; }
+}

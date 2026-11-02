@@ -1,0 +1,93 @@
+/* Shared card selection follows the existing civic template-library gold. */
+html[data-theme="civic"] {
+  --civic-card-selected-bg: linear-gradient(130deg, #f8ede1, #edddc7);
+  --civic-card-selected-ink: #884746;
+  --civic-card-selected-border: #cbb382;
+  --civic-card-selected-accent: #ba995f;
+  --civic-card-selected-shadow: inset 0 1px 0 #fffdf4, inset 2px 0 0 #ba995f;
+  --civic-card-selected-icon-bg: linear-gradient(#faf1dc, #e7d3ae);
+  --civic-card-selected-icon-ink: #94703f;
+}
+
+html[data-theme="civic"] :is(
+  .document-card.is-selected,
+  .prompt-card.active,
+  .template-item.selected,
+  .knowledge-entry.selected,
+  .writing-mode-cards > button.selected,
+  .writing-export-formats button.selected,
+  .writing-workflow-control > button[aria-pressed="true"],
+  .material-card.is-selected,
+  .settings-model-row.is-selected,
+  .ops-project-row.active,
+  .ops-run-row.active,
+  .ops-call-row.active
+) {
+  color: var(--civic-card-selected-ink);
+  background: var(--civic-card-selected-bg);
+  box-shadow: var(--civic-card-selected-shadow);
+  outline-color: var(--civic-card-selected-accent);
+}
+
+html[data-theme="civic"] :is(
+  .document-card.is-selected,
+  .prompt-card.active,
+  .writing-mode-cards > button.selected,
+  .writing-export-formats button.selected,
+  .writing-workflow-control > button[aria-pressed="true"],
+  .material-card.is-selected,
+  .settings-model-row.is-selected,
+  .ops-project-row.active,
+  .ops-run-row.active,
+  .ops-call-row.active
+) {
+  border-color: var(--civic-card-selected-border);
+}
+
+/* A selected document keeps its gold paint while its existing lift animates. */
+html[data-theme="civic"] .document-card.is-selected:is(:hover, :focus-visible, :has(:focus-visible), .is-highlighted) {
+  border-color: var(--civic-card-selected-border);
+  background: var(--civic-card-selected-bg);
+  box-shadow: var(--civic-card-selected-shadow);
+}
+
+html[data-theme="civic"] .document-card.is-selected .document-card-title {
+  color: var(--civic-card-selected-ink);
+}
+
+html[data-theme="civic"] :is(
+  .document-card.is-selected .document-card-type,
+  .prompt-card.active .prompt-card-icon,
+  .template-item.selected .template-item-icon
+) {
+  color: var(--civic-card-selected-icon-ink);
+  background: var(--civic-card-selected-icon-bg);
+  border-color: var(--civic-card-selected-border);
+}
+
+html[data-theme="civic"] :is(
+  .document-card.is-selected,
+  .material-card.is-selected,
+  .settings-model-row.is-selected
+) input:is([type="checkbox"], [type="radio"]) {
+  accent-color: var(--civic-card-selected-icon-ink);
+  outline-color: var(--civic-card-selected-accent);
+}
+
+html[data-theme="civic"] .writing-mode-cards > button.selected i {
+  background: var(--civic-card-selected-icon-ink);
+  border-color: var(--civic-card-selected-icon-ink);
+}
+
+html[data-theme="civic"] :is(.ops-project-row.active, .ops-run-row.active)::before {
+  display: none;
+}
+
+/* Excerpt cards have a top divider rather than a padded left edge. */
+html[data-theme="civic"] .writing-preview-source-card.active {
+  background: var(--civic-card-selected-bg);
+  border-top-color: var(--civic-card-selected-accent);
+}
+html[data-theme="civic"] .writing-preview-source-card.active blockquote {
+  border-left-color: var(--civic-card-selected-accent);
+}

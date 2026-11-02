@@ -1,0 +1,18 @@
+/* One six-step palette for the overview progress track and writing ribbon. */
+:root {
+  --writing-spectrum-brief: #c96b69;
+  --writing-spectrum-materials: #d1914b;
+  --writing-spectrum-outline: #e4cb8e;
+  --writing-spectrum-body: #3c958b;
+  --writing-spectrum-images: #5a87bc;
+  --writing-spectrum-review: #927ab3;
+  --writing-spectrum-brief-deep: #9b4146;
+  --writing-spectrum-materials-deep: #a56126;
+  --writing-spectrum-outline-deep: #8b6938;
+  --writing-spectrum-body-deep: #256b62;
+  --writing-spectrum-images-deep: #365f90;
+  --writing-spectrum-review-deep: #68518b;
+  --writing-spectrum-skipped: #b5bec9;
+  --writing-spectrum-skipped-deep: #647184;
+  --writing-spectrum-rest: #e9edf2;
+}

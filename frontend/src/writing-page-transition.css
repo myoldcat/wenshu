@@ -1,0 +1,20 @@
+/* Native snapshots join the list heading to the compact writing header. */
+html.writing-page-transition .writing-page-heading,
+html.writing-page-transition .writing-flow-header { view-transition-name: writing-page-header; }
+html.writing-page-transition .writing-progress-band { view-transition-name: writing-workflow-footer; }
+html.writing-page-transition::view-transition-old(root),
+html.writing-page-transition::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+html.writing-page-transition::view-transition-group(writing-page-header) { animation-duration: 320ms; animation-timing-function: cubic-bezier(.22, .61, .36, 1); }
+html.writing-page-transition::view-transition-old(writing-page-header) { animation: writing-page-heading-out 160ms ease-out both; }
+html.writing-page-transition::view-transition-new(writing-page-header) { animation: writing-page-heading-in 240ms 80ms ease-out both; }
+html.writing-page-transition::view-transition-group(writing-workflow-footer) { animation: none; }
+html.writing-page-transition::view-transition-new(writing-workflow-footer) { animation: writing-workflow-footer-in 320ms cubic-bezier(.22, .61, .36, 1) both; }
+@keyframes writing-page-heading-out { to { opacity: 0; } }
+@keyframes writing-page-heading-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes writing-workflow-footer-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@media(prefers-reduced-motion: reduce) {
+  html.writing-page-transition::view-transition-group(writing-page-header),
+  html.writing-page-transition::view-transition-old(writing-page-header),
+  html.writing-page-transition::view-transition-new(writing-page-header),
+  html.writing-page-transition::view-transition-new(writing-workflow-footer) { animation: none; }
+}

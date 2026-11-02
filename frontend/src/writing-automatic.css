@@ -1,0 +1,63 @@
+.writing-automatic { flex-shrink: 0; margin: 20px 28px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius, 12px); color: var(--text); max-height: calc(100% - 110px); overflow: auto; }
+.writing-automatic-heading { display: flex; align-items: flex-start; gap: 13px; }
+.writing-automatic-symbol { display: grid; place-items: center; flex: 0 0 42px; width: 42px; height: 42px; color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); border-radius: 50%; }
+.writing-automatic-heading > div { flex: 1; min-width: 0; }
+.writing-automatic h3 { font-size: 20px; line-height: 1.5; margin: 0 0 7px; }
+.writing-automatic p { font-size: 14px; line-height: 1.8; color: var(--muted); margin: 0; }
+.writing-automatic-stages { list-style: none; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; padding: 0; margin: 26px 0 0; }
+.writing-automatic-stages li { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted); padding: 12px 0; border-top: 2px solid var(--line); }
+.writing-automatic-stages li > span { display: grid; place-items: center; width: 22px; height: 22px; flex: 0 0 22px; border: 1px solid var(--line); border-radius: 50%; }
+.writing-automatic-stages :is(.is-current, .is-complete) { color: var(--accent); border-color: var(--accent); }
+.writing-automatic-stages .is-current { font-weight: 600; }
+.writing-automatic-result { margin-top: 20px; }
+.writing-automatic-result-actions { display: flex; gap: 10px; }
+.writing-automatic-report { border-top: 1px solid var(--line); margin-top: 22px; padding-top: 18px; }
+.writing-automatic-report-heading { display: flex; gap: 11px; align-items: center; }
+.writing-automatic-report-heading > div { flex: 1; min-width: 0; }
+.writing-automatic-report h4 { font-size: 16px; line-height: 1.7; margin: 0 0 3px; }
+.writing-automatic-report-body { margin: 18px 0 0; padding: 18px 20px; background: color-mix(in srgb, var(--accent) 4%, transparent); border-radius: 8px; max-height: 48vh; overflow: auto; }
+.writing-automatic-report-body li { font-size: 15px; line-height: 1.9; margin-bottom: 10px; overflow-wrap: anywhere; }
+.writing-automatic.is-compact { margin-top: 12px; margin-bottom: 12px; padding: 18px 22px; }
+.writing-automatic.is-compact h3 { font-size: 17px; }
+.writing-automatic.is-compact .writing-automatic-symbol { width: 35px; height: 35px; flex-basis: 35px; }
+.writing-automatic-mode-note { color: var(--muted); font-size: 13px; line-height: 1.8; margin: 10px 0 0; }
+.writing-automatic.is-compact { margin: 0; padding: 8px 27px; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; max-height: 35vh; }
+.writing-automatic.is-compact .writing-automatic-heading { align-items: center; gap: 8px; }
+.writing-automatic.is-compact h3 { font-size: 13px; margin: 0; }
+.writing-automatic.is-compact .writing-automatic-symbol { width: 24px; height: 24px; flex-basis: 24px; background: transparent; }
+.writing-automatic.is-compact .writing-automatic-symbol svg { width: 17px; height: 17px; }
+.writing-automatic.is-compact .writing-automatic-heading > .btn { padding: 5px 10px; font-size: 12px; }
+.writing-automatic.is-folded .writing-automatic-heading p,
+.writing-automatic.is-folded .writing-automatic-result { display: none; }
+.writing-automatic-readonly-label { flex-shrink: 0; color: var(--muted); font-size: 12px; }
+.writing-readonly-fields { min-width: 0; margin: 0; padding: 0; border: 0; }
+.writing-is-automatic-readonly .writing-readonly-fields :disabled { cursor: default; }
+.writing-readonly-chapter-empty { padding: 28px 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+.writing-automatic-materials-readonly { flex: 1; min-height: 0; overflow: auto; padding: 24px var(--workspace-content-inline, 34px); }
+.writing-automatic-materials-readonly h1 { margin: 0 0 8px; font: 600 28px/1.5 var(--serif); color: var(--ink); }
+.writing-automatic-materials-readonly p { color: var(--muted); font-size: 13px; line-height: 1.8; }
+.writing-readonly-material-list { display: grid; gap: 12px; max-width: 850px; margin-top: 24px; }
+.writing-readonly-material-list article { padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.writing-readonly-material-list small { color: var(--muted); }
+.writing-dialog.writing-report-dialog { display: flex; flex-direction: column; width: min(1120px, calc(100vw - 50px)); height: min(900px, 84dvh); max-height: calc(100dvh - 50px); overflow: hidden; padding: 24px 28px; }
+.writing-report-dialog > header { flex-shrink: 0; gap: 16px; }
+.writing-report-dialog-actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+.writing-report-dialog-actions > .btn { font-size: 13px; }
+.writing-report-dialog > .writing-automatic.is-report, .writing-report-dialog-scroll { flex: 1 1 0; min-height: 0; max-height: none; overflow: auto; overscroll-behavior: contain; scrollbar-gutter: stable; }
+.writing-report-dialog > .writing-automatic.is-report { margin: 0; padding: 0 10px 0 0; border: 0; border-radius: 0; background: transparent; }
+.writing-automatic.is-report .writing-automatic-result { margin-top: 0; }
+.writing-automatic.is-report .writing-automatic-report { margin: 0; padding: 0; border: 0; }
+.writing-automatic.is-report .writing-automatic-report-body { margin: 0; padding: 0; max-height: none; overflow: visible; background: transparent; border-radius: 0; }
+.writing-automatic.is-report .writing-automatic-report-body li { font-size: 14px; }
+.writing-automatic.is-report .writing-report-summary, .writing-report-dialog-scroll .writing-review-summary { margin: 18px 0 13px; color: var(--green); font-size: 14px; line-height: 1.8; }
+.writing-report-summary > span { display: block; color: var(--muted); }
+.writing-report-dialog-scroll { padding-right: 10px; }
+.writing-report-dialog-scroll .writing-review-report { font-size: 14px; }
+.writing-report-dialog-scroll .writing-review-results :is(h4, p) { font-size: 14px; line-height: 1.9; }
+@media(max-width:700px) {
+  .writing-dialog.writing-report-dialog { padding: 18px; }
+  .writing-report-dialog-actions { gap: 8px; }
+  .writing-automatic.is-compact .writing-automatic-heading { flex-wrap: wrap; }
+  .writing-automatic.is-compact .writing-automatic-heading > div { flex-basis: calc(100% - 42px); }
+  .writing-automatic [data-writing-interrupt] { margin-left: auto; }
+}

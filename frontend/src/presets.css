@@ -1,0 +1,7 @@
+.dialog-backdrop>.dialog.wide:has(.preset-library){width:min(1400px,96vw);max-width:1400px;height:min(92vh,1020px);max-height:94vh;display:flex;flex-direction:column;overflow:hidden}
+.dialog:has(.preset-library)>.dialog-head.is-titleless{justify-content:flex-end;padding:6px 12px;border-bottom:0;flex-shrink:0}
+.preset-library{display:flex;flex-direction:column;min-height:0;flex:1;color:var(--ink);font-size:14px}
+.preset-document{display:flex;flex-direction:column;min-width:0;min-height:0;flex:1}
+.preset-document-frame{width:100%;border:0;min-height:0;flex:1;background:var(--surface)}
+.preset-empty{margin:20px 18px;color:var(--muted);line-height:1.8}
+@media(max-width:620px){.dialog:has(.preset-library){height:94vh}}

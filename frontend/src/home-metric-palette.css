@@ -1,0 +1,41 @@
+/* The overview cards share one restrained palette from the active theme. */
+html[data-theme] .home-workspace .home-stats {
+  --metric-accent: color-mix(in srgb, var(--green) 72%, var(--muted));
+  --metric-deep: color-mix(in srgb, var(--metric-accent) 72%, var(--ink));
+}
+
+html[data-theme] .home-workspace .home-stats .home-stat[data-stat] {
+  --stat-ink: var(--ink);
+  --stat-caption: var(--muted);
+  --stat-icon: var(--metric-accent);
+  --stat-edge: color-mix(in srgb, var(--metric-accent) 13%, transparent);
+  --stat-edge-hover: color-mix(in srgb, var(--metric-accent) 25%, transparent);
+  --stat-glint: color-mix(in srgb, var(--surface) 85%, transparent);
+  --stat-paint: linear-gradient(145deg,
+    color-mix(in srgb, var(--metric-accent) 3%, var(--surface)),
+    color-mix(in srgb, var(--metric-accent) 9%, var(--surface)));
+}
+
+html[data-theme] .home-workspace .home-stats .home-stat[data-stat='writing'] {
+  --stat-ink: var(--surface);
+  --stat-caption: color-mix(in srgb, var(--surface) 88%, var(--metric-accent));
+  --stat-icon: color-mix(in srgb, var(--surface) 78%, var(--metric-accent));
+  --stat-edge: color-mix(in srgb, var(--metric-deep) 22%, transparent);
+  --stat-edge-hover: color-mix(in srgb, var(--metric-deep) 38%, transparent);
+  --stat-glint: color-mix(in srgb, var(--surface) 26%, transparent);
+  --stat-paint: linear-gradient(145deg,
+    color-mix(in srgb, var(--metric-deep) 92%, var(--surface)),
+    var(--metric-deep));
+}
+
+html[data-theme] .home-workspace .home-stats .home-stat[data-stat='library'] {
+  --stat-paint: linear-gradient(145deg,
+    color-mix(in srgb, var(--metric-accent) 5%, var(--surface)),
+    color-mix(in srgb, var(--metric-accent) 11%, var(--surface)));
+}
+
+html[data-theme] .home-workspace .home-stats .home-stat[data-stat='saved'] {
+  --stat-paint: linear-gradient(145deg,
+    color-mix(in srgb, var(--metric-accent) 2%, var(--surface)),
+    color-mix(in srgb, var(--metric-accent) 7%, var(--surface)));
+}

@@ -1,0 +1,143 @@
+/* Fixed hit areas let nearby dots enlarge without moving the grid. */
+.doc-dot-nav {
+  --doc-dot-cell: 10px;
+  --doc-dot-inset-x: 2px;
+  --doc-dot-inset-y: 3px;
+  width: calc(var(--doc-dot-columns, 2) * var(--doc-dot-cell) + 2 * var(--doc-dot-inset-x));
+  flex: 0 0 calc(var(--doc-dot-columns, 2) * var(--doc-dot-cell) + 2 * var(--doc-dot-inset-x));
+  height: 100%;
+  min-height: 0;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: var(--ink);
+}
+/* Reserve the grid width in the gallery, but position the visual rail at shell
+   level to escape the content pane's backdrop-filter containing block. */
+.doc-dot-nav-overlay {
+  position: fixed;
+  z-index: 70;
+  top: 50dvh;
+  height: auto;
+  max-height: var(--doc-dot-available-height);
+  align-self: auto;
+  transform: translateY(-50%);
+}
+.doc-dot-nav-overlay[hidden] { display: none; }
+.doc-dot-nav-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--doc-dot-columns, 2), var(--doc-dot-cell));
+  grid-auto-rows: var(--doc-dot-cell);
+  align-content: start;
+  padding: var(--doc-dot-inset-y) var(--doc-dot-inset-x);
+  width: 100%;
+  min-height: 0;
+  max-height: var(--doc-dot-available-height, 100%);
+  flex-shrink: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+.doc-dot-nav-grid::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.doc-dot-viewport-glow {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  width: 100%;
+  top: calc(var(--doc-dot-inset-y) + var(--doc-view-row) * var(--doc-dot-cell) - 4px);
+  height: calc(var(--doc-view-rows) * var(--doc-dot-cell) + 8px);
+  background: radial-gradient(ellipse at center, color-mix(in srgb, var(--green) 27%, transparent) 0%, color-mix(in srgb, var(--green) 15%, transparent) 36%, transparent 73%);
+  filter: blur(3px);
+  transition: top 220ms ease, height 220ms ease, background-color 280ms ease;
+  pointer-events: none;
+}
+.doc-dot-nav .doc-dot-nav-button {
+  position: relative;
+  z-index: 1;
+  width: var(--doc-dot-cell);
+  height: var(--doc-dot-cell);
+  min-width: 0;
+  min-height: 0;
+  border: 0;
+  border-radius: 50%;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  appearance: none;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+  cursor: pointer;
+  transform: none;
+  transition: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.doc-dot-nav .doc-dot-nav-button:active { transform: none; }
+.doc-dot-nav .doc-dot-nav-button:focus-visible {
+  outline: 1px solid color-mix(in srgb, var(--green) 55%, transparent);
+  outline-offset: -1px;
+  background: color-mix(in srgb, var(--green) 7%, transparent);
+}
+.doc-dot-nav-dot {
+  --doc-dot-state-scale: 1;
+  display: block;
+  width: 4px;
+  height: 4px;
+  flex: none;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--green) 30%, var(--surface));
+  box-shadow: 0 0 0 0 transparent;
+  transform: scale(max(var(--doc-dot-state-scale), var(--doc-dot-nearby-scale, 1)));
+  transition: transform 140ms cubic-bezier(.2,.65,.3,1), background-color 180ms ease, box-shadow 180ms ease;
+  pointer-events: none;
+}
+.doc-dot-nav-button.is-selected .doc-dot-nav-dot {
+  background: var(--green);
+  --doc-dot-state-scale: 1.35;
+}
+.doc-dot-nav-button.is-highlighted .doc-dot-nav-dot {
+  --doc-dot-state-scale: 1.85;
+}
+.doc-dot-preview {
+  position: fixed;
+  z-index: 71;
+  width: max-content;
+  max-width: min(208px, calc(100vw - 24px));
+  max-height: calc(100dvh - 24px);
+  overflow: hidden;
+  padding: 8px 11px;
+  border: 1px solid color-mix(in srgb, var(--green) 16%, var(--line));
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--surface) 97%, transparent);
+  color: var(--ink);
+  box-shadow: 0 8px 32px #172c2326, 0 1px 5px #172c230b, inset 0 1px 0 #ffffff80;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.6;
+  pointer-events: none;
+  animation: doc-dot-preview-in 110ms ease-out;
+}
+.doc-dot-preview-title {
+  font-family: inherit;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 550;
+  line-height: 1.65;
+  margin: 0;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+@keyframes doc-dot-preview-in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .doc-dot-nav-dot { transition: none; }
+  .doc-dot-preview { animation: none; }
+  .doc-dot-viewport-glow { transition: none; }
+}

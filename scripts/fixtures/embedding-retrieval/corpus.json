@@ -1,0 +1,116 @@
+{
+  "version": "2026-10-23-v1",
+  "provenance": "Small synthetic articles and relevance labels authored before model execution for an integration smoke benchmark. They are not external research sources or a representative quality benchmark. No document is a translation of another document.",
+  "documents": [
+    {
+      "id": "zh-heat",
+      "language": "zh",
+      "title": "城市热浪应急与独居老人探访",
+      "paragraphs": [
+        "气象部门预计连续三天出现高温时，社区启动热浪应急方案，提前开放有空调的公共避暑点，延长饮水供应时间。工作人员向独居老人逐户电话提醒，并为无法自行出行的老人安排接送。",
+        "探访记录重点填写是否出现头晕、意识模糊及室内过热。发现疑似中暑应立即转移到阴凉处并联系医疗救助；这套方案关注高温中的人身健康，不承担建筑节能改造。"
+      ]
+    },
+    {
+      "id": "zh-cold",
+      "language": "zh",
+      "title": "寒潮期间的道路除冰与临时安置",
+      "paragraphs": [
+        "寒潮来临前，养护部门在桥面和坡道预置融雪物资，夜间巡查易结冰路段，并及时发布公交绕行通知。社区临时安置点准备棉被与热食，重点保障露宿人员。",
+        "工作人员检查取暖设备通风，提醒居民防范一氧化碳中毒。道路除冰记录必须注明位置、作业时间和恢复通行时间，便于评估低温天气对早高峰交通的影响。"
+      ]
+    },
+    {
+      "id": "zh-access-control",
+      "language": "zh",
+      "title": "政务共享数据的最小权限与访问审计",
+      "paragraphs": [
+        "政务共享平台按照办理事项分配数据访问权限，只向经办人员开放当前业务必需的字段。临时授权设置失效日期，人员离岗时立即收回账号，禁止多个工作人员共用一个身份。",
+        "每次查询记录操作人、时间、事项编号及所访问字段，审计日志保留九十天。管理人员定期核查异常批量下载，通过最小权限和可追溯记录降低数据泄露风险。"
+      ]
+    },
+    {
+      "id": "zh-restore",
+      "language": "zh",
+      "title": "资料库异地备份与恢复演练",
+      "paragraphs": [
+        "资料库保留三份副本，分别放在两种存储介质上，其中一份存放异地。每日备份数据库与原始附件，不能只复制目录而遗漏数据库事务日志或用于解密的私有密钥。",
+        "每个月从随机一天的备份恢复到隔离环境，校验文档数量、附件哈希和检索结果。恢复演练成功才说明备份可用，备份任务显示完成并不等于发生故障时一定能恢复。"
+      ]
+    },
+    {
+      "id": "zh-vector-version",
+      "language": "zh",
+      "title": "检索向量的模型版本与维度一致性",
+      "paragraphs": [
+        "语义检索必须用同一嵌入模型及兼容配置编码查询和文档。即使两个模型输出相同长度的向量，它们也可能处于不同的语义空间，不能直接混合计算相似度。",
+        "更换模型、改变向量维度或修改文档切分规则后，应生成新的索引版本并重新编码对应资料。切换前记录模型名称、版本、维度和分块方式，避免旧缓存与新查询混用。"
+      ]
+    },
+    {
+      "id": "en-passive-cooling",
+      "language": "en",
+      "title": "Reducing indoor heat through passive building design",
+      "paragraphs": [
+        "External window shades block solar radiation before it enters a room. A well-insulated roof and a reflective exterior reduce daytime heat gains. These building changes can improve indoor comfort without relying entirely on powered air conditioning.",
+        "Night ventilation removes stored heat when outdoor air becomes cooler than indoor air. Designers should assess local humidity and nighttime temperatures before choosing this measure. The guidance concerns building fabric and airflow rather than emergency welfare calls."
+      ]
+    },
+    {
+      "id": "en-station-access",
+      "language": "en",
+      "title": "Step-free railway station access",
+      "paragraphs": [
+        "Passengers using wheelchairs need a continuous step-free route from the street entrance to the platform. Lifts must connect every change in level, and the route should avoid narrow gates, steep ramps and unbridged gaps at the train door.",
+        "Publish lift outage information before passengers travel. Provide an accessible alternative route and staff assistance when a lift is unavailable. Tactile guidance helps people with visual impairments navigate safely, but it does not replace wheelchair access."
+      ]
+    },
+    {
+      "id": "en-ransomware-backup",
+      "language": "en",
+      "title": "Backup isolation against ransomware",
+      "paragraphs": [
+        "Continuous replication copies changes to another system and can also copy malicious encryption or accidental deletion. A second online replica alone therefore does not provide a reliable recovery point after a ransomware incident.",
+        "Keep immutable snapshots or offline backup copies that production credentials cannot modify. Test restoration using an isolated account and verify data integrity before reconnecting the recovered system. Replication availability and recoverable history solve different problems."
+      ]
+    },
+    {
+      "id": "en-pseudonymisation",
+      "language": "en",
+      "title": "Pseudonymised research records and re-identification risk",
+      "paragraphs": [
+        "Replacing a patient's name with a random code is pseudonymisation. The record can still be linked to an individual if a separate mapping table survives. Removing the name alone does not make the dataset anonymous.",
+        "Store the mapping table separately with tightly restricted access. Researchers should assess whether rare diagnoses, age and location can reveal a person's identity through linkage with other information. Share only the fields necessary for the approved study."
+      ]
+    },
+    {
+      "id": "en-hybrid-retrieval",
+      "language": "en",
+      "title": "Combining lexical and semantic document retrieval",
+      "paragraphs": [
+        "Keyword search is useful for exact identifiers, dates and uncommon product names. Dense vector retrieval can find passages that express the same idea using different words. A hybrid search system merges candidate lists from both methods, often using reciprocal rank fusion.",
+        "A reranker then evaluates each query and candidate together to refine the order. It cannot recover a relevant document that neither retrieval method placed in the candidate pool. Evaluate recall before reranking and ranking quality after reranking as separate stages."
+      ]
+    }
+  ],
+  "queries": [
+    {"id": "zz01", "group": "zh_to_zh", "text": "高温来临时社区怎样帮助不能自行外出的独居老人？", "relevant": ["zh-heat"]},
+    {"id": "zz02", "group": "zh_to_zh", "text": "寒潮中哪些道路需要提前除冰，通行恢复要记录什么？", "relevant": ["zh-cold"]},
+    {"id": "zz03", "group": "zh_to_zh", "text": "政务人员离岗后如何处理账号，数据查询日志保留多久？", "relevant": ["zh-access-control"]},
+    {"id": "zz04", "group": "zh_to_zh", "text": "如何通过每月恢复演练确认资料库的异地备份可用？", "relevant": ["zh-restore"]},
+    {"id": "zz05", "group": "zh_to_zh", "text": "向量长度一样但嵌入模型不同，查询和资料能直接匹配吗？", "relevant": ["zh-vector-version"]},
+    {"id": "zz06", "group": "zh_to_zh", "text": "更换语义检索模型以后为什么需要重建索引并清理旧缓存？", "relevant": ["zh-vector-version"]},
+    {"id": "ze01", "group": "zh_to_en", "text": "怎样用外遮阳和屋顶隔热降低房间夏天的温度？", "relevant": ["en-passive-cooling"]},
+    {"id": "ze02", "group": "zh_to_en", "text": "建筑什么时候适合利用夜间通风排出白天积累的热量？", "relevant": ["en-passive-cooling"]},
+    {"id": "ze03", "group": "zh_to_en", "text": "轮椅乘客从车站街道入口到站台需要怎样的无障碍路线？", "relevant": ["en-station-access"]},
+    {"id": "ze04", "group": "zh_to_en", "text": "车站电梯停运时怎样提前告知乘客并提供替代通道？", "relevant": ["en-station-access"]},
+    {"id": "ze05", "group": "zh_to_en", "text": "为什么在线复制不能防止勒索软件，需要不可篡改或离线备份？", "relevant": ["en-ransomware-backup"]},
+    {"id": "ze06", "group": "zh_to_en", "text": "把患者姓名换成随机编号就算匿名了吗，映射表应怎样保存？", "relevant": ["en-pseudonymisation"]},
+    {"id": "ez01", "group": "en_to_zh", "text": "How should a community contact elderly people living alone during a heatwave and arrange transport to cooling shelters?", "relevant": ["zh-heat"]},
+    {"id": "ez02", "group": "en_to_zh", "text": "What should road crews record when removing ice from bridges and slopes during a cold wave?", "relevant": ["zh-cold"]},
+    {"id": "ez03", "group": "en_to_zh", "text": "How do minimum field permissions, account revocation and ninety-day access logs protect government data sharing?", "relevant": ["zh-access-control"]},
+    {"id": "ez04", "group": "en_to_zh", "text": "How can a monthly isolated restore drill verify that off-site library backups include attachments and decryption keys?", "relevant": ["zh-restore"]},
+    {"id": "ez05", "group": "en_to_zh", "text": "Can query vectors and document vectors from different embedding models be compared merely because their dimensions match?", "relevant": ["zh-vector-version"]},
+    {"id": "ez06", "group": "en_to_zh", "text": "Which index metadata should be recorded before changing the embedding model, vector size or document chunking rules?", "relevant": ["zh-vector-version"]}
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "compiler": {
+    "version": "6.0.5",
+    "url": "https://github.com/jrsoftware/issrc/releases/download/is-6_0_5/innosetup-6.0.5.exe",
+    "sha256": "ae6823b523df87e9441789e51845434e4e0e70aac0b88afe80f94f20f4b98acb"
+  },
+  "extractor": {
+    "version": "1.9",
+    "url": "https://github.com/dscharrer/innoextract/releases/download/1.9/innoextract-1.9-windows.zip",
+    "sha256": "6989342c9b026a00a72a38f23b62a8e6a22cc5de69805cf47d68ac2fec993065"
+  },
+  "npm": {
+    "version": "10.9.2",
+    "url": "https://registry.npmjs.org/npm/-/npm-10.9.2.tgz",
+    "sha256": "5cd1e5ab971ea6333f910bc2d50700167c5ef4e66da279b2a3efc874c6b116e4",
+    "integrity": "sha512-iriPEPIkoMYUy3F6f3wwSZAU93E0Eg6cHwIR6jzzOXWSy+SD/rOODEs74cVONHKSx2obXtuUoyidVEhISrisgQ=="
+  },
+  "webview2": {
+    "url": "https://go.microsoft.com/fwlink/p/?LinkId=2124703",
+    "sha256": "ca4c9016c70e2184c5e231662e0e98abf4826647180ef3faab32fcb1ca2ec15e",
+    "signature_subject": "Microsoft Corporation",
+    "downloaded": "2026-10-26"
+  }
+}

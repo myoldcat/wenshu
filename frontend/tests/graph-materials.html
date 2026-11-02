@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="jade">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="icon" href="data:,"/>
+  <title>知识图谱 · 节点材质预览</title>
+  <style>
+    html,body,#graph-materials-root{margin:0;min-width:900px;width:100%;height:100%;overflow:hidden}
+    .materials-fixture{height:100%;min-height:650px;display:flex;flex-direction:column;color:var(--ink);background:var(--bg);font-family:var(--sans,sans-serif)}
+    .materials-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:25px 34px 18px;background:color-mix(in srgb,var(--surface) 90%,transparent);z-index:3}
+    .materials-heading h1{margin:0;font:500 25px/1.5 var(--serif,serif);letter-spacing:1px}.materials-heading p{margin:4px 0 0;color:var(--muted);font-size:12px;letter-spacing:.3px}
+    .materials-context{font-size:11px;color:var(--muted);text-align:right;line-height:1.8}.materials-context strong{display:block;color:var(--ink);font-size:12px;font-weight:500}
+    .materials-toolbar{display:flex;align-items:center;gap:17px;flex-wrap:wrap;padding:0 34px 18px;background:color-mix(in srgb,var(--surface) 90%,transparent);z-index:3}
+    .materials-toolbar button,.materials-toolbar select,.materials-zoom button,.materials-run{font:12px/1.5 var(--sans,sans-serif);color:var(--ink);border:0;border-radius:12px;background:color-mix(in srgb,var(--bg) 80%,var(--surface));min-height:38px;padding:8px 14px;cursor:pointer}
+    .materials-options{display:flex;gap:6px;padding:4px;background:color-mix(in srgb,var(--ink) 4%,transparent);border-radius:16px}
+    .materials-options button{background:transparent;min-width:106px}.materials-options button[aria-pressed="true"]{background:var(--surface);box-shadow:0 3px 14px color-mix(in srgb,var(--ink) 8%,transparent);color:var(--green)}
+    .materials-toolbar label{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}.materials-toolbar input{accent-color:var(--green)}
+    .materials-canvas{flex:1;min-height:430px;position:relative;overflow:hidden;background:var(--gw-canvas);isolation:isolate}
+    .materials-canvas .gw-g6-shell{background-image:none}.materials-canvas::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,color-mix(in srgb,var(--surface) 65%,transparent),transparent 72%);pointer-events:none}
+    .materials-caption{position:absolute;top:24px;left:34px;z-index:2;pointer-events:none;color:var(--muted);font-size:11px;letter-spacing:.4px}.materials-caption strong{display:block;font:500 17px/1.8 var(--serif,serif);color:var(--ink)}
+    .materials-zoom{position:absolute;bottom:22px;right:28px;z-index:2;display:flex;gap:4px;padding:4px;background:color-mix(in srgb,var(--surface) 85%,transparent);border-radius:16px;box-shadow:0 3px 15px color-mix(in srgb,var(--ink) 5%,transparent)}.materials-zoom button{min-width:39px;background:transparent;font-size:15px;padding:7px 10px}.materials-zoom span{min-width:48px;display:grid;place-items:center;color:var(--muted);font-size:11px}
+    .materials-footer{display:flex;align-items:center;gap:16px;padding:11px 28px 11px 34px;font-size:11px;color:var(--muted);background:var(--surface);z-index:3}.materials-footer>span{flex:1}.materials-run{min-height:34px;padding:6px 12px;background:var(--selection)}.materials-run:disabled{opacity:.55;cursor:wait}
+    .materials-result{position:fixed;z-index:10;left:24px;right:24px;bottom:65px;max-height:45vh;overflow:auto;background:var(--surface);box-shadow:0 8px 35px #0002;border-radius:16px;padding:18px;color:var(--ink);white-space:pre-wrap;font:11px/1.7 monospace}.materials-result[hidden]{display:none}
+    .materials-error{position:absolute;bottom:24px;left:34px;color:#9b3843;background:var(--surface);padding:10px 15px;border-radius:12px;z-index:5}
+    button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+    @media(max-height:760px){.materials-heading{padding-top:16px;padding-bottom:12px}.materials-toolbar{padding-bottom:12px}.materials-heading h1{font-size:22px}}
+  </style>
+</head>
+<body>
+  <div id="graph-materials-root"></div>
+  <script type="module" src="/tests/graph-materials-harness.jsx"></script>
+</body>
+</html>

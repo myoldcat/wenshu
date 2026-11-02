@@ -1,0 +1,106 @@
+/* Chapter reading and editing share preview's sidebars and corner controls. */
+html[data-theme] .writing-root .writing-chapter-panels > .writing-editor-grid {
+  --chapter-outline-width: 180px;
+  --chapter-reference-width: 320px;
+  grid-template-columns: var(--chapter-outline-width) minmax(0, 1fr) var(--chapter-reference-width);
+  grid-template-areas: "outline content references";
+}
+html[data-theme] .writing-root .writing-chapter-panels .writing-reading-sidebar {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  background: var(--bg);
+  border-color: var(--line);
+}
+html[data-theme] .writing-root .writing-chapter-panels .writing-chapter-nav { grid-area: outline; }
+html[data-theme] .writing-root .writing-chapter-panels .writing-evidence-panel {
+  grid-area: references;
+  position: static;
+  inset: auto;
+  width: auto;
+  z-index: auto;
+  box-shadow: none;
+}
+html[data-theme] .writing-root .writing-chapter-panels .writing-editor-main {
+  grid-area: content;
+  position: relative;
+  min-height: 0;
+  box-sizing: border-box;
+  padding-top: 32px;
+}
+html[data-theme] .writing-root .writing-chapter-panels .writing-editor-scroll { overflow-anchor: none; }
+html[data-theme] .writing-root .writing-chapter-panels .writing-reading-sidebar[hidden] { display: none; }
+html[data-theme] .writing-root .writing-chapter-panels[data-outline-collapsed="true"] > .writing-editor-grid { --chapter-outline-width: 0px; }
+html[data-theme] .writing-root .writing-chapter-panels[data-references-collapsed="true"] > .writing-editor-grid { --chapter-reference-width: 0px; }
+html[data-theme] .writing-root .writing-chapter-panels .writing-chapter-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 0 12px 16px;
+}
+html[data-theme] .writing-root .writing-chapter-panels .writing-chapter-list > button {
+  width: 100%;
+  gap: 10px;
+  padding: 13px 10px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: var(--muted);
+  background: transparent;
+}
+html[data-theme] .writing-root .writing-chapter-panels .writing-chapter-list > button.active {
+  color: var(--green);
+  background: var(--selection);
+  border-color: var(--line);
+}
+html[data-theme] .writing-root .writing-chapter-panels .writing-chapter-list small { color: inherit; }
+html[data-theme] .writing-root .writing-chapter-panels .writing-chapter-bottom {
+  flex: 0 0 auto;
+  margin-top: 0;
+  padding: 16px 12px 20px;
+  background: var(--bg);
+}
+html[data-theme] .writing-root .writing-chapter-panels .writing-chapter-reference-scroll {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 0 20px 30px;
+}
+html[data-theme] .writing-root .writing-chapter-panels .writing-reading-panel-actions > .icon-btn {
+  flex: 0 0 27px;
+  width: 27px;
+  height: 27px;
+  padding: 0;
+  color: var(--green);
+  background: transparent;
+}
+@media (min-width: 1600px) {
+  html[data-theme] .writing-root .writing-chapter-panels > .writing-editor-grid { --chapter-outline-width: 210px; --chapter-reference-width: 360px; }
+}
+@media (max-width: 1250px) {
+  html[data-theme] .writing-root .writing-chapter-panels > .writing-editor-grid { --chapter-outline-width: 160px; --chapter-reference-width: minmax(220px, 32%); }
+  html[data-theme] .writing-root .writing-chapter-panels .writing-chapter-reference-scroll { padding-left: 16px; padding-right: 16px; }
+}
+@media (max-width: 700px) {
+  html[data-theme] .writing-root .writing-chapter-panels > .writing-editor-grid {
+    --chapter-outline-height: 128px;
+    --chapter-reference-height: minmax(100px, 30%);
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: var(--chapter-outline-height) minmax(0, 1fr) var(--chapter-reference-height);
+    grid-template-areas: "outline" "content" "references";
+  }
+  html[data-theme] .writing-root .writing-chapter-panels[data-outline-collapsed="true"] > .writing-editor-grid { --chapter-outline-height: 0px; }
+  html[data-theme] .writing-root .writing-chapter-panels[data-references-collapsed="true"] > .writing-editor-grid { --chapter-reference-height: 0px; }
+  html[data-theme] .writing-root .writing-chapter-panels .writing-chapter-nav { border-right: 0; border-bottom: 1px solid var(--line); }
+  html[data-theme] .writing-root .writing-chapter-panels .writing-chapter-list { flex-direction: row; gap: 6px; padding: 2px 12px 10px; }
+  html[data-theme] .writing-root .writing-chapter-panels .writing-chapter-list > button { flex: 0 0 150px; width: 150px; margin: 0; padding: 7px 9px; }
+  html[data-theme] .writing-root .writing-chapter-panels .writing-chapter-list strong { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5; }
+  html[data-theme] .writing-root .writing-chapter-panels .writing-chapter-list small { margin-top: 3px; font-size: 11px; }
+  html[data-theme] .writing-root .writing-chapter-panels .writing-chapter-bottom { display: none; }
+  html[data-theme] .writing-root .writing-chapter-panels .writing-evidence-panel { border-left: 0; border-top: 1px solid var(--line); }
+}
